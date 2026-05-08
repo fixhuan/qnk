@@ -9,8 +9,6 @@
     </view>
 
     <view class="logo-area">
-      <view class="logo-orb logo-orb-1"></view>
-      <view class="logo-orb logo-orb-2"></view>
       <view class="logo-circle">
         <text class="logo-icon">💳</text>
       </view>
@@ -24,7 +22,7 @@
         :key="index"
         class="feature-item"
       >
-        <view class="feature-icon-wrap" :style="{ background: feature.gradient }">
+        <view class="feature-icon-wrap" :style="{ background: feature.bgColor }">
           <text class="feature-icon">{{ feature.icon }}</text>
         </view>
         <view class="feature-text">
@@ -77,10 +75,10 @@
 import { ref } from 'vue'
 
 const features = ref([
-  { icon: '🎯', title: '精准服务', desc: '基于青年需求，提供政策、租房、求职等一站式服务', gradient: 'linear-gradient(135deg, #667eea, #764ba2)' },
-  { icon: '🔒', title: '安全可靠', desc: '政府背书，数据加密，保障您的信息安全', gradient: 'linear-gradient(135deg, #4facfe, #00f2fe)' },
-  { icon: '⚡', title: '便捷高效', desc: '在线申请，一键办理，让服务触手可及', gradient: 'linear-gradient(135deg, #f093fb, #f5576c)' },
-  { icon: '🌟', title: '专属优惠', desc: '青年卡用户专享折扣和补贴，助力青年发展', gradient: 'linear-gradient(135deg, #43e97b, #38f9d7)' }
+  { icon: '🎯', title: '精准服务', desc: '基于青年需求，提供政策、租房、求职等一站式服务', bgColor: '#fef3ee' },
+  { icon: '🔒', title: '安全可靠', desc: '政府背书，数据加密，保障您的信息安全', bgColor: '#f0fdf4' },
+  { icon: '⚡', title: '便捷高效', desc: '在线申请，一键办理，让服务触手可及', bgColor: '#eff6ff' },
+  { icon: '🌟', title: '专属优惠', desc: '青年卡用户专享折扣和补贴，助力青年发展', bgColor: '#fefce8' }
 ])
 
 const goBack = () => {
@@ -96,7 +94,7 @@ const onLink = (type: string) => {
 <style scoped>
 .page {
   min-height: 100vh;
-  background-color: #0f0f2d;
+  background-color: #faf8f5;
   padding-bottom: 60rpx;
 }
 
@@ -104,8 +102,8 @@ const onLink = (type: string) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 60rpx 24rpx 16rpx;
-  background-color: #0f0f2d;
+  padding: 60rpx 32rpx 16rpx;
+  background-color: #faf8f5;
 }
 
 .nav-back {
@@ -122,59 +120,30 @@ const onLink = (type: string) => {
 
 .nav-back-icon {
   font-size: 44rpx;
-  color: #FFFFFF;
+  color: #1a1612;
 }
 
 .nav-title {
   font-size: 34rpx;
   font-weight: 700;
-  color: #FFFFFF;
+  color: #1a1612;
 }
 
 .logo-area {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40rpx 0;
-  overflow: hidden;
-}
-
-.logo-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80rpx);
-}
-
-.logo-orb-1 {
-  width: 300rpx;
-  height: 300rpx;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  opacity: 0.25;
-  top: -80rpx;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.logo-orb-2 {
-  width: 200rpx;
-  height: 200rpx;
-  background: linear-gradient(135deg, #f093fb, #f5576c);
-  opacity: 0.15;
-  top: 40rpx;
-  right: 20%;
+  padding: 48rpx 0;
 }
 
 .logo-circle {
   width: 160rpx;
   height: 160rpx;
   border-radius: 50%;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: #fef3ee;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 40rpx rgba(124, 92, 252, 0.5);
-  position: relative;
 }
 
 .logo-icon {
@@ -184,24 +153,21 @@ const onLink = (type: string) => {
 .app-name {
   font-size: 40rpx;
   font-weight: 700;
-  color: #FFFFFF;
+  color: #1a1612;
   margin-top: 24rpx;
-  position: relative;
 }
 
 .app-version {
   font-size: 26rpx;
-  color: rgba(255, 255, 255, 0.4);
+  color: #a89888;
   margin-top: 8rpx;
-  position: relative;
 }
 
 .features-card {
   margin: 0 32rpx 24rpx;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  border-radius: 24rpx;
+  background: #ffffff;
+  border: 1rpx solid #f0ebe3;
+  border-radius: 16rpx;
   padding: 32rpx;
 }
 
@@ -218,7 +184,7 @@ const onLink = (type: string) => {
 .feature-icon-wrap {
   width: 64rpx;
   height: 64rpx;
-  border-radius: 18rpx;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -239,29 +205,28 @@ const onLink = (type: string) => {
 .feature-title {
   font-size: 30rpx;
   font-weight: 600;
-  color: #FFFFFF;
+  color: #1a1612;
 }
 
 .feature-desc {
   font-size: 24rpx;
-  color: rgba(255, 255, 255, 0.4);
+  color: #6b5e52;
   margin-top: 6rpx;
   line-height: 1.5;
 }
 
 .contact-card {
   margin: 0 32rpx 24rpx;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  border-radius: 24rpx;
+  background: #ffffff;
+  border: 1rpx solid #f0ebe3;
+  border-radius: 16rpx;
   padding: 32rpx;
 }
 
 .card-title {
   font-size: 30rpx;
   font-weight: 600;
-  color: #FFFFFF;
+  color: #1a1612;
   margin-bottom: 24rpx;
 }
 
@@ -278,8 +243,8 @@ const onLink = (type: string) => {
 .contact-icon-wrap {
   width: 52rpx;
   height: 52rpx;
-  border-radius: 14rpx;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 50%;
+  background: #f5f0ea;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -293,15 +258,14 @@ const onLink = (type: string) => {
 
 .contact-text {
   font-size: 28rpx;
-  color: rgba(255, 255, 255, 0.6);
+  color: #6b5e52;
 }
 
 .links-card {
   margin: 0 32rpx 24rpx;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  border-radius: 24rpx;
+  background: #ffffff;
+  border: 1rpx solid #f0ebe3;
+  border-radius: 16rpx;
   overflow: hidden;
 }
 
@@ -310,7 +274,7 @@ const onLink = (type: string) => {
   align-items: center;
   justify-content: space-between;
   padding: 28rpx 32rpx;
-  border-bottom: 1rpx solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1rpx solid #f0ebe3;
 }
 
 .link-item:last-child {
@@ -318,17 +282,17 @@ const onLink = (type: string) => {
 }
 
 .link-item-active {
-  background: rgba(255, 255, 255, 0.04);
+  background: #f5f0ea;
 }
 
 .link-text {
   font-size: 28rpx;
-  color: #7c5cfc;
+  color: #c2410c;
 }
 
 .link-arrow {
   font-size: 32rpx;
-  color: rgba(255, 255, 255, 0.2);
+  color: #e8e0d6;
 }
 
 .copyright {
@@ -338,6 +302,6 @@ const onLink = (type: string) => {
 
 .copyright-text {
   font-size: 22rpx;
-  color: rgba(255, 255, 255, 0.2);
+  color: #a89888;
 }
 </style>

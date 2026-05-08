@@ -1,26 +1,18 @@
 <template>
   <view class="page">
-    <view class="hero">
-      <view class="hero-bg"></view>
-      <view class="aurora-orb aurora-orb-1"></view>
-      <view class="aurora-orb aurora-orb-2"></view>
-      <view class="aurora-orb aurora-orb-3"></view>
-      <view class="hero-content">
-        <view class="status-bar" :style="{ height: statusBarHeight + 'px' }"></view>
-        <view class="hero-top">
-          <text class="logo-text">青年卡</text>
-          <view class="notify-btn" @click="onNotifyClick">
-            <text class="notify-icon">🔔</text>
-          </view>
+    <view class="header">
+      <view class="status-bar" :style="{ height: statusBarHeight + 'px' }"></view>
+      <view class="header-top">
+        <text class="logo-text">青年卡</text>
+        <view class="notify-btn" @click="onNotifyClick">
+          <text class="notify-icon">🔔</text>
         </view>
-        <view class="greeting">
-          <text class="greeting-title">Hi，青年 👋</text>
-          <text class="greeting-sub">探索属于你的精彩世界</text>
-        </view>
-        <view class="search-bar" @click="onSearchClick">
-          <text class="search-icon">🔍</text>
-          <text class="search-placeholder">搜索服务、商户、课程...</text>
-        </view>
+      </view>
+      <text class="greeting-title">Hi，青年</text>
+      <text class="greeting-sub">探索属于你的精彩世界</text>
+      <view class="search-bar" @click="onSearchClick">
+        <text class="search-icon">🔍</text>
+        <text class="search-placeholder">搜索服务、商户、课程...</text>
       </view>
     </view>
 
@@ -36,9 +28,7 @@
           @change="onBannerChange"
         >
           <swiper-item v-for="(item, index) in banners" :key="index">
-            <view class="banner-item" :style="{ background: item.bg }">
-              <view class="banner-orb banner-orb-1" :style="{ background: item.orbColor1 }"></view>
-              <view class="banner-orb banner-orb-2" :style="{ background: item.orbColor2 }"></view>
+            <view class="banner-item" :style="{ backgroundColor: item.bg }">
               <view class="banner-text">
                 <text class="banner-title">{{ item.title }}</text>
                 <text class="banner-desc">{{ item.desc }}</text>
@@ -67,9 +57,8 @@
               v-for="(item, index) in modules"
               :key="index"
               @click="onModuleClick(item)"
-              :style="{ '--item-gradient': item.gradient }"
             >
-              <view class="grid-icon-wrap" :style="{ background: item.gradient }">
+              <view class="grid-icon-wrap" :style="{ backgroundColor: item.iconBg }">
                 <text class="grid-icon">{{ item.icon }}</text>
               </view>
               <text class="grid-name">{{ item.name }}</text>
@@ -91,14 +80,14 @@
               :key="index"
               @click="onRecommendClick(item)"
             >
-              <view class="recommend-img" :style="{ background: item.bg }">
-                <view class="recommend-img-orb" :style="{ background: item.orbColor }"></view>
+              <view class="recommend-img" :style="{ backgroundColor: item.bg }">
+                <text class="recommend-img-emoji">{{ item.emoji }}</text>
               </view>
               <view class="recommend-info">
                 <text class="recommend-title">{{ item.title }}</text>
                 <text class="recommend-desc">{{ item.desc }}</text>
                 <view class="recommend-tag-wrap">
-                  <text class="recommend-tag" :style="{ background: item.tagBg }">{{ item.tag }}</text>
+                  <text class="recommend-tag" :style="{ backgroundColor: item.tagBg, color: item.tagColor }">{{ item.tag }}</text>
                 </view>
               </view>
             </view>
@@ -118,8 +107,8 @@
             :key="index"
             @click="onActivityClick(item)"
           >
-            <view class="activity-img" :style="{ background: item.bg }">
-              <text class="activity-icon">{{ item.icon }}</text>
+            <view class="activity-icon-box" :style="{ backgroundColor: item.bg }">
+              <text class="activity-emoji">{{ item.icon }}</text>
             </view>
             <view class="activity-info">
               <text class="activity-title">{{ item.title }}</text>
@@ -146,8 +135,6 @@ interface Banner {
   desc: string
   bg: string
   btn: string
-  orbColor1: string
-  orbColor2: string
   path: string
 }
 
@@ -155,16 +142,17 @@ interface Module {
   icon: string
   name: string
   path: string
-  gradient: string
+  iconBg: string
 }
 
 interface Recommend {
   title: string
   desc: string
   bg: string
+  emoji: string
   tag: string
   tagBg: string
-  orbColor: string
+  tagColor: string
   path: string
 }
 
@@ -188,79 +176,77 @@ const banners = ref<Banner[]>([
   {
     title: '青春惠享',
     desc: '专属优惠 畅享生活',
-    bg: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    bg: '#c2410c',
     btn: '立即参与',
-    orbColor1: 'rgba(240,147,251,0.3)',
-    orbColor2: 'rgba(79,172,254,0.25)',
     path: '/pages/detail/shop'
   },
   {
     title: '夜校报名',
     desc: '技能提升 充实自我',
-    bg: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+    bg: '#1a1612',
     btn: '马上报名',
-    orbColor1: 'rgba(67,233,123,0.3)',
-    orbColor2: 'rgba(102,126,234,0.25)',
     path: '/pages/detail/school'
   },
   {
     title: '青年公寓',
     desc: '温馨住所 安心安居',
-    bg: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+    bg: '#15803d',
     btn: '了解详情',
-    orbColor1: 'rgba(79,172,254,0.3)',
-    orbColor2: 'rgba(250,112,154,0.25)',
     path: '/pages/detail/apartment'
   }
 ])
 
 const modules = ref<Module[]>([
-  { icon: '🏪', name: '小店', path: '/pages/detail/shop', gradient: 'linear-gradient(135deg, #f5576c, #f093fb)' },
-  { icon: '📚', name: '夜校', path: '/pages/detail/school', gradient: 'linear-gradient(135deg, #4facfe, #00f2fe)' },
-  { icon: '🏠', name: '公寓', path: '/pages/detail/apartment', gradient: 'linear-gradient(135deg, #43e97b, #38f9d7)' },
-  { icon: '💼', name: '求职', path: '/pages/detail/job', gradient: 'linear-gradient(135deg, #fa709a, #fee140)' },
-  { icon: '🚀', name: '创业', path: '/pages/detail/startup', gradient: 'linear-gradient(135deg, #667eea, #764ba2)' },
-  { icon: '🎉', name: '社交', path: '/pages/detail/social', gradient: 'linear-gradient(135deg, #f093fb, #f5576c)' },
-  { icon: '❤️', name: '志愿', path: '/pages/detail/volunteer', gradient: 'linear-gradient(135deg, #fee140, #fa709a)' },
-  { icon: '✏️', name: '学习', path: '/pages/detail/learn', gradient: 'linear-gradient(135deg, #7c5cfc, #9b85fd)' },
-  { icon: '🛡️', name: '权益', path: '/pages/detail/rights', gradient: 'linear-gradient(135deg, #38f9d7, #43e97b)' }
+  { icon: '🏪', name: '小店', path: '/pages/detail/shop', iconBg: '#fef3ee' },
+  { icon: '📚', name: '夜校', path: '/pages/detail/school', iconBg: '#eff6ff' },
+  { icon: '🏠', name: '公寓', path: '/pages/detail/apartment', iconBg: '#f0fdf4' },
+  { icon: '💼', name: '求职', path: '/pages/detail/job', iconBg: '#fefce8' },
+  { icon: '🚀', name: '创业', path: '/pages/detail/startup', iconBg: '#faf5ff' },
+  { icon: '🎉', name: '社交', path: '/pages/detail/social', iconBg: '#fff1f2' },
+  { icon: '❤️', name: '志愿', path: '/pages/detail/volunteer', iconBg: '#fef3ee' },
+  { icon: '✏️', name: '学习', path: '/pages/detail/learn', iconBg: '#eff6ff' },
+  { icon: '🛡️', name: '权益', path: '/pages/detail/rights', iconBg: '#f0fdf4' }
 ])
 
 const recommends = ref<Recommend[]>([
   {
     title: '创意咖啡工坊',
     desc: '手冲咖啡体验课程',
-    bg: 'linear-gradient(135deg, #f5576c, #f093fb)',
+    bg: '#fef3ee',
+    emoji: '☕',
     tag: '热门',
-    tagBg: 'linear-gradient(135deg, #f5576c, #f093fb)',
-    orbColor: 'rgba(255,255,255,0.15)',
+    tagBg: '#fef3ee',
+    tagColor: '#c2410c',
     path: '/pages/detail/shop'
   },
   {
     title: 'Python编程入门',
     desc: '零基础到实战项目',
-    bg: 'linear-gradient(135deg, #4facfe, #00f2fe)',
+    bg: '#eff6ff',
+    emoji: '💻',
     tag: '新课',
-    tagBg: 'linear-gradient(135deg, #4facfe, #00f2fe)',
-    orbColor: 'rgba(255,255,255,0.15)',
+    tagBg: '#eff6ff',
+    tagColor: '#1d4ed8',
     path: '/pages/detail/learn'
   },
   {
     title: '青年创业沙龙',
     desc: '投资人面对面交流',
-    bg: 'linear-gradient(135deg, #667eea, #764ba2)',
+    bg: '#faf5ff',
+    emoji: '🚀',
     tag: '推荐',
-    tagBg: 'linear-gradient(135deg, #667eea, #764ba2)',
-    orbColor: 'rgba(255,255,255,0.15)',
+    tagBg: '#fef3ee',
+    tagColor: '#c2410c',
     path: '/pages/detail/startup'
   },
   {
     title: '周末户外徒步',
     desc: '结交志同道合伙伴',
-    bg: 'linear-gradient(135deg, #43e97b, #38f9d7)',
+    bg: '#f0fdf4',
+    emoji: '🥾',
     tag: '社交',
-    tagBg: 'linear-gradient(135deg, #43e97b, #38f9d7)',
-    orbColor: 'rgba(255,255,255,0.15)',
+    tagBg: '#f0fdf4',
+    tagColor: '#15803d',
     path: '/pages/detail/social'
   }
 ])
@@ -270,7 +256,7 @@ const activities = ref<Activity[]>([
     title: '城市音乐节志愿者招募',
     time: '2026-05-15 14:00',
     people: 128,
-    bg: 'linear-gradient(135deg, #f093fb, #f5576c)',
+    bg: '#fef3ee',
     icon: '🎵',
     path: '/pages/detail/volunteer'
   },
@@ -278,7 +264,7 @@ const activities = ref<Activity[]>([
     title: '青年读书分享会',
     time: '2026-05-18 19:00',
     people: 56,
-    bg: 'linear-gradient(135deg, #667eea, #764ba2)',
+    bg: '#eff6ff',
     icon: '📖',
     path: '/pages/detail/learn'
   },
@@ -286,7 +272,7 @@ const activities = ref<Activity[]>([
     title: '创业路演大赛',
     time: '2026-05-20 09:00',
     people: 234,
-    bg: 'linear-gradient(135deg, #fa709a, #fee140)',
+    bg: '#fefce8',
     icon: '🏆',
     path: '/pages/detail/startup'
   }
@@ -332,84 +318,31 @@ const onActivityClick = (item: Activity) => {
 <style scoped>
 .page {
   min-height: 100vh;
-  background-color: #0f0f2d;
+  background-color: #faf8f5;
 }
 
-.hero {
-  position: relative;
-  overflow: hidden;
-  padding-bottom: 40rpx;
-}
-
-.hero-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(180deg, #0c0c1d 0%, #1a1a3e 100%);
-  z-index: 0;
-}
-
-.aurora-orb {
-  position: absolute;
-  border-radius: 50%;
-  z-index: 0;
-}
-
-.aurora-orb-1 {
-  width: 400rpx;
-  height: 400rpx;
-  top: -80rpx;
-  right: -60rpx;
-  background: radial-gradient(circle, rgba(240,147,251,0.2) 0%, rgba(245,87,108,0.08) 60%, transparent 100%);
-  filter: blur(80rpx);
-}
-
-.aurora-orb-2 {
-  width: 500rpx;
-  height: 500rpx;
-  top: 60rpx;
-  left: -120rpx;
-  background: radial-gradient(circle, rgba(79,172,254,0.18) 0%, rgba(0,242,254,0.06) 60%, transparent 100%);
-  filter: blur(80rpx);
-}
-
-.aurora-orb-3 {
-  width: 350rpx;
-  height: 350rpx;
-  bottom: -40rpx;
-  left: 50%;
-  transform: translateX(-50%);
-  background: radial-gradient(circle, rgba(67,233,123,0.15) 0%, rgba(56,249,215,0.05) 60%, transparent 100%);
-  filter: blur(80rpx);
-}
-
-.hero-content {
-  position: relative;
-  z-index: 1;
-  padding: 0 32rpx;
+.header {
+  background-color: #faf8f5;
+  padding: 0 32rpx 32rpx;
 }
 
 .status-bar {
   width: 100%;
 }
 
-.hero-top {
+.header-top {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 32rpx;
+  margin-bottom: 24rpx;
 }
 
 .logo-text {
-  font-size: 36rpx;
-  font-weight: 800;
-  background: linear-gradient(135deg, #667eea 0%, #f093fb 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #1a1612;
+  letter-spacing: 0.05em;
 }
 
 .notify-btn {
@@ -418,85 +351,73 @@ const onActivityClick = (item: Activity) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255,255,255,0.08);
-  border: 1rpx solid rgba(255,255,255,0.1);
-  border-radius: 50%;
-  backdrop-filter: blur(20px);
 }
 
 .notify-btn:active {
-  transform: scale(0.92);
-  background: rgba(255,255,255,0.12);
+  opacity: 0.6;
 }
 
 .notify-icon {
-  font-size: 32rpx;
-}
-
-.greeting {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 32rpx;
+  font-size: 36rpx;
+  color: #6b5e52;
 }
 
 .greeting-title {
-  font-size: 48rpx;
-  font-weight: 800;
-  color: #FFFFFF;
-  margin-bottom: 8rpx;
-  letter-spacing: 1rpx;
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #1a1612;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
 .greeting-sub {
   font-size: 26rpx;
-  color: rgba(255,255,255,0.6);
+  color: #a89888;
+  margin-top: 8rpx;
+  margin-bottom: 24rpx;
+  display: block;
 }
 
 .search-bar {
   display: flex;
   align-items: center;
   height: 80rpx;
-  background: rgba(255,255,255,0.06);
-  border: 1rpx solid rgba(255,255,255,0.1);
-  border-radius: 40rpx;
-  padding: 0 28rpx;
-  backdrop-filter: blur(20px);
+  background-color: #ffffff;
+  border: 1rpx solid #e8e0d6;
+  border-radius: 12rpx;
+  padding: 0 24rpx;
 }
 
 .search-bar:active {
-  background: rgba(255,255,255,0.1);
-  transform: scale(0.98);
+  background-color: #f5f0ea;
 }
 
 .search-icon {
   font-size: 28rpx;
   margin-right: 16rpx;
+  color: #a89888;
 }
 
 .search-placeholder {
   font-size: 26rpx;
-  color: rgba(255,255,255,0.4);
+  color: #a89888;
 }
 
 .content {
-  position: relative;
-  z-index: 2;
   padding: 0 32rpx;
-  margin-top: -16rpx;
 }
 
 .banner-card {
-  background: rgba(255,255,255,0.06);
-  border: 1rpx solid rgba(255,255,255,0.1);
-  border-radius: 28rpx;
+  background-color: #ffffff;
+  border: 1rpx solid #f0ebe3;
+  border-radius: 16rpx;
   overflow: hidden;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 8rpx 48rpx rgba(0,0,0,0.5);
+  box-shadow: 0 1rpx 4rpx rgba(0, 0, 0, 0.03);
 }
 
 .banner-swiper {
   width: 100%;
-  height: 320rpx;
+  height: 280rpx;
 }
 
 .banner-item {
@@ -507,70 +428,43 @@ const onActivityClick = (item: Activity) => {
   align-items: center;
   justify-content: space-between;
   padding: 0 40rpx;
-  position: relative;
-  overflow: hidden;
-}
-
-.banner-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(60rpx);
-}
-
-.banner-orb-1 {
-  width: 260rpx;
-  height: 260rpx;
-  top: -60rpx;
-  right: -40rpx;
-  opacity: 0.6;
-}
-
-.banner-orb-2 {
-  width: 200rpx;
-  height: 200rpx;
-  bottom: -40rpx;
-  left: 40rpx;
-  opacity: 0.5;
 }
 
 .banner-text {
   display: flex;
   flex-direction: column;
-  position: relative;
-  z-index: 1;
 }
 
 .banner-title {
-  font-size: 40rpx;
-  font-weight: 800;
-  color: #FFFFFF;
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #ffffff;
   margin-bottom: 8rpx;
-  letter-spacing: 2rpx;
+  letter-spacing: -0.02em;
 }
 
 .banner-desc {
   font-size: 24rpx;
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 400;
 }
 
 .banner-btn {
-  background: rgba(255,255,255,0.25);
-  border-radius: 40rpx;
-  padding: 14rpx 32rpx;
-  backdrop-filter: blur(10px);
-  border: 1rpx solid rgba(255,255,255,0.2);
-  position: relative;
-  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 999rpx;
+  padding: 12rpx 28rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.3);
+  flex-shrink: 0;
 }
 
 .banner-btn:active {
-  transform: scale(0.95);
-  background: rgba(255,255,255,0.35);
+  opacity: 0.7;
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 .banner-btn-text {
   font-size: 24rpx;
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: 600;
 }
 
@@ -579,7 +473,7 @@ const onActivityClick = (item: Activity) => {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding: 20rpx 0 24rpx;
+  padding: 16rpx 0 20rpx;
   gap: 12rpx;
 }
 
@@ -587,18 +481,18 @@ const onActivityClick = (item: Activity) => {
   width: 12rpx;
   height: 12rpx;
   border-radius: 50%;
-  background: rgba(255,255,255,0.2);
+  background-color: #e8e0d6;
   transition: all 0.3s ease;
 }
 
 .banner-dot-active {
-  width: 32rpx;
+  width: 28rpx;
   border-radius: 6rpx;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background-color: #c2410c;
 }
 
 .section {
-  margin-top: 36rpx;
+  margin-top: 40rpx;
 }
 
 .section-header {
@@ -610,37 +504,34 @@ const onActivityClick = (item: Activity) => {
 }
 
 .section-title {
-  font-size: 34rpx;
-  font-weight: 800;
-  color: #FFFFFF;
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #1a1612;
+  letter-spacing: -0.02em;
 }
 
 .section-more {
   font-size: 24rpx;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-weight: 500;
+  color: #c2410c;
+  font-weight: 400;
 }
 
 .section-more:active {
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 .grid-card {
-  background: rgba(255,255,255,0.06);
-  border: 1rpx solid rgba(255,255,255,0.1);
-  border-radius: 28rpx;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 4rpx 24rpx rgba(0,0,0,0.4);
+  background-color: #ffffff;
+  border: 1rpx solid #f0ebe3;
+  border-radius: 16rpx;
   overflow: hidden;
+  box-shadow: 0 1rpx 4rpx rgba(0, 0, 0, 0.03);
 }
 
 .grid-wrap {
   display: flex;
   flex-wrap: wrap;
-  padding: 24rpx 0 8rpx;
+  padding: 16rpx 0 8rpx;
 }
 
 .grid-item {
@@ -649,33 +540,31 @@ const onActivityClick = (item: Activity) => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20rpx 0 28rpx;
-  transition: transform 0.2s ease;
+  padding: 20rpx 0 24rpx;
 }
 
 .grid-item:active {
-  transform: scale(0.92);
+  opacity: 0.6;
 }
 
 .grid-icon-wrap {
-  width: 100rpx;
-  height: 100rpx;
-  border-radius: 50%;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 16rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 14rpx;
-  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.3);
 }
 
 .grid-icon {
-  font-size: 44rpx;
+  font-size: 40rpx;
 }
 
 .grid-name {
   font-size: 24rpx;
-  color: rgba(255,255,255,0.85);
-  font-weight: 500;
+  color: #6b5e52;
+  margin-top: 12rpx;
+  font-weight: 400;
 }
 
 .recommend-scroll {
@@ -693,35 +582,28 @@ const onActivityClick = (item: Activity) => {
   display: inline-flex;
   flex-direction: column;
   width: 280rpx;
-  background: rgba(255,255,255,0.06);
-  border: 1rpx solid rgba(255,255,255,0.1);
-  border-radius: 20rpx;
+  background-color: #ffffff;
+  border: 1rpx solid #f0ebe3;
+  border-radius: 12rpx;
   overflow: hidden;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 4rpx 24rpx rgba(0,0,0,0.4);
   flex-shrink: 0;
-  transition: transform 0.2s ease;
+  box-shadow: 0 1rpx 4rpx rgba(0, 0, 0, 0.03);
 }
 
 .recommend-card:active {
-  transform: scale(0.95);
+  opacity: 0.6;
 }
 
 .recommend-img {
   width: 100%;
-  height: 180rpx;
-  position: relative;
-  overflow: hidden;
+  height: 160rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.recommend-img-orb {
-  position: absolute;
-  width: 160rpx;
-  height: 160rpx;
-  border-radius: 50%;
-  top: -40rpx;
-  right: -30rpx;
-  filter: blur(40rpx);
+.recommend-img-emoji {
+  font-size: 56rpx;
 }
 
 .recommend-info {
@@ -732,8 +614,8 @@ const onActivityClick = (item: Activity) => {
 
 .recommend-title {
   font-size: 28rpx;
-  font-weight: 700;
-  color: #FFFFFF;
+  font-weight: 600;
+  color: #1a1612;
   margin-bottom: 8rpx;
   white-space: nowrap;
   overflow: hidden;
@@ -742,7 +624,7 @@ const onActivityClick = (item: Activity) => {
 
 .recommend-desc {
   font-size: 22rpx;
-  color: rgba(255,255,255,0.5);
+  color: #a89888;
   margin-bottom: 16rpx;
   white-space: nowrap;
   overflow: hidden;
@@ -756,39 +638,36 @@ const onActivityClick = (item: Activity) => {
 
 .recommend-tag {
   font-size: 20rpx;
-  padding: 6rpx 20rpx;
-  border-radius: 20rpx;
-  font-weight: 600;
-  color: #FFFFFF;
+  padding: 6rpx 16rpx;
+  border-radius: 999rpx;
+  font-weight: 400;
 }
 
 .activity-list {
   display: flex;
   flex-direction: column;
-  gap: 20rpx;
+  gap: 16rpx;
 }
 
 .activity-item {
   display: flex;
   flex-direction: row;
   align-items: center;
-  background: rgba(255,255,255,0.06);
-  border: 1rpx solid rgba(255,255,255,0.1);
-  border-radius: 20rpx;
-  padding: 28rpx 24rpx;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 4rpx 24rpx rgba(0,0,0,0.4);
-  transition: transform 0.2s ease;
+  background-color: #ffffff;
+  border: 1rpx solid #f0ebe3;
+  border-radius: 12rpx;
+  padding: 24rpx;
+  box-shadow: 0 1rpx 4rpx rgba(0, 0, 0, 0.03);
 }
 
 .activity-item:active {
-  transform: scale(0.97);
+  opacity: 0.6;
 }
 
-.activity-img {
-  width: 96rpx;
-  height: 96rpx;
-  border-radius: 20rpx;
+.activity-icon-box {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 12rpx;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -796,8 +675,8 @@ const onActivityClick = (item: Activity) => {
   flex-shrink: 0;
 }
 
-.activity-icon {
-  font-size: 40rpx;
+.activity-emoji {
+  font-size: 32rpx;
 }
 
 .activity-info {
@@ -809,9 +688,9 @@ const onActivityClick = (item: Activity) => {
 
 .activity-title {
   font-size: 28rpx;
-  font-weight: 700;
-  color: #FFFFFF;
-  margin-bottom: 8rpx;
+  font-weight: 600;
+  color: #1a1612;
+  margin-bottom: 6rpx;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -819,17 +698,15 @@ const onActivityClick = (item: Activity) => {
 
 .activity-time {
   font-size: 22rpx;
-  color: rgba(255,255,255,0.4);
+  color: #a89888;
   margin-bottom: 4rpx;
 }
 
 .activity-people {
   font-size: 22rpx;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #c2410c;
   font-weight: 600;
+  font-variant-numeric: tabular-nums;
 }
 
 .activity-arrow {
@@ -843,11 +720,11 @@ const onActivityClick = (item: Activity) => {
 
 .activity-arrow-icon {
   font-size: 36rpx;
-  color: rgba(255,255,255,0.2);
+  color: #e8e0d6;
   font-weight: 300;
 }
 
 .bottom-space {
-  height: 32rpx;
+  height: 40rpx;
 }
 </style>

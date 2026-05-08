@@ -1,8 +1,5 @@
 <template>
   <view class="page">
-    <view class="orb orb-1"></view>
-    <view class="orb orb-2"></view>
-
     <view class="search-bar">
       <view class="search-input-wrap">
         <text class="search-icon">🔍</text>
@@ -91,52 +88,22 @@ const onApply = (item: Job) => {
 <style>
 .page {
   min-height: 100vh;
-  background-color: #0f0f2d;
+  background-color: #faf8f5;
   display: flex;
   flex-direction: column;
-  position: relative;
-  overflow: hidden;
-}
-
-.orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80rpx);
-  z-index: 0;
-}
-
-.orb-1 {
-  width: 400rpx;
-  height: 400rpx;
-  background: #667eea;
-  opacity: 0.15;
-  top: -80rpx;
-  left: -120rpx;
-}
-
-.orb-2 {
-  width: 300rpx;
-  height: 300rpx;
-  background: #f5576c;
-  opacity: 0.1;
-  top: 280rpx;
-  right: -80rpx;
 }
 
 .search-bar {
   padding: 20rpx 24rpx;
-  position: relative;
-  z-index: 1;
 }
 
 .search-input-wrap {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
-  border-radius: 40rpx;
+  background: #ffffff;
+  border: 1rpx solid #e8e0d6;
+  border-radius: 12rpx;
   padding: 16rpx 24rpx;
-  backdrop-filter: blur(20px);
 }
 
 .search-icon {
@@ -147,19 +114,17 @@ const onApply = (item: Job) => {
 .search-input {
   flex: 1;
   font-size: 28rpx;
-  color: #FFFFFF;
+  color: #1a1612;
 }
 
 .search-placeholder {
-  color: rgba(255, 255, 255, 0.4);
+  color: #a89888;
   font-size: 28rpx;
 }
 
 .category-scroll {
   white-space: nowrap;
   padding: 16rpx 24rpx;
-  position: relative;
-  z-index: 1;
 }
 
 .category-tag {
@@ -167,49 +132,41 @@ const onApply = (item: Job) => {
   align-items: center;
   justify-content: center;
   padding: 12rpx 32rpx;
-  border-radius: 32rpx;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  border-radius: 999rpx;
+  background: #f5f0ea;
   margin-right: 16rpx;
-  transition: all 0.3s;
 }
 
 .category-tag.active {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  border-color: transparent;
-  box-shadow: 0 4rpx 16rpx rgba(102, 126, 234, 0.4);
+  background: #c2410c;
 }
 
 .category-text {
   font-size: 26rpx;
-  color: rgba(255, 255, 255, 0.6);
+  color: #6b5e52;
 }
 
 .category-text.active-text {
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: 600;
 }
 
 .list-scroll {
   flex: 1;
   padding: 20rpx 24rpx;
-  position: relative;
-  z-index: 1;
 }
 
 .job-card {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
-  border-radius: 24rpx;
+  background: #ffffff;
+  border: 1rpx solid #f0ebe3;
+  border-radius: 12rpx;
   padding: 28rpx;
   margin-bottom: 20rpx;
-  backdrop-filter: blur(20px);
-  transition: all 0.3s;
+  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.03);
 }
 
 .card-hover {
-  transform: scale(0.95);
-  opacity: 0.85;
+  opacity: 0.6;
 }
 
 .job-header {
@@ -220,21 +177,19 @@ const onApply = (item: Job) => {
 
 .job-name {
   font-size: 32rpx;
-  font-weight: 700;
-  color: #FFFFFF;
+  font-weight: 600;
+  color: #1a1612;
 }
 
 .job-salary {
   font-size: 30rpx;
-  font-weight: 700;
-  background: linear-gradient(135deg, #f093fb, #f5576c);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+  color: #c2410c;
 }
 
 .job-company {
   font-size: 26rpx;
-  color: rgba(255, 255, 255, 0.6);
+  color: #6b5e52;
   margin-top: 12rpx;
 }
 
@@ -247,11 +202,10 @@ const onApply = (item: Job) => {
 
 .job-tag {
   font-size: 22rpx;
-  color: rgba(255, 255, 255, 0.6);
-  background: transparent;
-  border: 1rpx solid rgba(102, 126, 234, 0.4);
+  color: #a16207;
+  background: #fefce8;
   padding: 6rpx 16rpx;
-  border-radius: 16rpx;
+  border-radius: 999rpx;
 }
 
 .job-bottom {
@@ -263,28 +217,25 @@ const onApply = (item: Job) => {
 
 .job-meta {
   font-size: 22rpx;
-  color: rgba(255, 255, 255, 0.4);
+  color: #a89888;
 }
 
 .apply-btn {
   padding: 10rpx 36rpx;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  border-radius: 40rpx;
-  box-shadow: 0 4rpx 20rpx rgba(102, 126, 234, 0.4);
+  background: #c2410c;
+  border-radius: 8rpx;
 }
 
 .apply-btn.applied {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
-  box-shadow: none;
+  background: #f5f0ea;
 }
 
 .apply-btn-text {
   font-size: 24rpx;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .apply-btn-text.applied {
-  color: rgba(255, 255, 255, 0.4);
+  color: #a89888;
 }
 </style>

@@ -1,8 +1,6 @@
 <template>
   <view class="agent-page">
     <view class="ai-header">
-      <view class="header-orb header-orb-1"></view>
-      <view class="header-orb header-orb-2"></view>
       <view class="ai-avatar">
         <text class="ai-avatar-icon">🤖</text>
       </view>
@@ -24,12 +22,8 @@
           hover-class="func-card-active"
           @tap="onFuncTap(func)"
         >
-          <view class="func-card-border" :style="{ background: func.gradient }">
-            <view class="func-card-inner">
-              <text class="func-icon">{{ func.icon }}</text>
-              <text class="func-name">{{ func.name }}</text>
-            </view>
-          </view>
+          <text class="func-icon">{{ func.icon }}</text>
+          <text class="func-name">{{ func.name }}</text>
         </view>
       </view>
     </scroll-view>
@@ -71,7 +65,7 @@
             class="message-bubble"
             :class="msg.role === 'user' ? 'bubble-user' : 'bubble-ai'"
           >
-            <text class="message-text">{{ msg.content }}</text>
+            <text class="message-text" :class="msg.role === 'user' ? 'text-user' : 'text-ai'">{{ msg.content }}</text>
           </view>
           <text class="message-time">{{ msg.time }}</text>
         </view>
@@ -126,10 +120,10 @@ interface Message {
 }
 
 const funcList = ref([
-  { icon: '📋', name: '政策查询', keyword: '政策', gradient: 'linear-gradient(135deg, #667eea, #764ba2)' },
-  { icon: '🏠', name: '租房助手', keyword: '租房', gradient: 'linear-gradient(135deg, #4facfe, #00f2fe)' },
-  { icon: '💼', name: '求职指导', keyword: '求职', gradient: 'linear-gradient(135deg, #f093fb, #f5576c)' },
-  { icon: '🎓', name: '学习规划', keyword: '学习', gradient: 'linear-gradient(135deg, #43e97b, #38f9d7)' }
+  { icon: '📋', name: '政策查询', keyword: '政策' },
+  { icon: '🏠', name: '租房助手', keyword: '租房' },
+  { icon: '💼', name: '求职指导', keyword: '求职' },
+  { icon: '🎓', name: '学习规划', keyword: '学习' }
 ])
 
 const quickTags = ref([
@@ -232,189 +226,130 @@ const onVoiceTap = () => {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: #0f0f2d;
+  background-color: #faf8f5;
 }
 
 .ai-header {
-  position: relative;
   display: flex;
   align-items: center;
   padding: 60rpx 32rpx 24rpx;
-  background-color: #0f0f2d;
-  overflow: hidden;
-}
-
-.header-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80rpx);
-}
-
-.header-orb-1 {
-  width: 300rpx;
-  height: 300rpx;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  opacity: 0.3;
-  top: -100rpx;
-  left: -60rpx;
-}
-
-.header-orb-2 {
-  width: 200rpx;
-  height: 200rpx;
-  background: linear-gradient(135deg, #f093fb, #f5576c);
-  opacity: 0.2;
-  top: -40rpx;
-  right: -40rpx;
+  background-color: #faf8f5;
 }
 
 .ai-avatar {
-  width: 80rpx;
-  height: 80rpx;
+  width: 48rpx;
+  height: 48rpx;
   border-radius: 50%;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: #fef3ee;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 0 30rpx rgba(124, 92, 252, 0.5);
 }
 
 .ai-avatar-icon {
-  font-size: 40rpx;
+  font-size: 28rpx;
 }
 
 .ai-info {
-  margin-left: 24rpx;
+  margin-left: 16rpx;
   display: flex;
   flex-direction: column;
 }
 
 .ai-name {
-  font-size: 34rpx;
-  font-weight: 700;
-  color: #FFFFFF;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1a1612;
 }
 
 .ai-status {
   display: flex;
   align-items: center;
-  margin-top: 6rpx;
+  margin-top: 4rpx;
 }
 
 .status-dot {
-  width: 14rpx;
-  height: 14rpx;
+  width: 6rpx;
+  height: 6rpx;
   border-radius: 50%;
-  background-color: #43e97b;
-  margin-right: 10rpx;
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-    box-shadow: 0 0 0 0 rgba(67, 233, 123, 0.6);
-  }
-  50% {
-    opacity: 0.8;
-    box-shadow: 0 0 0 10rpx rgba(67, 233, 123, 0);
-  }
+  background-color: #15803d;
+  margin-right: 8rpx;
 }
 
 .status-text {
-  font-size: 24rpx;
-  color: #43e97b;
+  font-size: 22rpx;
+  color: #15803d;
 }
 
 .func-scroll {
-  background-color: #0f0f2d;
-  padding-bottom: 20rpx;
+  background-color: #faf8f5;
+  padding-bottom: 16rpx;
 }
 
 .func-list {
   display: flex;
-  padding: 0 24rpx;
-  gap: 20rpx;
+  padding: 0 32rpx;
+  gap: 16rpx;
 }
 
 .func-card {
   flex-shrink: 0;
-  border-radius: 24rpx;
-  overflow: hidden;
-}
-
-.func-card-border {
-  padding: 2rpx;
-  border-radius: 24rpx;
-}
-
-.func-card-inner {
-  background: rgba(15, 15, 45, 0.9);
-  border-radius: 22rpx;
+  background: #ffffff;
+  border: 1rpx solid #f0ebe3;
+  border-radius: 12rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 160rpx;
-  height: 120rpx;
-  backdrop-filter: blur(20px);
+  width: 152rpx;
+  height: 108rpx;
 }
 
-.func-card-active .func-card-inner {
-  background: rgba(102, 126, 234, 0.15);
-}
-
-.func-card-active .func-card-border {
-  box-shadow: 0 0 20rpx rgba(102, 126, 234, 0.4);
+.func-card-active {
+  opacity: 0.6;
 }
 
 .func-icon {
-  font-size: 40rpx;
+  font-size: 36rpx;
   margin-bottom: 8rpx;
 }
 
 .func-name {
   font-size: 22rpx;
-  color: rgba(255, 255, 255, 0.8);
+  color: #6b5e52;
 }
 
 .message-list {
   flex: 1;
-  padding: 0 24rpx;
+  padding: 0 32rpx;
   overflow-y: auto;
 }
 
 .quick-tags-scroll {
-  padding: 20rpx 0;
+  padding: 16rpx 0;
 }
 
 .quick-tags {
   display: flex;
   gap: 16rpx;
-  padding-right: 24rpx;
+  padding-right: 32rpx;
 }
 
 .quick-tag {
   flex-shrink: 0;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
-  border-radius: 32rpx;
+  background: #fef3ee;
+  border-radius: 999rpx;
   padding: 12rpx 28rpx;
-  backdrop-filter: blur(20px);
 }
 
 .quick-tag-active {
-  transform: scale(0.95);
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 .quick-tag-text {
   font-size: 24rpx;
-  background: linear-gradient(135deg, #667eea, #f093fb);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #c2410c;
   white-space: nowrap;
 }
 
@@ -433,19 +368,19 @@ const onVoiceTap = () => {
 }
 
 .msg-avatar {
-  width: 64rpx;
-  height: 64rpx;
+  width: 32rpx;
+  height: 32rpx;
   border-radius: 50%;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: #fef3ee;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 0 20rpx rgba(124, 92, 252, 0.3);
+  margin-top: 4rpx;
 }
 
 .msg-avatar-icon {
-  font-size: 30rpx;
+  font-size: 20rpx;
 }
 
 .msg-content {
@@ -461,32 +396,37 @@ const onVoiceTap = () => {
 
 .message-bubble {
   padding: 20rpx 28rpx;
-  border-radius: 24rpx;
+  border-radius: 16rpx;
   word-break: break-all;
 }
 
 .bubble-user {
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: #c2410c;
   border-top-right-radius: 4rpx;
-  box-shadow: 0 4rpx 20rpx rgba(102, 126, 234, 0.3);
 }
 
 .bubble-ai {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
+  background: #ffffff;
+  border: 1rpx solid #f0ebe3;
   border-top-left-radius: 4rpx;
+}
+
+.text-ai {
+  color: #1a1612;
+}
+
+.text-user {
+  color: #ffffff;
 }
 
 .message-text {
   font-size: 28rpx;
   line-height: 1.7;
-  color: #FFFFFF;
 }
 
 .message-time {
   font-size: 20rpx;
-  color: rgba(255, 255, 255, 0.3);
+  color: #a89888;
   margin-top: 8rpx;
 }
 
@@ -501,10 +441,10 @@ const onVoiceTap = () => {
 }
 
 .typing-dot {
-  width: 14rpx;
-  height: 14rpx;
+  width: 12rpx;
+  height: 12rpx;
   border-radius: 50%;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: #ede8e0;
 }
 
 .dot1 {
@@ -533,51 +473,47 @@ const onVoiceTap = () => {
 .input-area {
   display: flex;
   align-items: center;
-  padding: 16rpx 24rpx;
+  padding: 16rpx 32rpx;
   padding-bottom: calc(16rpx + env(safe-area-inset-bottom));
-  background: rgba(15, 15, 45, 0.95);
-  border-top: 1rpx solid rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(20px);
+  background: #ffffff;
+  border-top: 1rpx solid #f0ebe3;
 }
 
 .input-wrapper {
   flex: 1;
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
-  border-radius: 40rpx;
-  padding: 0 20rpx;
+  background: #f5f0ea;
+  border-radius: 999rpx;
+  padding: 0 24rpx;
   height: 76rpx;
-  backdrop-filter: blur(20px);
 }
 
 .input-box {
   flex: 1;
   height: 76rpx;
   font-size: 28rpx;
-  color: #FFFFFF;
+  color: #1a1612;
   background-color: transparent;
 }
 
 .input-placeholder {
-  color: rgba(255, 255, 255, 0.3);
+  color: #a89888;
 }
 
 .voice-btn {
-  width: 56rpx;
-  height: 56rpx;
+  width: 52rpx;
+  height: 52rpx;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  background: #f5f0ea;
+  margin-left: 12rpx;
 }
 
 .voice-btn-active {
-  transform: scale(0.95);
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 .voice-icon {
@@ -588,21 +524,20 @@ const onVoiceTap = () => {
   margin-left: 16rpx;
   width: 76rpx;
   height: 76rpx;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: #c2410c;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4rpx 20rpx rgba(102, 126, 234, 0.4);
 }
 
 .send-btn-active {
-  transform: scale(0.95);
-  opacity: 0.8;
+  background: #9a3412;
+  opacity: 0.9;
 }
 
 .send-icon {
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 32rpx;
 }
 </style>

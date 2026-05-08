@@ -1,8 +1,5 @@
 <template>
   <view class="page">
-    <view class="orb orb-1"></view>
-    <view class="orb orb-2"></view>
-
     <view class="stats-bar">
       <view class="stat-card" hover-class="card-hover">
         <text class="stat-value">126</text>
@@ -36,8 +33,8 @@
           <view class="volunteer-header">
             <text class="volunteer-name">{{ item.name }}</text>
           </view>
-          <text class="volunteer-time">🕐 {{ item.time }}</text>
-          <text class="volunteer-location">📍 {{ item.location }}</text>
+          <text class="volunteer-time">{{ item.time }}</text>
+          <text class="volunteer-location">{{ item.location }}</text>
           <view class="volunteer-meta">
             <text class="volunteer-hours">服务时长：{{ item.hours }}小时</text>
             <text class="volunteer-people">{{ item.people }}人已报名</text>
@@ -126,11 +123,11 @@ const volunteerActivities = ref<VolunteerActivity[]>([
 ])
 
 const organizations = ref<Organization[]>([
-  { id: 1, name: '青年志愿者协会', desc: '组织青年参与社会公益服务', activities: 86, bg: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', followed: true },
-  { id: 2, name: '绿色环保联盟', desc: '推动城市环保与可持续发展', activities: 52, bg: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)', followed: false },
-  { id: 3, name: '爱心助学中心', desc: '帮助困难学生完成学业', activities: 38, bg: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)', followed: false },
-  { id: 4, name: '社区互助会', desc: '促进社区邻里互助与关爱', activities: 64, bg: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)', followed: false },
-  { id: 5, name: '阳光助残协会', desc: '关爱残疾人群体，提供志愿服务', activities: 29, bg: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)', followed: true }
+  { id: 1, name: '青年志愿者协会', desc: '组织青年参与社会公益服务', activities: 86, bg: '#fef3ee', followed: true },
+  { id: 2, name: '绿色环保联盟', desc: '推动城市环保与可持续发展', activities: 52, bg: '#f0fdf4', followed: false },
+  { id: 3, name: '爱心助学中心', desc: '帮助困难学生完成学业', activities: 38, bg: '#eff6ff', followed: false },
+  { id: 4, name: '社区互助会', desc: '促进社区邻里互助与关爱', activities: 64, bg: '#fefce8', followed: false },
+  { id: 5, name: '阳光助残协会', desc: '关爱残疾人群体，提供志愿服务', activities: 29, bg: '#fef3ee', followed: true }
 ])
 
 const certificates = ref<Certificate[]>([
@@ -158,44 +155,15 @@ const onFollow = (item: Organization) => {
 <style>
 .page {
   min-height: 100vh;
-  background-color: #0f0f2d;
+  background-color: #faf8f5;
   display: flex;
   flex-direction: column;
-  position: relative;
-  overflow: hidden;
-}
-
-.orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80rpx);
-  z-index: 0;
-}
-
-.orb-1 {
-  width: 400rpx;
-  height: 400rpx;
-  background: #43e97b;
-  opacity: 0.12;
-  top: -80rpx;
-  right: -100rpx;
-}
-
-.orb-2 {
-  width: 350rpx;
-  height: 350rpx;
-  background: #667eea;
-  opacity: 0.1;
-  top: 250rpx;
-  left: -100rpx;
 }
 
 .stats-bar {
   display: flex;
   padding: 24rpx;
   gap: 16rpx;
-  position: relative;
-  z-index: 1;
 }
 
 .stat-card {
@@ -204,37 +172,31 @@ const onFollow = (item: Organization) => {
   flex-direction: column;
   align-items: center;
   padding: 24rpx 0;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
-  border-radius: 24rpx;
-  backdrop-filter: blur(20px);
-  transition: all 0.3s;
+  background: #ffffff;
+  border: 1rpx solid #f0ebe3;
+  border-radius: 12rpx;
+  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.03);
 }
 
 .card-hover {
-  transform: scale(0.95);
-  opacity: 0.85;
+  opacity: 0.6;
 }
 
 .stat-value {
   font-size: 36rpx;
   font-weight: 700;
-  background: linear-gradient(135deg, #43e97b, #38f9d7);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #c2410c;
 }
 
 .stat-label {
   font-size: 22rpx;
-  color: rgba(255, 255, 255, 0.6);
+  color: #6b5e52;
   margin-top: 8rpx;
 }
 
 .category-scroll {
   white-space: nowrap;
   padding: 16rpx 24rpx;
-  position: relative;
-  z-index: 1;
 }
 
 .category-tag {
@@ -242,61 +204,54 @@ const onFollow = (item: Organization) => {
   align-items: center;
   justify-content: center;
   padding: 12rpx 32rpx;
-  border-radius: 32rpx;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  border-radius: 999rpx;
+  background: #f5f0ea;
   margin-right: 16rpx;
-  transition: all 0.3s;
 }
 
 .category-tag.active {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  border-color: transparent;
-  box-shadow: 0 4rpx 16rpx rgba(102, 126, 234, 0.4);
+  background: #c2410c;
 }
 
 .category-text {
   font-size: 26rpx;
-  color: rgba(255, 255, 255, 0.6);
+  color: #6b5e52;
 }
 
 .category-text.active-text {
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: 600;
 }
 
 .list-scroll {
   flex: 1;
   padding: 20rpx 24rpx;
-  position: relative;
-  z-index: 1;
 }
 
 .volunteer-card {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
-  border-radius: 24rpx;
+  background: #ffffff;
+  border: 1rpx solid #f0ebe3;
+  border-radius: 12rpx;
   padding: 28rpx;
   margin-bottom: 20rpx;
-  backdrop-filter: blur(20px);
-  transition: all 0.3s;
+  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.03);
 }
 
 .volunteer-name {
   font-size: 32rpx;
-  font-weight: 700;
-  color: #FFFFFF;
+  font-weight: 600;
+  color: #1a1612;
 }
 
 .volunteer-time {
   font-size: 24rpx;
-  color: rgba(255, 255, 255, 0.6);
+  color: #6b5e52;
   margin-top: 12rpx;
 }
 
 .volunteer-location {
   font-size: 24rpx;
-  color: rgba(255, 255, 255, 0.6);
+  color: #a89888;
   margin-top: 6rpx;
 }
 
@@ -309,50 +264,45 @@ const onFollow = (item: Organization) => {
 
 .volunteer-hours {
   font-size: 24rpx;
-  background: linear-gradient(135deg, #43e97b, #38f9d7);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #c2410c;
+  font-weight: 600;
 }
 
 .volunteer-people {
   font-size: 22rpx;
-  color: rgba(255, 255, 255, 0.4);
+  color: #a89888;
 }
 
 .volunteer-btn {
   margin-top: 20rpx;
   padding: 14rpx 0;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  border-radius: 40rpx;
+  background: #c2410c;
+  border-radius: 8rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4rpx 20rpx rgba(102, 126, 234, 0.4);
 }
 
 .volunteer-btn.joined {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
-  box-shadow: none;
+  background: #f5f0ea;
 }
 
 .volunteer-btn-text {
   font-size: 26rpx;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .volunteer-btn-text.joined {
-  color: rgba(255, 255, 255, 0.4);
+  color: #a89888;
 }
 
 .org-card {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
-  border-radius: 24rpx;
+  background: #ffffff;
+  border: 1rpx solid #f0ebe3;
+  border-radius: 12rpx;
   padding: 28rpx;
   margin-bottom: 20rpx;
-  backdrop-filter: blur(20px);
-  transition: all 0.3s;
+  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.03);
 }
 
 .org-header {
@@ -374,13 +324,13 @@ const onFollow = (item: Organization) => {
 
 .org-name {
   font-size: 30rpx;
-  font-weight: 700;
-  color: #FFFFFF;
+  font-weight: 600;
+  color: #1a1612;
 }
 
 .org-desc {
   font-size: 24rpx;
-  color: rgba(255, 255, 255, 0.4);
+  color: #a89888;
   margin-top: 6rpx;
 }
 
@@ -393,42 +343,39 @@ const onFollow = (item: Organization) => {
 
 .org-activities {
   font-size: 24rpx;
-  background: linear-gradient(135deg, #4facfe, #00f2fe);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #15803d;
+  background: #f0fdf4;
+  padding: 4rpx 12rpx;
+  border-radius: 999rpx;
 }
 
 .follow-btn {
   padding: 10rpx 28rpx;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  border-radius: 40rpx;
-  box-shadow: 0 4rpx 20rpx rgba(102, 126, 234, 0.4);
+  background: #c2410c;
+  border-radius: 8rpx;
 }
 
 .follow-btn.followed {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
-  box-shadow: none;
+  background: #f5f0ea;
 }
 
 .follow-btn-text {
   font-size: 24rpx;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .follow-btn-text.followed {
-  color: rgba(255, 255, 255, 0.4);
+  color: #a89888;
 }
 
 .cert-card {
   display: flex;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
-  border-radius: 24rpx;
+  background: #ffffff;
+  border: 1rpx solid #f0ebe3;
+  border-radius: 12rpx;
   padding: 28rpx;
   margin-bottom: 20rpx;
-  backdrop-filter: blur(20px);
-  transition: all 0.3s;
+  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.03);
 }
 
 .cert-icon-wrap {
@@ -437,8 +384,8 @@ const onFollow = (item: Organization) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #fa709a, #fee140);
-  border-radius: 20rpx;
+  background: #fefce8;
+  border-radius: 12rpx;
   flex-shrink: 0;
   margin-right: 24rpx;
 }
@@ -453,25 +400,25 @@ const onFollow = (item: Organization) => {
 
 .cert-name {
   font-size: 30rpx;
-  font-weight: 700;
-  color: #FFFFFF;
+  font-weight: 600;
+  color: #1a1612;
 }
 
 .cert-org {
   font-size: 24rpx;
-  color: rgba(255, 255, 255, 0.6);
+  color: #6b5e52;
   margin-top: 8rpx;
 }
 
 .cert-time {
   font-size: 22rpx;
-  color: rgba(255, 255, 255, 0.4);
+  color: #a89888;
   margin-top: 6rpx;
 }
 
 .cert-no {
   font-size: 20rpx;
-  color: rgba(255, 255, 255, 0.3);
+  color: #a89888;
   margin-top: 6rpx;
 }
 </style>

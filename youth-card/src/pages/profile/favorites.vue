@@ -26,7 +26,7 @@
         :key="index"
         class="fav-card"
       >
-        <view class="fav-thumb" :style="{ background: item.gradient }">
+        <view class="fav-thumb" :style="{ background: item.color }">
           <text class="fav-thumb-icon">{{ item.icon }}</text>
         </view>
         <view class="fav-info">
@@ -58,21 +58,21 @@ interface Favorite {
   icon: string
   name: string
   desc: string
-  gradient: string
+  color: string
 }
 
 const tabs = ['商户', '课程', '公寓', '职位']
 const currentTab = ref(0)
 
 const favorites = ref<Favorite[]>([
-  { type: 0, icon: '☕', name: '星巴克（大学城店）', desc: '青年卡专享8折优惠', gradient: 'linear-gradient(135deg, #667eea, #764ba2)' },
-  { type: 0, icon: '🍲', name: '海底捞（高新区店）', desc: '青年卡立减30元', gradient: 'linear-gradient(135deg, #f093fb, #f5576c)' },
-  { type: 1, icon: '💻', name: 'Python编程入门', desc: '零基础到实战·夜校热门课', gradient: 'linear-gradient(135deg, #4facfe, #00f2fe)' },
-  { type: 1, icon: '🎨', name: 'UI设计进阶课', desc: '从理论到项目实战', gradient: 'linear-gradient(135deg, #43e97b, #38f9d7)' },
-  { type: 2, icon: '🏠', name: '高新区青年公寓', desc: '精装单间·地铁直达·月租1200起', gradient: 'linear-gradient(135deg, #fa709a, #fee140)' },
-  { type: 2, icon: '🏢', name: '大学城人才公寓', desc: '一室一厅·配套齐全·月租1800起', gradient: 'linear-gradient(135deg, #a18cd1, #fbc2eb)' },
-  { type: 3, icon: '💼', name: '前端开发工程师', desc: '字节跳动·15-25K·应届可投', gradient: 'linear-gradient(135deg, #fccb90, #d57eeb)' },
-  { type: 3, icon: '📊', name: '数据分析师', desc: '腾讯·12-20K·实习转正', gradient: 'linear-gradient(135deg, #96fbc4, #f9f586)' }
+  { type: 0, icon: '☕', name: '星巴克（大学城店）', desc: '青年卡专享8折优惠', color: '#fef3ee' },
+  { type: 0, icon: '🍲', name: '海底捞（高新区店）', desc: '青年卡立减30元', color: '#fefce8' },
+  { type: 1, icon: '💻', name: 'Python编程入门', desc: '零基础到实战·夜校热门课', color: '#eff6ff' },
+  { type: 1, icon: '🎨', name: 'UI设计进阶课', desc: '从理论到项目实战', color: '#f0fdf4' },
+  { type: 2, icon: '🏠', name: '高新区青年公寓', desc: '精装单间·地铁直达·月租1200起', color: '#fef3ee' },
+  { type: 2, icon: '🏢', name: '大学城人才公寓', desc: '一室一厅·配套齐全·月租1800起', color: '#fefce8' },
+  { type: 3, icon: '💼', name: '前端开发工程师', desc: '字节跳动·15-25K·应届可投', color: '#eff6ff' },
+  { type: 3, icon: '📊', name: '数据分析师', desc: '腾讯·12-20K·实习转正', color: '#f0fdf4' }
 ])
 
 const filteredFavorites = computed(() => {
@@ -105,15 +105,15 @@ const onUnfav = (item: Favorite, index: number) => {
 <style scoped>
 .page {
   min-height: 100vh;
-  background-color: #0f0f2d;
+  background-color: #faf8f5;
 }
 
 .nav-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 60rpx 24rpx 16rpx;
-  background-color: #0f0f2d;
+  padding: 60rpx 32rpx 16rpx;
+  background-color: #faf8f5;
 }
 
 .nav-back {
@@ -130,19 +130,19 @@ const onUnfav = (item: Favorite, index: number) => {
 
 .nav-back-icon {
   font-size: 44rpx;
-  color: #FFFFFF;
+  color: #1a1612;
 }
 
 .nav-title {
   font-size: 34rpx;
   font-weight: 700;
-  color: #FFFFFF;
+  color: #1a1612;
 }
 
 .tabs {
   display: flex;
-  padding: 16rpx 24rpx;
-  gap: 12rpx;
+  padding: 16rpx 32rpx;
+  background-color: #faf8f5;
 }
 
 .tab-item {
@@ -150,41 +150,35 @@ const onUnfav = (item: Favorite, index: number) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 16rpx 0;
-  border-radius: 32rpx;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
+  padding: 20rpx 0;
+  border-bottom: 3rpx solid transparent;
 }
 
 .tab-active {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  border-color: transparent;
-  box-shadow: 0 4rpx 20rpx rgba(102, 126, 234, 0.4);
+  border-bottom-color: #c2410c;
 }
 
 .tab-text {
   font-size: 26rpx;
-  color: rgba(255, 255, 255, 0.5);
+  color: #a89888;
 }
 
 .tab-text-active {
-  color: #FFFFFF;
+  color: #c2410c;
   font-weight: 600;
 }
 
 .fav-list {
   height: calc(100vh - 180rpx);
-  padding: 0 24rpx 24rpx;
+  padding: 0 32rpx 32rpx;
 }
 
 .fav-card {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  border-radius: 24rpx;
+  background: #ffffff;
+  border: 1rpx solid #f0ebe3;
+  border-radius: 16rpx;
   padding: 24rpx;
   margin-bottom: 20rpx;
 }
@@ -192,7 +186,7 @@ const onUnfav = (item: Favorite, index: number) => {
 .fav-thumb {
   width: 100rpx;
   height: 100rpx;
-  border-radius: 20rpx;
+  border-radius: 12rpx;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -214,7 +208,7 @@ const onUnfav = (item: Favorite, index: number) => {
 .fav-name {
   font-size: 28rpx;
   font-weight: 600;
-  color: #FFFFFF;
+  color: #1a1612;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -222,7 +216,7 @@ const onUnfav = (item: Favorite, index: number) => {
 
 .fav-desc {
   font-size: 24rpx;
-  color: rgba(255, 255, 255, 0.4);
+  color: #a89888;
   margin-top: 8rpx;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -232,20 +226,18 @@ const onUnfav = (item: Favorite, index: number) => {
 .fav-unfav {
   flex-shrink: 0;
   padding: 10rpx 20rpx;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.15);
-  border-radius: 24rpx;
+  background: #f5f0ea;
+  border-radius: 999rpx;
   margin-left: 16rpx;
 }
 
 .fav-unfav-active {
-  transform: scale(0.95);
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 .fav-unfav-text {
   font-size: 22rpx;
-  color: rgba(255, 255, 255, 0.5);
+  color: #6b5e52;
 }
 
 .empty {
@@ -262,6 +254,6 @@ const onUnfav = (item: Favorite, index: number) => {
 
 .empty-text {
   font-size: 28rpx;
-  color: rgba(255, 255, 255, 0.3);
+  color: #a89888;
 }
 </style>

@@ -12,13 +12,16 @@ onHide(() => {
 </script>
 <style>
 page {
-  background-color: #0f0f2d;
-  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
+  background-color: #faf8f5;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', 'PingFang SC', 'Noto Sans SC', sans-serif;
   font-size: 28rpx;
-  color: #FFFFFF;
-  line-height: 1.6;
+  color: #1a1612;
+  line-height: 1.7;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'kern' 1;
+  text-rendering: optimizeLegibility;
 }
 view, text, image, navigator, scroll-view, swiper {
   box-sizing: border-box;

@@ -163,15 +163,15 @@ const onDelete = (order: Order) => {
 <style scoped>
 .page {
   min-height: 100vh;
-  background-color: #0f0f2d;
+  background-color: #faf8f5;
 }
 
 .nav-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 60rpx 24rpx 16rpx;
-  background-color: #0f0f2d;
+  padding: 60rpx 32rpx 16rpx;
+  background-color: #faf8f5;
 }
 
 .nav-back {
@@ -188,19 +188,19 @@ const onDelete = (order: Order) => {
 
 .nav-back-icon {
   font-size: 44rpx;
-  color: #FFFFFF;
+  color: #1a1612;
 }
 
 .nav-title {
   font-size: 34rpx;
   font-weight: 700;
-  color: #FFFFFF;
+  color: #1a1612;
 }
 
 .tabs {
   display: flex;
-  padding: 16rpx 24rpx;
-  gap: 12rpx;
+  padding: 16rpx 32rpx;
+  background-color: #faf8f5;
 }
 
 .tab-item {
@@ -208,39 +208,33 @@ const onDelete = (order: Order) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 16rpx 0;
-  border-radius: 32rpx;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
+  padding: 20rpx 0;
+  border-bottom: 3rpx solid transparent;
 }
 
 .tab-active {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  border-color: transparent;
-  box-shadow: 0 4rpx 20rpx rgba(102, 126, 234, 0.4);
+  border-bottom-color: #c2410c;
 }
 
 .tab-text {
   font-size: 26rpx;
-  color: rgba(255, 255, 255, 0.5);
+  color: #a89888;
 }
 
 .tab-text-active {
-  color: #FFFFFF;
+  color: #c2410c;
   font-weight: 600;
 }
 
 .order-list {
   height: calc(100vh - 180rpx);
-  padding: 0 24rpx 24rpx;
+  padding: 0 32rpx 32rpx;
 }
 
 .order-card {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  border-radius: 24rpx;
+  background: #ffffff;
+  border: 1rpx solid #f0ebe3;
+  border-radius: 16rpx;
   padding: 28rpx;
   margin-bottom: 20rpx;
 }
@@ -255,7 +249,7 @@ const onDelete = (order: Order) => {
 .order-shop {
   font-size: 30rpx;
   font-weight: 600;
-  color: #FFFFFF;
+  color: #1a1612;
   flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -265,33 +259,29 @@ const onDelete = (order: Order) => {
 .order-status {
   font-size: 24rpx;
   padding: 6rpx 20rpx;
-  border-radius: 20rpx;
+  border-radius: 999rpx;
   flex-shrink: 0;
   margin-left: 16rpx;
 }
 
 .status-pending {
-  color: #fee140;
-  background: linear-gradient(135deg, rgba(250, 112, 154, 0.2), rgba(254, 225, 64, 0.2));
-  border: 1rpx solid rgba(254, 225, 64, 0.3);
+  color: #a16207;
+  background: #fefce8;
 }
 
 .status-using {
-  color: #00f2fe;
-  background: linear-gradient(135deg, rgba(79, 172, 254, 0.2), rgba(0, 242, 254, 0.2));
-  border: 1rpx solid rgba(0, 242, 254, 0.3);
+  color: #1d4ed8;
+  background: #eff6ff;
 }
 
 .status-done {
-  color: #43e97b;
-  background: linear-gradient(135deg, rgba(67, 233, 123, 0.2), rgba(56, 249, 215, 0.2));
-  border: 1rpx solid rgba(67, 233, 123, 0.3);
+  color: #15803d;
+  background: #f0fdf4;
 }
 
 .status-cancel {
-  color: rgba(255, 255, 255, 0.4);
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  color: #a89888;
+  background: #f5f0ea;
 }
 
 .order-body {
@@ -299,17 +289,17 @@ const onDelete = (order: Order) => {
   flex-direction: column;
   gap: 8rpx;
   padding-bottom: 20rpx;
-  border-bottom: 1rpx solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1rpx solid #f0ebe3;
 }
 
 .order-no {
   font-size: 24rpx;
-  color: rgba(255, 255, 255, 0.4);
+  color: #a89888;
 }
 
 .order-time {
   font-size: 24rpx;
-  color: rgba(255, 255, 255, 0.4);
+  color: #a89888;
 }
 
 .order-footer {
@@ -322,10 +312,7 @@ const onDelete = (order: Order) => {
 .order-price {
   font-size: 34rpx;
   font-weight: 700;
-  background: linear-gradient(135deg, #f093fb, #f5576c);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #1a1612;
 }
 
 .order-actions {
@@ -335,32 +322,29 @@ const onDelete = (order: Order) => {
 
 .action-btn {
   padding: 10rpx 28rpx;
-  border-radius: 28rpx;
+  border-radius: 8rpx;
 }
 
 .action-btn-primary {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  box-shadow: 0 4rpx 16rpx rgba(102, 126, 234, 0.3);
+  background: #c2410c;
 }
 
 .action-btn-default {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.15);
+  background: #f5f0ea;
 }
 
 .action-btn-active {
-  transform: scale(0.95);
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
 .action-btn-text-primary {
   font-size: 24rpx;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .action-btn-text-default {
   font-size: 24rpx;
-  color: rgba(255, 255, 255, 0.6);
+  color: #6b5e52;
 }
 
 .empty {
@@ -377,6 +361,6 @@ const onDelete = (order: Order) => {
 
 .empty-text {
   font-size: 28rpx;
-  color: rgba(255, 255, 255, 0.3);
+  color: #a89888;
 }
 </style>

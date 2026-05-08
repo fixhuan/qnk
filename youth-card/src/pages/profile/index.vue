@@ -1,9 +1,6 @@
 <template>
   <view class="page">
     <view class="header">
-      <view class="header-orb header-orb-1"></view>
-      <view class="header-orb header-orb-2"></view>
-      <view class="header-orb header-orb-3"></view>
       <view class="user-info">
         <view class="avatar">
           <text class="avatar-icon">👤</text>
@@ -19,12 +16,10 @@
     </view>
 
     <view class="youth-card">
-      <view class="card-orb card-orb-1"></view>
-      <view class="card-orb card-orb-2"></view>
-      <view class="card-deco-line"></view>
+      <view class="card-deco-circle"></view>
       <view class="card-top">
-        <text class="card-label">青年卡</text>
         <text class="card-type">YOUTH CARD</text>
+        <text class="card-label">青年卡</text>
       </view>
       <view class="card-body">
         <text class="card-number">YQ 2025 0001</text>
@@ -62,7 +57,7 @@
         hover-class="entry-item-active"
         @tap="navigateTo(entry.path)"
       >
-        <view class="entry-icon-wrap" :style="{ background: entry.gradient }">
+        <view class="entry-icon-wrap">
           <text class="entry-icon">{{ entry.icon }}</text>
         </view>
         <text class="entry-name">{{ entry.name }}</text>
@@ -79,7 +74,7 @@
         @tap="navigateTo(item.path)"
       >
         <view class="menu-left">
-          <view class="menu-icon-wrap" :style="{ background: item.gradient }">
+          <view class="menu-icon-wrap">
             <text class="menu-icon">{{ item.icon }}</text>
           </view>
           <text class="menu-text">{{ item.label }}</text>
@@ -104,19 +99,19 @@ const statsList = ref([
 ])
 
 const quickEntries = ref([
-  { icon: '📦', name: '我的订单', path: '/pages/profile/orders', gradient: 'linear-gradient(135deg, #667eea, #764ba2)' },
-  { icon: '⭐', name: '我的收藏', path: '/pages/profile/favorites', gradient: 'linear-gradient(135deg, #f093fb, #f5576c)' },
-  { icon: '📖', name: '我的课程', path: '/pages/profile/courses', gradient: 'linear-gradient(135deg, #4facfe, #00f2fe)' },
-  { icon: '🎫', name: '我的优惠券', path: '/pages/profile/orders', gradient: 'linear-gradient(135deg, #43e97b, #38f9d7)' }
+  { icon: '📦', name: '我的订单', path: '/pages/profile/orders' },
+  { icon: '⭐', name: '我的收藏', path: '/pages/profile/favorites' },
+  { icon: '📖', name: '我的课程', path: '/pages/profile/courses' },
+  { icon: '🎫', name: '我的优惠券', path: '/pages/profile/orders' }
 ])
 
 const menuList = ref([
-  { icon: '📋', label: '志愿记录', path: '/pages/profile/orders', gradient: 'linear-gradient(135deg, #667eea, #764ba2)' },
-  { icon: '🏠', label: '租房管理', path: '/pages/profile/favorites', gradient: 'linear-gradient(135deg, #4facfe, #00f2fe)' },
-  { icon: '💼', label: '求职档案', path: '/pages/profile/courses', gradient: 'linear-gradient(135deg, #f093fb, #f5576c)' },
-  { icon: '📝', label: '意见反馈', path: '/pages/profile/about', gradient: 'linear-gradient(135deg, #43e97b, #38f9d7)' },
-  { icon: 'ℹ️', label: '关于我们', path: '/pages/profile/about', gradient: 'linear-gradient(135deg, #fa709a, #fee140)' },
-  { icon: '⚙️', label: '设置', path: '/pages/profile/settings', gradient: 'linear-gradient(135deg, #a18cd1, #fbc2eb)' }
+  { icon: '📋', label: '志愿记录', path: '/pages/profile/orders' },
+  { icon: '🏠', label: '租房管理', path: '/pages/profile/favorites' },
+  { icon: '💼', label: '求职档案', path: '/pages/profile/courses' },
+  { icon: '📝', label: '意见反馈', path: '/pages/profile/about' },
+  { icon: 'ℹ️', label: '关于我们', path: '/pages/profile/about' },
+  { icon: '⚙️', label: '设置', path: '/pages/profile/settings' }
 ])
 
 const navigateTo = (url: string) => {
@@ -143,51 +138,16 @@ const onLogout = () => {
 <style scoped>
 .page {
   min-height: 100vh;
-  background-color: #0f0f2d;
+  background-color: #faf8f5;
   padding-bottom: 40rpx;
 }
 
 .header {
-  position: relative;
   padding: 80rpx 40rpx 40rpx;
-  overflow: hidden;
-}
-
-.header-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80rpx);
-}
-
-.header-orb-1 {
-  width: 400rpx;
-  height: 400rpx;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  opacity: 0.25;
-  top: -200rpx;
-  left: -100rpx;
-}
-
-.header-orb-2 {
-  width: 300rpx;
-  height: 300rpx;
-  background: linear-gradient(135deg, #f093fb, #f5576c);
-  opacity: 0.15;
-  top: -80rpx;
-  right: -60rpx;
-}
-
-.header-orb-3 {
-  width: 200rpx;
-  height: 200rpx;
-  background: linear-gradient(135deg, #4facfe, #00f2fe);
-  opacity: 0.1;
-  bottom: -40rpx;
-  left: 200rpx;
+  background-color: #faf8f5;
 }
 
 .user-info {
-  position: relative;
   display: flex;
   align-items: center;
 }
@@ -196,15 +156,12 @@ const onLogout = () => {
   width: 120rpx;
   height: 120rpx;
   border-radius: 50%;
-  background: rgba(15, 15, 45, 0.8);
-  border: 4rpx solid transparent;
-  background-clip: padding-box;
-  position: relative;
+  background: #f5f0ea;
+  border: 3rpx solid #e8e0d6;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 0 0 4rpx #667eea, 0 0 0 8rpx #764ba2, 0 0 30rpx rgba(124, 92, 252, 0.3);
 }
 
 .avatar-icon {
@@ -218,27 +175,27 @@ const onLogout = () => {
 }
 
 .nickname {
-  font-size: 38rpx;
-  color: #FFFFFF;
+  font-size: 36rpx;
   font-weight: 700;
+  color: #1a1612;
 }
 
 .card-no {
   margin-top: 12rpx;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  border-radius: 20rpx;
+  background: #fef3ee;
+  border-radius: 999rpx;
   padding: 6rpx 20rpx;
   align-self: flex-start;
 }
 
 .card-no-text {
   font-size: 22rpx;
-  color: rgba(255, 255, 255, 0.9);
+  color: #c2410c;
 }
 
 .signature {
   font-size: 24rpx;
-  color: rgba(255, 255, 255, 0.5);
+  color: #a89888;
   margin-top: 10rpx;
 }
 
@@ -246,41 +203,20 @@ const onLogout = () => {
   position: relative;
   margin: 24rpx 32rpx;
   padding: 36rpx 40rpx;
-  background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
-  border-radius: 24rpx;
+  background: #1a1612;
+  border-radius: 16rpx;
   overflow: hidden;
-  box-shadow: 0 8rpx 40rpx rgba(102, 126, 234, 0.4);
 }
 
-.card-orb {
+.card-deco-circle {
   position: absolute;
+  width: 120rpx;
+  height: 120rpx;
   border-radius: 50%;
-  filter: blur(60rpx);
-}
-
-.card-orb-1 {
-  width: 200rpx;
-  height: 200rpx;
-  background: rgba(255, 255, 255, 0.15);
-  top: -60rpx;
-  right: -40rpx;
-}
-
-.card-orb-2 {
-  width: 160rpx;
-  height: 160rpx;
-  background: rgba(255, 255, 255, 0.1);
-  bottom: -40rpx;
-  left: 40rpx;
-}
-
-.card-deco-line {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 1rpx;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: #c2410c;
+  opacity: 0.2;
+  bottom: -30rpx;
+  right: -20rpx;
 }
 
 .card-top {
@@ -293,12 +229,12 @@ const onLogout = () => {
 .card-label {
   font-size: 32rpx;
   font-weight: 700;
-  color: #FFFFFF;
+  color: #c2410c;
 }
 
 .card-type {
   font-size: 20rpx;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.4);
   letter-spacing: 4rpx;
 }
 
@@ -310,7 +246,7 @@ const onLogout = () => {
 .card-number {
   font-size: 36rpx;
   font-weight: 700;
-  color: #FFFFFF;
+  color: #ffffff;
   letter-spacing: 6rpx;
 }
 
@@ -329,22 +265,21 @@ const onLogout = () => {
 .card-holder-label,
 .card-expire-label {
   font-size: 20rpx;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .card-holder-name,
 .card-expire-date {
   font-size: 26rpx;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-top: 4rpx;
 }
 
 .stats-card {
   margin: 0 32rpx 24rpx;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  border-radius: 24rpx;
+  background: #ffffff;
+  border: 1rpx solid #f0ebe3;
+  border-radius: 16rpx;
   display: flex;
 }
 
@@ -357,31 +292,27 @@ const onLogout = () => {
 }
 
 .stat-item-active {
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 24rpx;
+  background: #f5f0ea;
+  border-radius: 16rpx;
 }
 
 .stat-num {
-  font-size: 44rpx;
+  font-size: 36rpx;
   font-weight: 700;
-  background: linear-gradient(135deg, #667eea, #f093fb);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #1a1612;
 }
 
 .stat-label {
   font-size: 24rpx;
-  color: rgba(255, 255, 255, 0.5);
+  color: #a89888;
   margin-top: 8rpx;
 }
 
 .quick-entry {
   margin: 0 32rpx 24rpx;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  border-radius: 24rpx;
+  background: #ffffff;
+  border: 1rpx solid #f0ebe3;
+  border-radius: 16rpx;
   display: flex;
   padding: 32rpx 0;
 }
@@ -394,14 +325,14 @@ const onLogout = () => {
 }
 
 .entry-item-active {
-  opacity: 0.7;
-  transform: scale(0.95);
+  opacity: 0.6;
 }
 
 .entry-icon-wrap {
   width: 88rpx;
   height: 88rpx;
   border-radius: 50%;
+  background: #f5f0ea;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -413,16 +344,15 @@ const onLogout = () => {
 
 .entry-name {
   font-size: 24rpx;
-  color: rgba(255, 255, 255, 0.7);
+  color: #6b5e52;
   margin-top: 12rpx;
 }
 
 .menu-card {
   margin: 0 32rpx 24rpx;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  border-radius: 24rpx;
+  background: #ffffff;
+  border: 1rpx solid #f0ebe3;
+  border-radius: 16rpx;
   overflow: hidden;
 }
 
@@ -432,7 +362,7 @@ const onLogout = () => {
   justify-content: space-between;
   height: 100rpx;
   padding: 0 32rpx;
-  border-bottom: 1rpx solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1rpx solid #f0ebe3;
 }
 
 .menu-item-last {
@@ -440,7 +370,7 @@ const onLogout = () => {
 }
 
 .menu-item-active {
-  background: rgba(255, 255, 255, 0.04);
+  background: #f5f0ea;
 }
 
 .menu-left {
@@ -451,7 +381,8 @@ const onLogout = () => {
 .menu-icon-wrap {
   width: 56rpx;
   height: 56rpx;
-  border-radius: 16rpx;
+  border-radius: 50%;
+  background: #f5f0ea;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -464,34 +395,32 @@ const onLogout = () => {
 
 .menu-text {
   font-size: 30rpx;
-  color: #FFFFFF;
+  color: #1a1612;
 }
 
 .menu-arrow {
   font-size: 36rpx;
-  color: rgba(255, 255, 255, 0.2);
+  color: #e8e0d6;
 }
 
 .logout-btn {
   margin: 40rpx 32rpx 0;
   height: 88rpx;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  border-radius: 24rpx;
+  background: #ffffff;
+  border: 1rpx solid #f0ebe3;
+  border-radius: 16rpx;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .logout-btn-active {
-  transform: scale(0.95);
-  background: rgba(255, 77, 79, 0.1);
-  border-color: rgba(255, 77, 79, 0.3);
+  opacity: 0.6;
+  background: #f5f0ea;
 }
 
 .logout-text {
   font-size: 30rpx;
-  color: #FF4D4F;
+  color: #c2410c;
 }
 </style>

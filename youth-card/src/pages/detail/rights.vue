@@ -1,13 +1,7 @@
 <template>
   <view class="page">
-    <view class="orb orb-1"></view>
-    <view class="orb orb-2"></view>
-
     <view class="card-wrap">
       <view class="youth-card">
-        <view class="card-orb card-orb-1"></view>
-        <view class="card-orb card-orb-2"></view>
-        <view class="card-glow"></view>
         <view class="card-top">
           <text class="card-label">青年卡</text>
           <text class="card-type">YOUTH CARD</text>
@@ -76,16 +70,16 @@ const currentCategory = ref('生活权益')
 const categories = ['生活权益', '出行权益', '娱乐权益', '教育权益']
 
 const rights = ref<Right[]>([
-  { id: 1, name: '美食8折优惠', desc: '指定餐饮商户消费享8折', icon: '🍜', bg: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)', category: '生活权益', status: 'available', statusText: '可领取' },
-  { id: 2, name: '超市满减券', desc: '满100减20，每月限领1次', icon: '🛒', bg: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', category: '生活权益', status: 'claimed', statusText: '已领取' },
-  { id: 3, name: '健身月卡折扣', desc: '合作健身房月卡7折优惠', icon: '💪', bg: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)', category: '生活权益', status: 'available', statusText: '可领取' },
-  { id: 4, name: '公交月卡8折', desc: '全市公交月卡享8折优惠', icon: '🚌', bg: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)', category: '出行权益', status: 'claimed', statusText: '已领取' },
-  { id: 5, name: '共享单车月卡', desc: '每月免费领取单车月卡1次', icon: '🚲', bg: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)', category: '出行权益', status: 'available', statusText: '可领取' },
-  { id: 6, name: '地铁优惠通道', desc: '高峰期快速通行权益', icon: '🚇', bg: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', category: '出行权益', status: 'used', statusText: '已使用' },
-  { id: 7, name: '电影票买一送一', desc: '每周三电影票买一送一', icon: '🎬', bg: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)', category: '娱乐权益', status: 'available', statusText: '可领取' },
-  { id: 8, name: 'KTV欢唱券', desc: '指定KTV免费欢唱2小时', icon: '🎤', bg: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)', category: '娱乐权益', status: 'used', statusText: '已使用' },
-  { id: 9, name: '景区门票半价', desc: '合作景区门票享半价优惠', icon: '🏔️', bg: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', category: '娱乐权益', status: 'available', statusText: '可领取' },
-  { id: 10, name: '在线课程免费学', desc: '精选课程每月3次免费学习', icon: '📚', bg: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)', category: '教育权益', status: 'available', statusText: '可领取' }
+  { id: 1, name: '美食8折优惠', desc: '指定餐饮商户消费享8折', icon: '🍜', bg: '#fef3ee', category: '生活权益', status: 'available', statusText: '可领取' },
+  { id: 2, name: '超市满减券', desc: '满100减20，每月限领1次', icon: '🛒', bg: '#eff6ff', category: '生活权益', status: 'claimed', statusText: '已领取' },
+  { id: 3, name: '健身月卡折扣', desc: '合作健身房月卡7折优惠', icon: '💪', bg: '#f0fdf4', category: '生活权益', status: 'available', statusText: '可领取' },
+  { id: 4, name: '公交月卡8折', desc: '全市公交月卡享8折优惠', icon: '🚌', bg: '#eff6ff', category: '出行权益', status: 'claimed', statusText: '已领取' },
+  { id: 5, name: '共享单车月卡', desc: '每月免费领取单车月卡1次', icon: '🚲', bg: '#f0fdf4', category: '出行权益', status: 'available', statusText: '可领取' },
+  { id: 6, name: '地铁优惠通道', desc: '高峰期快速通行权益', icon: '🚇', bg: '#fefce8', category: '出行权益', status: 'used', statusText: '已使用' },
+  { id: 7, name: '电影票买一送一', desc: '每周三电影票买一送一', icon: '🎬', bg: '#fef3ee', category: '娱乐权益', status: 'available', statusText: '可领取' },
+  { id: 8, name: 'KTV欢唱券', desc: '指定KTV免费欢唱2小时', icon: '🎤', bg: '#fefce8', category: '娱乐权益', status: 'used', statusText: '已使用' },
+  { id: 9, name: '景区门票半价', desc: '合作景区门票享半价优惠', icon: '🏔️', bg: '#f0fdf4', category: '娱乐权益', status: 'available', statusText: '可领取' },
+  { id: 10, name: '在线课程免费学', desc: '精选课程每月3次免费学习', icon: '📚', bg: '#eff6ff', category: '教育权益', status: 'available', statusText: '可领取' }
 ])
 
 const filteredRights = computed(() => {
@@ -103,87 +97,21 @@ const onUseRight = (item: Right) => {
 <style>
 .page {
   min-height: 100vh;
-  background-color: #0f0f2d;
+  background-color: #faf8f5;
   display: flex;
   flex-direction: column;
-  position: relative;
-  overflow: hidden;
-}
-
-.orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80rpx);
-  z-index: 0;
-}
-
-.orb-1 {
-  width: 400rpx;
-  height: 400rpx;
-  background: #667eea;
-  opacity: 0.15;
-  top: -80rpx;
-  right: -100rpx;
-}
-
-.orb-2 {
-  width: 300rpx;
-  height: 300rpx;
-  background: #f093fb;
-  opacity: 0.1;
-  top: 350rpx;
-  left: -80rpx;
 }
 
 .card-wrap {
   padding: 24rpx;
-  position: relative;
-  z-index: 1;
 }
 
 .youth-card {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-  border-radius: 24rpx;
+  background: #1a1612;
+  border-radius: 12rpx;
   padding: 36rpx;
-  box-shadow: 0 12rpx 40rpx rgba(102, 126, 234, 0.5);
   position: relative;
   overflow: hidden;
-}
-
-.card-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(60rpx);
-}
-
-.card-orb-1 {
-  width: 200rpx;
-  height: 200rpx;
-  background: #f093fb;
-  opacity: 0.4;
-  top: -60rpx;
-  right: -40rpx;
-}
-
-.card-orb-2 {
-  width: 160rpx;
-  height: 160rpx;
-  background: #4facfe;
-  opacity: 0.3;
-  bottom: -40rpx;
-  left: -30rpx;
-}
-
-.card-glow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 300rpx;
-  height: 300rpx;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  filter: blur(40rpx);
 }
 
 .card-top {
@@ -191,32 +119,28 @@ const onUseRight = (item: Right) => {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 40rpx;
-  position: relative;
-  z-index: 1;
 }
 
 .card-label {
   font-size: 36rpx;
   font-weight: 700;
-  color: #FFFFFF;
+  color: #c2410c;
 }
 
 .card-type {
   font-size: 22rpx;
-  color: rgba(255, 255, 255, 0.6);
+  color: #a89888;
   letter-spacing: 4rpx;
 }
 
 .card-body {
   display: flex;
   flex-direction: column;
-  position: relative;
-  z-index: 1;
 }
 
 .card-no {
   font-size: 28rpx;
-  color: rgba(255, 255, 255, 0.9);
+  color: #ffffff;
   letter-spacing: 2rpx;
   margin-bottom: 32rpx;
 }
@@ -233,21 +157,19 @@ const onUseRight = (item: Right) => {
 
 .card-info-label {
   font-size: 22rpx;
-  color: rgba(255, 255, 255, 0.6);
+  color: #a89888;
   margin-bottom: 8rpx;
 }
 
 .card-info-value {
   font-size: 28rpx;
   font-weight: 600;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .category-scroll {
   white-space: nowrap;
   padding: 16rpx 24rpx;
-  position: relative;
-  z-index: 1;
 }
 
 .category-tag {
@@ -255,57 +177,49 @@ const onUseRight = (item: Right) => {
   align-items: center;
   justify-content: center;
   padding: 12rpx 32rpx;
-  border-radius: 32rpx;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  border-radius: 999rpx;
+  background: #f5f0ea;
   margin-right: 16rpx;
-  transition: all 0.3s;
 }
 
 .category-tag.active {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  border-color: transparent;
-  box-shadow: 0 4rpx 16rpx rgba(102, 126, 234, 0.4);
+  background: #c2410c;
 }
 
 .category-text {
   font-size: 26rpx;
-  color: rgba(255, 255, 255, 0.6);
+  color: #6b5e52;
 }
 
 .category-text.active-text {
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: 600;
 }
 
 .list-scroll {
   flex: 1;
   padding: 20rpx 24rpx;
-  position: relative;
-  z-index: 1;
 }
 
 .right-card {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
-  border-radius: 24rpx;
+  background: #ffffff;
+  border: 1rpx solid #f0ebe3;
+  border-radius: 12rpx;
   padding: 24rpx;
   margin-bottom: 20rpx;
-  backdrop-filter: blur(20px);
-  transition: all 0.3s;
+  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.03);
 }
 
 .card-hover {
-  transform: scale(0.95);
-  opacity: 0.85;
+  opacity: 0.6;
 }
 
 .right-icon {
   width: 80rpx;
   height: 80rpx;
-  border-radius: 20rpx;
+  border-radius: 12rpx;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -323,56 +237,47 @@ const onUseRight = (item: Right) => {
 
 .right-name {
   font-size: 28rpx;
-  font-weight: 700;
-  color: #FFFFFF;
+  font-weight: 600;
+  color: #1a1612;
 }
 
 .right-desc {
   font-size: 22rpx;
-  color: rgba(255, 255, 255, 0.4);
+  color: #a89888;
   margin-top: 6rpx;
 }
 
 .right-status {
   font-size: 22rpx;
   margin-top: 8rpx;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #15803d;
 }
 
 .right-status.used {
-  background: rgba(255, 255, 255, 0.3);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #a89888;
 }
 
 .right-status.available {
-  background: linear-gradient(135deg, #43e97b, #38f9d7);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #c2410c;
 }
 
 .right-btn {
   padding: 10rpx 24rpx;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  border-radius: 40rpx;
-  box-shadow: 0 4rpx 20rpx rgba(102, 126, 234, 0.4);
+  background: #c2410c;
+  border-radius: 8rpx;
   flex-shrink: 0;
 }
 
 .right-btn.disabled {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
-  box-shadow: none;
+  background: #f5f0ea;
 }
 
 .right-btn-text {
   font-size: 24rpx;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .right-btn-text.disabled {
-  color: rgba(255, 255, 255, 0.4);
+  color: #a89888;
 }
 </style>

@@ -1,8 +1,5 @@
 <template>
   <view class="page">
-    <view class="orb orb-1"></view>
-    <view class="orb orb-2"></view>
-
     <view class="stats-bar">
       <view class="stat-card" hover-class="card-hover">
         <text class="stat-value">2.5h</text>
@@ -120,12 +117,12 @@ const currentCategory = ref('推荐课程')
 const categories = ['推荐课程', '学习计划', '资料库']
 
 const courses = ref<Course[]>([
-  { id: 1, name: 'Vue3从入门到实战', teacher: '张老师', learners: 2386, progress: 68, bg: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' },
-  { id: 2, name: 'TypeScript高级编程', teacher: '李老师', learners: 1562, progress: 35, bg: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)' },
-  { id: 3, name: 'React Hooks深度解析', teacher: '王老师', learners: 1890, progress: 0, bg: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)' },
-  { id: 4, name: 'Node.js后端开发', teacher: '赵老师', learners: 1245, progress: 92, bg: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)' },
-  { id: 5, name: 'CSS动画与交互设计', teacher: '刘老师', learners: 978, progress: 15, bg: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)' },
-  { id: 6, name: '微信小程序开发实战', teacher: '陈老师', learners: 3120, progress: 50, bg: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }
+  { id: 1, name: 'Vue3从入门到实战', teacher: '张老师', learners: 2386, progress: 68, bg: '#fef3ee' },
+  { id: 2, name: 'TypeScript高级编程', teacher: '李老师', learners: 1562, progress: 35, bg: '#f0fdf4' },
+  { id: 3, name: 'React Hooks深度解析', teacher: '王老师', learners: 1890, progress: 0, bg: '#eff6ff' },
+  { id: 4, name: 'Node.js后端开发', teacher: '赵老师', learners: 1245, progress: 92, bg: '#fefce8' },
+  { id: 5, name: 'CSS动画与交互设计', teacher: '刘老师', learners: 978, progress: 15, bg: '#fef3ee' },
+  { id: 6, name: '微信小程序开发实战', teacher: '陈老师', learners: 3120, progress: 50, bg: '#f0fdf4' }
 ])
 
 const plans = ref<Plan[]>([
@@ -137,12 +134,12 @@ const plans = ref<Plan[]>([
 ])
 
 const resources = ref<Resource[]>([
-  { id: 1, name: 'Vue3官方文档精编', type: 'PDF', typeIcon: 'PDF', size: '12.5MB', bg: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)', downloaded: false },
-  { id: 2, name: 'TypeScript速查手册', type: 'PDF', typeIcon: 'PDF', size: '3.2MB', bg: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)', downloaded: true },
-  { id: 3, name: '前端面试题集2026', type: 'DOC', typeIcon: 'DOC', size: '8.7MB', bg: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', downloaded: false },
-  { id: 4, name: 'CSS布局实战视频', type: '视频', typeIcon: 'MP4', size: '256MB', bg: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)', downloaded: false },
-  { id: 5, name: 'React源码解析', type: 'PDF', typeIcon: 'PDF', size: '15.3MB', bg: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)', downloaded: false },
-  { id: 6, name: 'Node.js最佳实践', type: 'EPUB', typeIcon: 'EPUB', size: '6.8MB', bg: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)', downloaded: true }
+  { id: 1, name: 'Vue3官方文档精编', type: 'PDF', typeIcon: 'PDF', size: '12.5MB', bg: '#fef3ee', downloaded: false },
+  { id: 2, name: 'TypeScript速查手册', type: 'PDF', typeIcon: 'PDF', size: '3.2MB', bg: '#fef3ee', downloaded: true },
+  { id: 3, name: '前端面试题集2026', type: 'DOC', typeIcon: 'DOC', size: '8.7MB', bg: '#eff6ff', downloaded: false },
+  { id: 4, name: 'CSS布局实战视频', type: '视频', typeIcon: 'MP4', size: '256MB', bg: '#f0fdf4', downloaded: false },
+  { id: 5, name: 'React源码解析', type: 'PDF', typeIcon: 'PDF', size: '15.3MB', bg: '#fef3ee', downloaded: false },
+  { id: 6, name: 'Node.js最佳实践', type: 'EPUB', typeIcon: 'EPUB', size: '6.8MB', bg: '#fefce8', downloaded: true }
 ])
 
 const onContinueLearn = (item: Plan) => {
@@ -159,44 +156,15 @@ const onDownload = (item: Resource) => {
 <style>
 .page {
   min-height: 100vh;
-  background-color: #0f0f2d;
+  background-color: #faf8f5;
   display: flex;
   flex-direction: column;
-  position: relative;
-  overflow: hidden;
-}
-
-.orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80rpx);
-  z-index: 0;
-}
-
-.orb-1 {
-  width: 400rpx;
-  height: 400rpx;
-  background: #667eea;
-  opacity: 0.15;
-  top: -100rpx;
-  left: -80rpx;
-}
-
-.orb-2 {
-  width: 350rpx;
-  height: 350rpx;
-  background: #f093fb;
-  opacity: 0.08;
-  top: 280rpx;
-  right: -100rpx;
 }
 
 .stats-bar {
   display: flex;
   padding: 24rpx;
   gap: 16rpx;
-  position: relative;
-  z-index: 1;
 }
 
 .stat-card {
@@ -205,37 +173,31 @@ const onDownload = (item: Resource) => {
   flex-direction: column;
   align-items: center;
   padding: 24rpx 0;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
-  border-radius: 24rpx;
-  backdrop-filter: blur(20px);
-  transition: all 0.3s;
+  background: #ffffff;
+  border: 1rpx solid #f0ebe3;
+  border-radius: 12rpx;
+  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.03);
 }
 
 .card-hover {
-  transform: scale(0.95);
-  opacity: 0.85;
+  opacity: 0.6;
 }
 
 .stat-value {
   font-size: 36rpx;
   font-weight: 700;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #c2410c;
 }
 
 .stat-label {
   font-size: 22rpx;
-  color: rgba(255, 255, 255, 0.6);
+  color: #6b5e52;
   margin-top: 8rpx;
 }
 
 .category-scroll {
   white-space: nowrap;
   padding: 16rpx 24rpx;
-  position: relative;
-  z-index: 1;
 }
 
 .category-tag {
@@ -243,51 +205,44 @@ const onDownload = (item: Resource) => {
   align-items: center;
   justify-content: center;
   padding: 12rpx 32rpx;
-  border-radius: 32rpx;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  border-radius: 999rpx;
+  background: #f5f0ea;
   margin-right: 16rpx;
-  transition: all 0.3s;
 }
 
 .category-tag.active {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  border-color: transparent;
-  box-shadow: 0 4rpx 16rpx rgba(102, 126, 234, 0.4);
+  background: #c2410c;
 }
 
 .category-text {
   font-size: 26rpx;
-  color: rgba(255, 255, 255, 0.6);
+  color: #6b5e52;
 }
 
 .category-text.active-text {
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: 600;
 }
 
 .list-scroll {
   flex: 1;
   padding: 20rpx 24rpx;
-  position: relative;
-  z-index: 1;
 }
 
 .course-card {
   display: flex;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
-  border-radius: 24rpx;
+  background: #ffffff;
+  border: 1rpx solid #f0ebe3;
+  border-radius: 12rpx;
   padding: 24rpx;
   margin-bottom: 20rpx;
-  backdrop-filter: blur(20px);
-  transition: all 0.3s;
+  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.03);
 }
 
 .course-cover {
   width: 180rpx;
   height: 180rpx;
-  border-radius: 16rpx;
+  border-radius: 12rpx;
   flex-shrink: 0;
 }
 
@@ -301,19 +256,19 @@ const onDownload = (item: Resource) => {
 
 .course-name {
   font-size: 30rpx;
-  font-weight: 700;
-  color: #FFFFFF;
+  font-weight: 600;
+  color: #1a1612;
 }
 
 .course-teacher {
   font-size: 24rpx;
-  color: rgba(255, 255, 255, 0.6);
+  color: #6b5e52;
   margin-top: 8rpx;
 }
 
 .course-people {
   font-size: 22rpx;
-  color: rgba(255, 255, 255, 0.4);
+  color: #a89888;
   margin-top: 6rpx;
 }
 
@@ -326,31 +281,30 @@ const onDownload = (item: Resource) => {
 .progress-bar {
   flex: 1;
   height: 8rpx;
-  background: rgba(255, 255, 255, 0.1);
+  background: #ede8e0;
   border-radius: 4rpx;
   overflow: hidden;
 }
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #667eea, #764ba2);
+  background: #c2410c;
   border-radius: 4rpx;
 }
 
 .progress-text {
   font-size: 20rpx;
-  color: rgba(255, 255, 255, 0.4);
+  color: #a89888;
   margin-left: 12rpx;
 }
 
 .plan-card {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
-  border-radius: 24rpx;
+  background: #ffffff;
+  border: 1rpx solid #f0ebe3;
+  border-radius: 12rpx;
   padding: 28rpx;
   margin-bottom: 20rpx;
-  backdrop-filter: blur(20px);
-  transition: all 0.3s;
+  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.03);
 }
 
 .plan-header {
@@ -361,16 +315,16 @@ const onDownload = (item: Resource) => {
 
 .plan-name {
   font-size: 30rpx;
-  font-weight: 700;
-  color: #FFFFFF;
+  font-weight: 600;
+  color: #1a1612;
 }
 
 .plan-days {
   font-size: 24rpx;
-  color: #FFFFFF;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #c2410c;
+  background: #fef3ee;
   padding: 6rpx 16rpx;
-  border-radius: 16rpx;
+  border-radius: 999rpx;
 }
 
 .plan-progress-wrap {
@@ -382,35 +336,33 @@ const onDownload = (item: Resource) => {
 .plan-btn {
   margin-top: 20rpx;
   padding: 14rpx 0;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  border-radius: 40rpx;
+  background: #c2410c;
+  border-radius: 8rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4rpx 20rpx rgba(102, 126, 234, 0.4);
 }
 
 .plan-btn-text {
   font-size: 26rpx;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .resource-card {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
-  border-radius: 24rpx;
+  background: #ffffff;
+  border: 1rpx solid #f0ebe3;
+  border-radius: 12rpx;
   padding: 24rpx;
   margin-bottom: 20rpx;
-  backdrop-filter: blur(20px);
-  transition: all 0.3s;
+  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.03);
 }
 
 .resource-icon {
   width: 72rpx;
   height: 72rpx;
-  border-radius: 16rpx;
+  border-radius: 12rpx;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -420,7 +372,7 @@ const onDownload = (item: Resource) => {
 .resource-icon-text {
   font-size: 22rpx;
   font-weight: 700;
-  color: #FFFFFF;
+  color: #c2410c;
 }
 
 .resource-info {
@@ -431,7 +383,7 @@ const onDownload = (item: Resource) => {
 .resource-name {
   font-size: 28rpx;
   font-weight: 600;
-  color: #FFFFFF;
+  color: #1a1612;
 }
 
 .resource-meta {
@@ -443,36 +395,34 @@ const onDownload = (item: Resource) => {
 
 .resource-type {
   font-size: 22rpx;
-  background: linear-gradient(135deg, #4facfe, #00f2fe);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #1d4ed8;
+  background: #eff6ff;
+  padding: 2rpx 10rpx;
+  border-radius: 999rpx;
 }
 
 .resource-size {
   font-size: 22rpx;
-  color: rgba(255, 255, 255, 0.4);
+  color: #a89888;
 }
 
 .download-btn {
   padding: 10rpx 24rpx;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  border-radius: 40rpx;
-  box-shadow: 0 4rpx 20rpx rgba(102, 126, 234, 0.4);
+  background: #c2410c;
+  border-radius: 8rpx;
   flex-shrink: 0;
 }
 
 .download-btn.downloaded {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.1);
-  box-shadow: none;
+  background: #f5f0ea;
 }
 
 .download-btn-text {
   font-size: 24rpx;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .download-btn-text.downloaded {
-  color: rgba(255, 255, 255, 0.4);
+  color: #a89888;
 }
 </style>
