@@ -1,5 +1,6 @@
 <template>
   <view class="page">
+    <view :style="{ height: statusBarHeight + 'px' }"></view>
     <view class="nav-bar">
       <view class="nav-back" hover-class="nav-back-active" @tap="goBack">
         <text class="nav-back-icon">‹</text>
@@ -51,7 +52,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
 interface Favorite {
   type: number
@@ -63,6 +64,12 @@ interface Favorite {
 
 const tabs = ['商户', '课程', '公寓', '职位']
 const currentTab = ref(0)
+const statusBarHeight = ref(0)
+
+onMounted(() => {
+  const sysInfo = uni.getSystemInfoSync()
+  statusBarHeight.value = sysInfo.statusBarHeight || 0
+})
 
 const favorites = ref<Favorite[]>([
   { type: 0, icon: '☕', name: '星巴克（大学城店）', desc: '青年卡专享8折优惠', color: '#fef3ee' },
@@ -112,7 +119,7 @@ const onUnfav = (item: Favorite, index: number) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 60rpx 32rpx 16rpx;
+  padding: 16rpx 32rpx;
   background-color: #faf8f5;
 }
 

@@ -1,5 +1,12 @@
 <template>
   <view class="page">
+    <view class="search-bar">
+      <view class="search-input-wrap">
+        <text class="search-icon">🔍</text>
+        <input class="search-input" placeholder="搜索创业项目、孵化器、政策" placeholder-class="search-placeholder" v-model="keyword" />
+      </view>
+    </view>
+
     <view class="stats-bar">
       <view class="stat-card" hover-class="card-hover">
         <text class="stat-value">128</text>
@@ -29,7 +36,7 @@
 
     <scroll-view class="list-scroll" scroll-y>
       <template v-if="currentCategory === '创业项目'">
-        <view class="project-card" v-for="item in projects" :key="item.id" hover-class="card-hover">
+        <view class="project-card" v-for="item in filteredProjects" :key="item.id" hover-class="card-hover" @click="onProjectClick(item)">
           <view class="project-header">
             <text class="project-name">{{ item.name }}</text>
             <text class="project-stage">{{ item.stage }}</text>
@@ -42,7 +49,7 @@
       </template>
 
       <template v-if="currentCategory === '孵化器'">
-        <view class="incubator-card" v-for="item in incubators" :key="item.id" hover-class="card-hover">
+        <view class="incubator-card" v-for="item in filteredIncubators" :key="item.id" hover-class="card-hover">
           <view class="incubator-header">
             <text class="incubator-name">{{ item.name }}</text>
           </view>
@@ -64,7 +71,7 @@
       </template>
 
       <template v-if="currentCategory === '政策扶持'">
-        <view class="policy-card" v-for="item in policies" :key="item.id" hover-class="card-hover">
+        <view class="policy-card" v-for="item in filteredPolicies" :key="item.id" hover-class="card-hover" @click="onPolicyClick(item)">
           <view class="policy-header">
             <text class="policy-name">{{ item.name }}</text>
           </view>
@@ -76,7 +83,7 @@
       </template>
 
       <template v-if="currentCategory === '融资对接'">
-        <view class="finance-card" v-for="item in finances" :key="item.id" hover-class="card-hover">
+        <view class="finance-card" v-for="item in filteredFinances" :key="item.id" hover-class="card-hover" @click="onFinanceClick(item)">
           <view class="finance-header">
             <text class="finance-name">{{ item.name }}</text>
             <text class="finance-stage">{{ item.stage }}</text>
@@ -89,7 +96,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 interface Project {
   id: number
@@ -124,6 +131,7 @@ interface Finance {
 
 const currentCategory = ref('创业项目')
 const categories = ['创业项目', '孵化器', '政策扶持', '融资对接']
+const keyword = ref('')
 
 const projects = ref<Project[]>([
   { id: 1, name: '智慧校园', desc: '基于AI的校园智能管理系统，提升校园管理效率', stage: '种子期', funding: '天使轮' },
@@ -159,6 +167,42 @@ const finances = ref<Finance[]>([
   { id: 5, name: '宠趣生活', amount: '800万', stage: '种子轮' }
 ])
 
+const filteredProjects = computed(() => {
+  return projects.value.filter(item => {
+    return !keyword.value || item.name.includes(keyword.value) || item.desc.includes(keyword.value)
+  })
+})
+
+const filteredIncubators = computed(() => {
+  return incubators.value.filter(item => {
+    return !keyword.value || item.name.includes(keyword.value) || item.address.includes(keyword.value)
+  })
+})
+
+const filteredPolicies = computed(() => {
+  return policies.value.filter(item => {
+    return !keyword.value || item.name.includes(keyword.value) || item.dept.includes(keyword.value)
+  })
+})
+
+const filteredFinances = computed(() => {
+  return finances.value.filter(item => {
+    return !keyword.value || item.name.includes(keyword.value) || item.amount.includes(keyword.value)
+  })
+})
+
+const onProjectClick = (item: Project) => {
+  uni.showToast({ title: item.name, icon: 'none' })
+}
+
+const onPolicyClick = (item: Policy) => {
+  uni.showToast({ title: item.name, icon: 'none' })
+}
+
+const onFinanceClick = (item: Finance) => {
+  uni.showToast({ title: `${item.name} · ${item.amount}`, icon: 'none' })
+}
+
 const onApplyIncubator = (item: Incubator) => {
   if (item.applied) return
   item.applied = true
@@ -172,6 +216,35 @@ const onApplyIncubator = (item: Incubator) => {
   background-color: #faf8f5;
   display: flex;
   flex-direction: column;
+}
+
+.search-bar {
+  padding: 20rpx 24rpx;
+}
+
+.search-input-wrap {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1rpx solid #e8e0d6;
+  border-radius: 12rpx;
+  padding: 16rpx 24rpx;
+}
+
+.search-icon {
+  font-size: 28rpx;
+  margin-right: 12rpx;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 28rpx;
+  color: #1a1612;
+}
+
+.search-placeholder {
+  color: #a89888;
+  font-size: 28rpx;
 }
 
 .stats-bar {

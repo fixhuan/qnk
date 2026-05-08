@@ -31,8 +31,13 @@
         </view>
         <view class="job-bottom">
           <text class="job-meta">{{ item.location }} · {{ item.time }}</text>
-          <view class="apply-btn" :class="{ applied: item.applied }" @click="onApply(item)">
-            <text class="apply-btn-text" :class="{ applied: item.applied }">{{ item.applied ? '已投递' : '投递' }}</text>
+          <view class="job-actions">
+            <view class="fav-btn" @click="onToggleFav(item)">
+              <text class="fav-icon" :class="{ favorited: item.favorited }">{{ item.favorited ? '❤' : '♡' }}</text>
+            </view>
+            <view class="apply-btn" :class="{ applied: item.applied }" @click="onApply(item)">
+              <text class="apply-btn-text" :class="{ applied: item.applied }">{{ item.applied ? '已投递' : '投递' }}</text>
+            </view>
           </view>
         </view>
       </view>
@@ -53,6 +58,7 @@ interface Job {
   time: string
   category: string
   applied: boolean
+  favorited: boolean
 }
 
 const keyword = ref('')
@@ -60,14 +66,14 @@ const currentCategory = ref('推荐')
 const categories = ['推荐', '技术', '设计', '运营', '市场', '产品']
 
 const jobs = ref<Job[]>([
-  { id: 1, name: '前端开发工程师', company: '星辰科技有限公司', salary: '8K-15K', location: '城东', tags: ['五险一金', '弹性工作'], time: '2天前', category: '技术', applied: false },
-  { id: 2, name: 'Java后端开发', company: '云端网络科技', salary: '10K-20K', location: '城西', tags: ['五险一金', '年终奖', '远程'], time: '1天前', category: '技术', applied: false },
-  { id: 3, name: 'UI设计师', company: '创想设计工作室', salary: '7K-12K', location: '城南', tags: ['弹性工作', '远程'], time: '3天前', category: '设计', applied: false },
-  { id: 4, name: '视觉设计师', company: '美图传媒', salary: '8K-14K', location: '城东', tags: ['五险一金', '餐补'], time: '1天前', category: '设计', applied: true },
-  { id: 5, name: '新媒体运营', company: '潮流文化', salary: '6K-10K', location: '城北', tags: ['弹性工作', '下午茶'], time: '5天前', category: '运营', applied: false },
-  { id: 6, name: '用户运营专员', company: '乐享科技', salary: '7K-11K', location: '城东', tags: ['五险一金', '带薪年假'], time: '2天前', category: '运营', applied: false },
-  { id: 7, name: '市场推广经理', company: '锐步商贸', salary: '8K-16K', location: '城西', tags: ['五险一金', '绩效奖金'], time: '4天前', category: '市场', applied: false },
-  { id: 8, name: '产品经理', company: '智联科技', salary: '12K-25K', location: '城南', tags: ['五险一金', '弹性工作', '远程'], time: '1天前', category: '产品', applied: false }
+  { id: 1, name: '前端开发工程师', company: '星辰科技有限公司', salary: '8K-15K', location: '城东', tags: ['五险一金', '弹性工作'], time: '2天前', category: '技术', applied: false, favorited: false },
+  { id: 2, name: 'Java后端开发', company: '云端网络科技', salary: '10K-20K', location: '城西', tags: ['五险一金', '年终奖', '远程'], time: '1天前', category: '技术', applied: false, favorited: false },
+  { id: 3, name: 'UI设计师', company: '创想设计工作室', salary: '7K-12K', location: '城南', tags: ['弹性工作', '远程'], time: '3天前', category: '设计', applied: false, favorited: true },
+  { id: 4, name: '视觉设计师', company: '美图传媒', salary: '8K-14K', location: '城东', tags: ['五险一金', '餐补'], time: '1天前', category: '设计', applied: true, favorited: false },
+  { id: 5, name: '新媒体运营', company: '潮流文化', salary: '6K-10K', location: '城北', tags: ['弹性工作', '下午茶'], time: '5天前', category: '运营', applied: false, favorited: false },
+  { id: 6, name: '用户运营专员', company: '乐享科技', salary: '7K-11K', location: '城东', tags: ['五险一金', '带薪年假'], time: '2天前', category: '运营', applied: false, favorited: false },
+  { id: 7, name: '市场推广经理', company: '锐步商贸', salary: '8K-16K', location: '城西', tags: ['五险一金', '绩效奖金'], time: '4天前', category: '市场', applied: false, favorited: false },
+  { id: 8, name: '产品经理', company: '智联科技', salary: '12K-25K', location: '城南', tags: ['五险一金', '弹性工作', '远程'], time: '1天前', category: '产品', applied: false, favorited: false }
 ])
 
 const filteredJobs = computed(() => {
@@ -82,6 +88,11 @@ const onApply = (item: Job) => {
   if (item.applied) return
   item.applied = true
   uni.showToast({ title: '投递成功', icon: 'success' })
+}
+
+const onToggleFav = (item: Job) => {
+  item.favorited = !item.favorited
+  uni.showToast({ title: item.favorited ? '已收藏' : '已取消收藏', icon: 'none' })
 }
 </script>
 
@@ -213,6 +224,25 @@ const onApply = (item: Job) => {
   align-items: center;
   justify-content: space-between;
   margin-top: 20rpx;
+}
+
+.job-actions {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.fav-btn {
+  padding: 4rpx 8rpx;
+}
+
+.fav-icon {
+  font-size: 32rpx;
+  color: #e8e0d6;
+}
+
+.fav-icon.favorited {
+  color: #c2410c;
 }
 
 .job-meta {

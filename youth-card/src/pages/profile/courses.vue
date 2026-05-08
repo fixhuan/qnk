@@ -1,5 +1,6 @@
 <template>
   <view class="page">
+    <view :style="{ height: statusBarHeight + 'px' }"></view>
     <view class="nav-bar">
       <view class="nav-back" hover-class="nav-back-active" @tap="goBack">
         <text class="nav-back-icon">‹</text>
@@ -58,7 +59,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
 interface Course {
   type: number
@@ -72,6 +73,12 @@ interface Course {
 
 const tabs = ['进行中', '已完成', '已收藏']
 const currentTab = ref(0)
+const statusBarHeight = ref(0)
+
+onMounted(() => {
+  const sysInfo = uni.getSystemInfoSync()
+  statusBarHeight.value = sysInfo.statusBarHeight || 0
+})
 
 const courses = ref<Course[]>([
   { type: 0, icon: '💻', name: 'Python编程入门', teacher: '张明远', progress: 65, lastTime: '2025-05-07 20:30', color: '#fef3ee' },
@@ -97,6 +104,10 @@ const goBack = () => {
 }
 
 const onContinue = (course: Course) => {
+  if (course.type === 0 && course.progress < 100) {
+    course.progress = Math.min(100, course.progress + 10)
+    course.lastTime = new Date().toLocaleString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).replace(/\//g, '-')
+  }
   uni.showToast({ title: `继续学习：${course.name}`, icon: 'none' })
 }
 </script>
@@ -111,7 +122,7 @@ const onContinue = (course: Course) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 60rpx 32rpx 16rpx;
+  padding: 16rpx 32rpx;
   background-color: #faf8f5;
 }
 

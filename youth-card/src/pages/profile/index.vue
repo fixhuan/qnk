@@ -102,7 +102,7 @@ const quickEntries = ref([
   { icon: '📦', name: '我的订单', path: '/pages/profile/orders' },
   { icon: '⭐', name: '我的收藏', path: '/pages/profile/favorites' },
   { icon: '📖', name: '我的课程', path: '/pages/profile/courses' },
-  { icon: '🎫', name: '我的优惠券', path: '/pages/profile/orders' }
+  { icon: '🎫', name: '我的优惠券', path: '' }
 ])
 
 const menuList = ref([
@@ -115,6 +115,10 @@ const menuList = ref([
 ])
 
 const navigateTo = (url: string) => {
+  if (!url) {
+    uni.showToast({ title: '优惠券功能开发中', icon: 'none' })
+    return
+  }
   uni.navigateTo({ url })
 }
 

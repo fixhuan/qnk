@@ -1,5 +1,6 @@
 <template>
   <view class="page">
+    <view :style="{ height: statusBarHeight + 'px' }"></view>
     <view class="nav-bar">
       <view class="nav-back" hover-class="nav-back-active" @tap="goBack">
         <text class="nav-back-icon">‹</text>
@@ -82,7 +83,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
 interface Order {
   shop: string
@@ -95,6 +96,12 @@ interface Order {
 
 const tabs = ['全部', '待付款', '待使用', '已完成', '已取消']
 const currentTab = ref(0)
+const statusBarHeight = ref(0)
+
+onMounted(() => {
+  const sysInfo = uni.getSystemInfoSync()
+  statusBarHeight.value = sysInfo.statusBarHeight || 0
+})
 
 const orders = ref<Order[]>([
   { shop: '青年夜校·Python编程课', orderNo: 'YQ20250101001', price: '299.00', status: 0, statusText: '待付款', time: '2025-05-08 14:30' },
@@ -138,7 +145,19 @@ const onPay = (order: Order) => {
 }
 
 const onReview = (order: Order) => {
-  uni.showToast({ title: '评价功能开发中', icon: 'none' })
+  uni.showModal({
+    title: '评价订单',
+    content: `对"${order.shop}"进行评价`,
+    confirmText: '好评',
+    cancelText: '中评',
+    success: (res) => {
+      if (res.confirm) {
+        uni.showToast({ title: '感谢您的好评', icon: 'success' })
+      } else if (res.cancel) {
+        uni.showToast({ title: '感谢您的评价', icon: 'none' })
+      }
+    }
+  })
 }
 
 const onUse = (order: Order) => {
@@ -170,7 +189,7 @@ const onDelete = (order: Order) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 60rpx 32rpx 16rpx;
+  padding: 16rpx 32rpx;
   background-color: #faf8f5;
 }
 

@@ -1,5 +1,6 @@
 <template>
   <view class="page">
+    <view :style="{ height: statusBarHeight + 'px' }"></view>
     <view class="nav-bar">
       <view class="nav-back" hover-class="nav-back-active" @tap="goBack">
         <text class="nav-back-icon">‹</text>
@@ -72,7 +73,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 const features = ref([
   { icon: '🎯', title: '精准服务', desc: '基于青年需求，提供政策、租房、求职等一站式服务', bgColor: '#fef3ee' },
@@ -81,13 +82,23 @@ const features = ref([
   { icon: '🌟', title: '专属优惠', desc: '青年卡用户专享折扣和补贴，助力青年发展', bgColor: '#fefce8' }
 ])
 
+const statusBarHeight = ref(0)
+
+onMounted(() => {
+  const sysInfo = uni.getSystemInfoSync()
+  statusBarHeight.value = sysInfo.statusBarHeight || 0
+})
+
 const goBack = () => {
   uni.navigateBack()
 }
 
 const onLink = (type: string) => {
   const title = type === 'user' ? '用户协议' : '隐私政策'
-  uni.showToast({ title: `${title}页面开发中`, icon: 'none' })
+  const content = type === 'user'
+    ? '一、总则\n本协议是您与青年卡平台之间关于使用青年卡服务所订立的协议。\n\n二、服务内容\n青年卡平台为青年用户提供政策咨询、租房指导、求职推荐、学习规划等一站式服务。\n\n三、用户权利\n1. 用户有权使用平台提供的各项服务\n2. 用户有权对平台服务提出意见和建议\n3. 用户有权随时注销账户\n\n四、用户义务\n1. 用户应提供真实、准确的个人信息\n2. 用户应遵守平台使用规则\n3. 用户不得利用平台从事违法活动\n\n五、隐私保护\n平台将严格保护用户个人隐私，详见《隐私政策》。'
+    : '一、信息收集\n我们可能收集以下信息：\n1. 注册信息：姓名、手机号、身份证号\n2. 使用数据：浏览记录、搜索记录\n3. 设备信息：设备型号、操作系统版本\n\n二、信息使用\n收集的信息将用于：\n1. 提供和改进服务\n2. 个性化推荐\n3. 安全防护\n\n三、信息保护\n1. 采用加密存储和传输\n2. 严格权限管理\n3. 定期安全审计\n\n四、用户权利\n1. 查询个人信息\n2. 更正个人信息\n3. 删除个人信息\n4. 撤回授权同意'
+  uni.showModal({ title, content, showCancel: false, confirmText: '我知道了' })
 }
 </script>
 
@@ -102,7 +113,7 @@ const onLink = (type: string) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 60rpx 32rpx 16rpx;
+  padding: 16rpx 32rpx;
   background-color: #faf8f5;
 }
 

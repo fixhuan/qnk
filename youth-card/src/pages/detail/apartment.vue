@@ -46,7 +46,7 @@
           </view>
           <view class="apt-bottom">
             <text class="apt-price">¥{{ item.price }}<text class="apt-price-unit">/月</text></text>
-            <view class="fav-btn" @click="item.favorited = !item.favorited">
+            <view class="fav-btn" @click="onToggleFav(item)">
               <text class="fav-icon" :class="{ favorited: item.favorited }">{{ item.favorited ? '❤' : '♡' }}</text>
             </view>
           </view>
@@ -99,6 +99,11 @@ const filteredApartments = computed(() => {
     return matchArea && matchKeyword && matchPrice
   })
 })
+
+const onToggleFav = (item: Apartment) => {
+  item.favorited = !item.favorited
+  uni.showToast({ title: item.favorited ? '已收藏' : '已取消收藏', icon: 'none' })
+}
 </script>
 
 <style>

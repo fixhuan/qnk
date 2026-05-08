@@ -97,7 +97,7 @@
     {
       "path": "pages/profile/orders",
       "style": {
-        "navigationBarTitleText": "我的订单",
+        "navigationStyle": "custom",
         "navigationBarBackgroundColor": "#faf8f5",
         "navigationBarTextStyle": "black"
       }
@@ -105,7 +105,7 @@
     {
       "path": "pages/profile/favorites",
       "style": {
-        "navigationBarTitleText": "我的收藏",
+        "navigationStyle": "custom",
         "navigationBarBackgroundColor": "#faf8f5",
         "navigationBarTextStyle": "black"
       }
@@ -113,7 +113,7 @@
     {
       "path": "pages/profile/courses",
       "style": {
-        "navigationBarTitleText": "我的课程",
+        "navigationStyle": "custom",
         "navigationBarBackgroundColor": "#faf8f5",
         "navigationBarTextStyle": "black"
       }
@@ -121,7 +121,7 @@
     {
       "path": "pages/profile/about",
       "style": {
-        "navigationBarTitleText": "关于我们",
+        "navigationStyle": "custom",
         "navigationBarBackgroundColor": "#faf8f5",
         "navigationBarTextStyle": "black"
       }
@@ -129,7 +129,7 @@
     {
       "path": "pages/profile/settings",
       "style": {
-        "navigationBarTitleText": "设置",
+        "navigationStyle": "custom",
         "navigationBarBackgroundColor": "#faf8f5",
         "navigationBarTextStyle": "black"
       }

@@ -10,9 +10,16 @@
       </view>
       <text class="greeting-title">Hi，青年</text>
       <text class="greeting-sub">探索属于你的精彩世界</text>
-      <view class="search-bar" @click="onSearchClick">
+      <view class="search-bar">
         <text class="search-icon">🔍</text>
-        <text class="search-placeholder">搜索服务、商户、课程...</text>
+        <input
+          class="search-input"
+          v-model="searchKeyword"
+          placeholder="搜索服务、商户、课程..."
+          placeholder-class="search-placeholder"
+          confirm-type="search"
+          @confirm="onSearchConfirm"
+        />
       </view>
     </view>
 
@@ -166,6 +173,7 @@ interface Activity {
 }
 
 const statusBarHeight = ref(0)
+const searchKeyword = ref('')
 
 uni.getSystemInfoSync &&
   (statusBarHeight.value = uni.getSystemInfoSync().statusBarHeight || 0)
@@ -286,6 +294,12 @@ const onModuleClick = (item: Module) => {
   uni.navigateTo({ url: item.path })
 }
 
+const onSearchConfirm = () => {
+  const kw = searchKeyword.value.trim()
+  if (!kw) return
+  uni.showToast({ title: `搜索: ${kw}`, icon: 'none' })
+}
+
 const onSearchClick = () => {
   uni.navigateTo({ url: '/pages/detail/shop' })
 }
@@ -396,6 +410,13 @@ const onActivityClick = (item: Activity) => {
   font-size: 28rpx;
   margin-right: 16rpx;
   color: #a89888;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 26rpx;
+  color: #1a1612;
+  height: 80rpx;
 }
 
 .search-placeholder {

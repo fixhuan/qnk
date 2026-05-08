@@ -1,5 +1,12 @@
 <template>
   <view class="page">
+    <view class="search-bar">
+      <view class="search-input-wrap">
+        <text class="search-icon">🔍</text>
+        <input class="search-input" placeholder="搜索权益" placeholder-class="search-placeholder" v-model="keyword" />
+      </view>
+    </view>
+
     <view class="card-wrap">
       <view class="youth-card">
         <view class="card-top">
@@ -68,6 +75,7 @@ interface Right {
 
 const currentCategory = ref('生活权益')
 const categories = ['生活权益', '出行权益', '娱乐权益', '教育权益']
+const keyword = ref('')
 
 const rights = ref<Right[]>([
   { id: 1, name: '美食8折优惠', desc: '指定餐饮商户消费享8折', icon: '🍜', bg: '#fef3ee', category: '生活权益', status: 'available', statusText: '可领取' },
@@ -83,7 +91,11 @@ const rights = ref<Right[]>([
 ])
 
 const filteredRights = computed(() => {
-  return rights.value.filter(item => item.category === currentCategory.value)
+  return rights.value.filter(item => {
+    const matchCategory = item.category === currentCategory.value
+    const matchKeyword = !keyword.value || item.name.includes(keyword.value) || item.desc.includes(keyword.value)
+    return matchCategory && matchKeyword
+  })
 })
 
 const onUseRight = (item: Right) => {
@@ -100,6 +112,35 @@ const onUseRight = (item: Right) => {
   background-color: #faf8f5;
   display: flex;
   flex-direction: column;
+}
+
+.search-bar {
+  padding: 20rpx 24rpx;
+}
+
+.search-input-wrap {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1rpx solid #e8e0d6;
+  border-radius: 12rpx;
+  padding: 16rpx 24rpx;
+}
+
+.search-icon {
+  font-size: 28rpx;
+  margin-right: 12rpx;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 28rpx;
+  color: #1a1612;
+}
+
+.search-placeholder {
+  color: #a89888;
+  font-size: 28rpx;
 }
 
 .card-wrap {

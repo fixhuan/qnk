@@ -1,5 +1,12 @@
 <template>
   <view class="page">
+    <view class="search-bar">
+      <view class="search-input-wrap">
+        <text class="search-icon">🔍</text>
+        <input class="search-input" placeholder="搜索志愿活动、组织" placeholder-class="search-placeholder" v-model="keyword" />
+      </view>
+    </view>
+
     <view class="stats-bar">
       <view class="stat-card" hover-class="card-hover">
         <text class="stat-value">126</text>
@@ -29,7 +36,7 @@
 
     <scroll-view class="list-scroll" scroll-y>
       <template v-if="currentCategory === '志愿活动'">
-        <view class="volunteer-card" v-for="item in volunteerActivities" :key="item.id" hover-class="card-hover">
+        <view class="volunteer-card" v-for="item in filteredVolunteerActivities" :key="item.id" hover-class="card-hover">
           <view class="volunteer-header">
             <text class="volunteer-name">{{ item.name }}</text>
           </view>
@@ -46,7 +53,7 @@
       </template>
 
       <template v-if="currentCategory === '组织机构'">
-        <view class="org-card" v-for="item in organizations" :key="item.id" hover-class="card-hover">
+        <view class="org-card" v-for="item in filteredOrganizations" :key="item.id" hover-class="card-hover">
           <view class="org-header">
             <view class="org-avatar" :style="{ background: item.bg }"></view>
             <view class="org-info">
@@ -64,7 +71,7 @@
       </template>
 
       <template v-if="currentCategory === '志愿证书'">
-        <view class="cert-card" v-for="item in certificates" :key="item.id" hover-class="card-hover">
+        <view class="cert-card" v-for="item in filteredCertificates" :key="item.id" hover-class="card-hover" @click="onCertClick(item)">
           <view class="cert-icon-wrap">
             <text class="cert-icon">🏅</text>
           </view>
@@ -81,7 +88,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 interface VolunteerActivity {
   id: number
@@ -112,6 +119,7 @@ interface Certificate {
 
 const currentCategory = ref('志愿活动')
 const categories = ['志愿活动', '组织机构', '志愿证书']
+const keyword = ref('')
 
 const volunteerActivities = ref<VolunteerActivity[]>([
   { id: 1, name: '社区关爱老人行', time: '5月10日 09:00-12:00', location: '幸福社区服务中心', hours: 3, people: 24, joined: false },
@@ -138,6 +146,28 @@ const certificates = ref<Certificate[]>([
   { id: 5, name: '疫情防控志愿者证书', org: '市卫健委', time: '2025-03-10', no: 'HEA-2025-000775' }
 ])
 
+const filteredVolunteerActivities = computed(() => {
+  return volunteerActivities.value.filter(item => {
+    return !keyword.value || item.name.includes(keyword.value) || item.location.includes(keyword.value)
+  })
+})
+
+const filteredOrganizations = computed(() => {
+  return organizations.value.filter(item => {
+    return !keyword.value || item.name.includes(keyword.value) || item.desc.includes(keyword.value)
+  })
+})
+
+const filteredCertificates = computed(() => {
+  return certificates.value.filter(item => {
+    return !keyword.value || item.name.includes(keyword.value) || item.org.includes(keyword.value)
+  })
+})
+
+const onCertClick = (item: Certificate) => {
+  uni.showToast({ title: `${item.name} · ${item.no}`, icon: 'none' })
+}
+
 const onJoinVolunteer = (item: VolunteerActivity) => {
   if (item.joined) return
   item.joined = true
@@ -146,9 +176,8 @@ const onJoinVolunteer = (item: VolunteerActivity) => {
 }
 
 const onFollow = (item: Organization) => {
-  if (item.followed) return
-  item.followed = true
-  uni.showToast({ title: '关注成功', icon: 'success' })
+  item.followed = !item.followed
+  uni.showToast({ title: item.followed ? '关注成功' : '已取消关注', icon: 'none' })
 }
 </script>
 
@@ -158,6 +187,35 @@ const onFollow = (item: Organization) => {
   background-color: #faf8f5;
   display: flex;
   flex-direction: column;
+}
+
+.search-bar {
+  padding: 20rpx 24rpx;
+}
+
+.search-input-wrap {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1rpx solid #e8e0d6;
+  border-radius: 12rpx;
+  padding: 16rpx 24rpx;
+}
+
+.search-icon {
+  font-size: 28rpx;
+  margin-right: 12rpx;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 28rpx;
+  color: #1a1612;
+}
+
+.search-placeholder {
+  color: #a89888;
+  font-size: 28rpx;
 }
 
 .stats-bar {

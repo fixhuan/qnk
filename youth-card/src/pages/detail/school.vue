@@ -34,8 +34,13 @@
           </view>
           <view class="course-bottom">
             <text class="course-price" :class="{ free: item.price === 0 }">{{ item.price === 0 ? '免费' : '¥' + item.price }}</text>
-            <view class="enroll-btn" :class="{ enrolled: item.enrolled }" @click="onEnroll(item)">
-              <text class="enroll-btn-text" :class="{ enrolled: item.enrolled }">{{ item.enrolled ? '已报名' : '报名' }}</text>
+            <view class="course-actions">
+              <view class="fav-btn" @click="onToggleFav(item)">
+                <text class="fav-icon" :class="{ favorited: item.favorited }">{{ item.favorited ? '❤' : '♡' }}</text>
+              </view>
+              <view class="enroll-btn" :class="{ enrolled: item.enrolled }" @click="onEnroll(item)">
+                <text class="enroll-btn-text" :class="{ enrolled: item.enrolled }">{{ item.enrolled ? '已报名' : '报名' }}</text>
+              </view>
             </view>
           </view>
         </view>
@@ -58,6 +63,7 @@ interface Course {
   price: number
   category: string
   bg: string
+  favorited: boolean
 }
 
 const keyword = ref('')
@@ -65,14 +71,14 @@ const currentCategory = ref('全部')
 const categories = ['全部', '技能培训', '语言学习', '艺术修养', '职业资格']
 
 const courses = ref<Course[]>([
-  { id: 1, name: 'Python编程入门', teacher: '张明老师', time: '每周二、四 19:00-21:00', enrolled: false, enrolledCount: 28, total: 40, price: 0, category: '技能培训', bg: '#fef3ee' },
-  { id: 2, name: '短视频剪辑实战', teacher: '李华老师', time: '每周一、三 19:30-21:00', enrolled: false, enrolledCount: 35, total: 40, price: 299, category: '技能培训', bg: '#eff6ff' },
-  { id: 3, name: '日语N3精讲班', teacher: '田中老师', time: '每周三、五 18:30-20:30', enrolled: true, enrolledCount: 30, total: 35, price: 599, category: '语言学习', bg: '#fefce8' },
-  { id: 4, name: '商务英语口语', teacher: 'Sarah老师', time: '每周二、四 20:00-21:30', enrolled: false, enrolledCount: 18, total: 30, price: 499, category: '语言学习', bg: '#f0fdf4' },
-  { id: 5, name: '水彩画基础', teacher: '王艺老师', time: '每周六 14:00-17:00', enrolled: false, enrolledCount: 15, total: 25, price: 0, category: '艺术修养', bg: '#fef3ee' },
-  { id: 6, name: '吉他弹唱入门', teacher: '刘乐老师', time: '每周日 10:00-12:00', enrolled: false, enrolledCount: 22, total: 30, price: 399, category: '艺术修养', bg: '#fefce8' },
-  { id: 7, name: '人力资源管理师', teacher: '陈老师', time: '每周六 9:00-12:00', enrolled: false, enrolledCount: 32, total: 50, price: 899, category: '职业资格', bg: '#eff6ff' },
-  { id: 8, name: '心理咨询师培训', teacher: '赵老师', time: '每周日 14:00-17:00', enrolled: false, enrolledCount: 20, total: 40, price: 1299, category: '职业资格', bg: '#f0fdf4' }
+  { id: 1, name: 'Python编程入门', teacher: '张明老师', time: '每周二、四 19:00-21:00', enrolled: false, enrolledCount: 28, total: 40, price: 0, category: '技能培训', bg: '#fef3ee', favorited: false },
+  { id: 2, name: '短视频剪辑实战', teacher: '李华老师', time: '每周一、三 19:30-21:00', enrolled: false, enrolledCount: 35, total: 40, price: 299, category: '技能培训', bg: '#eff6ff', favorited: false },
+  { id: 3, name: '日语N3精讲班', teacher: '田中老师', time: '每周三、五 18:30-20:30', enrolled: true, enrolledCount: 30, total: 35, price: 599, category: '语言学习', bg: '#fefce8', favorited: true },
+  { id: 4, name: '商务英语口语', teacher: 'Sarah老师', time: '每周二、四 20:00-21:30', enrolled: false, enrolledCount: 18, total: 30, price: 499, category: '语言学习', bg: '#f0fdf4', favorited: false },
+  { id: 5, name: '水彩画基础', teacher: '王艺老师', time: '每周六 14:00-17:00', enrolled: false, enrolledCount: 15, total: 25, price: 0, category: '艺术修养', bg: '#fef3ee', favorited: false },
+  { id: 6, name: '吉他弹唱入门', teacher: '刘乐老师', time: '每周日 10:00-12:00', enrolled: false, enrolledCount: 22, total: 30, price: 399, category: '艺术修养', bg: '#fefce8', favorited: false },
+  { id: 7, name: '人力资源管理师', teacher: '陈老师', time: '每周六 9:00-12:00', enrolled: false, enrolledCount: 32, total: 50, price: 899, category: '职业资格', bg: '#eff6ff', favorited: false },
+  { id: 8, name: '心理咨询师培训', teacher: '赵老师', time: '每周日 14:00-17:00', enrolled: false, enrolledCount: 20, total: 40, price: 1299, category: '职业资格', bg: '#f0fdf4', favorited: false }
 ])
 
 const filteredCourses = computed(() => {
@@ -88,6 +94,11 @@ const onEnroll = (item: Course) => {
   item.enrolled = true
   item.enrolledCount++
   uni.showToast({ title: '报名成功', icon: 'success' })
+}
+
+const onToggleFav = (item: Course) => {
+  item.favorited = !item.favorited
+  uni.showToast({ title: item.favorited ? '已收藏' : '已取消收藏', icon: 'none' })
 }
 </script>
 
@@ -240,6 +251,25 @@ const onEnroll = (item: Course) => {
   align-items: center;
   justify-content: space-between;
   margin-top: 12rpx;
+}
+
+.course-actions {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.fav-btn {
+  padding: 4rpx 8rpx;
+}
+
+.fav-icon {
+  font-size: 32rpx;
+  color: #e8e0d6;
+}
+
+.fav-icon.favorited {
+  color: #c2410c;
 }
 
 .course-price {

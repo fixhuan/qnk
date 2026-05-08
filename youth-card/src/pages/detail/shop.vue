@@ -30,7 +30,7 @@
           </view>
           <view class="shop-bottom">
             <text class="shop-distance">{{ item.distance }}</text>
-            <view class="fav-btn" @click="item.favorited = !item.favorited">
+            <view class="fav-btn" @click="onToggleFav(item)">
               <text class="fav-icon" :class="{ favorited: item.favorited }">{{ item.favorited ? '❤' : '♡' }}</text>
             </view>
           </view>
@@ -76,6 +76,11 @@ const filteredShops = computed(() => {
     return matchCategory && matchKeyword
   })
 })
+
+const onToggleFav = (item: Shop) => {
+  item.favorited = !item.favorited
+  uni.showToast({ title: item.favorited ? '已收藏' : '已取消收藏', icon: 'none' })
+}
 </script>
 
 <style>

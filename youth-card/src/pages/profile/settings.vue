@@ -1,5 +1,6 @@
 <template>
   <view class="page">
+    <view :style="{ height: statusBarHeight + 'px' }"></view>
     <view class="nav-bar">
       <view class="nav-back" hover-class="nav-back-active" @tap="goBack">
         <text class="nav-back-icon">‹</text>
@@ -161,17 +162,23 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 const notifyEnabled = ref(true)
 const activityEnabled = ref(true)
+const statusBarHeight = ref(0)
 
-const toggleNotify = () => {
-  notifyEnabled.value = !notifyEnabled.value
+onMounted(() => {
+  const sysInfo = uni.getSystemInfoSync()
+  statusBarHeight.value = sysInfo.statusBarHeight || 0
+})
+
+const toggleNotify = (e: any) => {
+  notifyEnabled.value = e.detail.value
 }
 
-const toggleActivity = () => {
-  activityEnabled.value = !activityEnabled.value
+const toggleActivity = (e: any) => {
+  activityEnabled.value = e.detail.value
 }
 
 const goBack = () => {
@@ -186,8 +193,8 @@ const onSetting = (type: string) => {
     language: '语言设置功能开发中',
     cache: '缓存已清理',
     update: '当前已是最新版本',
-    agreement: '用户协议页面开发中',
-    privacy: '隐私政策页面开发中',
+    agreement: '用户协议',
+    privacy: '隐私政策',
     about: '关于页面开发中'
   }
 
@@ -206,6 +213,26 @@ const onSetting = (type: string) => {
 
   if (type === 'about') {
     uni.navigateTo({ url: '/pages/profile/about' })
+    return
+  }
+
+  if (type === 'agreement') {
+    uni.showModal({
+      title: '用户协议',
+      content: '一、总则\n本协议是您与青年卡平台之间关于使用青年卡服务所订立的协议。\n\n二、服务内容\n青年卡平台为青年用户提供政策咨询、租房指导、求职推荐、学习规划等一站式服务。\n\n三、用户权利\n1. 用户有权使用平台提供的各项服务\n2. 用户有权对平台服务提出意见和建议\n3. 用户有权随时注销账户\n\n四、用户义务\n1. 用户应提供真实、准确的个人信息\n2. 用户应遵守平台使用规则\n3. 用户不得利用平台从事违法活动',
+      showCancel: false,
+      confirmText: '我知道了'
+    })
+    return
+  }
+
+  if (type === 'privacy') {
+    uni.showModal({
+      title: '隐私政策',
+      content: '一、信息收集\n我们可能收集以下信息：\n1. 注册信息：姓名、手机号、身份证号\n2. 使用数据：浏览记录、搜索记录\n3. 设备信息：设备型号、操作系统版本\n\n二、信息使用\n收集的信息将用于：\n1. 提供和改进服务\n2. 个性化推荐\n3. 安全防护\n\n三、信息保护\n1. 采用加密存储和传输\n2. 严格权限管理\n3. 定期安全审计\n\n四、用户权利\n1. 查询个人信息\n2. 更正个人信息\n3. 删除个人信息\n4. 撤回授权同意',
+      showCancel: false,
+      confirmText: '我知道了'
+    })
     return
   }
 
@@ -236,7 +263,7 @@ const onLogout = () => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 60rpx 32rpx 16rpx;
+  padding: 16rpx 32rpx;
   background-color: #faf8f5;
 }
 

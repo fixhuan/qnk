@@ -1,5 +1,12 @@
 <template>
   <view class="page">
+    <view class="search-bar">
+      <view class="search-input-wrap">
+        <text class="search-icon">🔍</text>
+        <input class="search-input" placeholder="搜索活动、圈子、交友" placeholder-class="search-placeholder" v-model="keyword" />
+      </view>
+    </view>
+
     <view class="banner-wrap">
       <view class="banner">
         <text class="banner-title">青年社交季</text>
@@ -21,7 +28,7 @@
 
     <scroll-view class="list-scroll" scroll-y>
       <template v-if="currentCategory === '活动'">
-        <view class="activity-card" v-for="item in activities" :key="item.id" hover-class="card-hover">
+        <view class="activity-card" v-for="item in filteredActivities" :key="item.id" hover-class="card-hover">
           <view class="activity-cover" :style="{ background: item.bg }"></view>
           <view class="activity-info">
             <text class="activity-name">{{ item.name }}</text>
@@ -38,7 +45,7 @@
       </template>
 
       <template v-if="currentCategory === '圈子'">
-        <view class="circle-card" v-for="item in circles" :key="item.id" hover-class="card-hover">
+        <view class="circle-card" v-for="item in filteredCircles" :key="item.id" hover-class="card-hover">
           <view class="circle-info">
             <view class="circle-avatar" :style="{ background: item.bg }"></view>
             <view class="circle-detail">
@@ -57,7 +64,7 @@
       </template>
 
       <template v-if="currentCategory === '交友'">
-        <view class="friend-card" v-for="item in friends" :key="item.id" hover-class="card-hover">
+        <view class="friend-card" v-for="item in filteredFriends" :key="item.id" hover-class="card-hover">
           <view class="friend-info">
             <view class="friend-avatar" :style="{ background: item.bg }"></view>
             <view class="friend-detail">
@@ -77,7 +84,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 interface Activity {
   id: number
@@ -108,6 +115,7 @@ interface Friend {
 
 const currentCategory = ref('活动')
 const categories = ['活动', '圈子', '交友']
+const keyword = ref('')
 
 const activities = ref<Activity[]>([
   { id: 1, name: '周末徒步登山', time: '5月10日 08:00', location: '城郊森林公园', people: 32, bg: '#f0fdf4', joined: false },
@@ -134,6 +142,24 @@ const friends = ref<Friend[]>([
   { id: 5, name: '大伟', interests: ['健身', '电影', '美食'], bg: '#fef3ee', greeted: false },
   { id: 6, name: '小琳', interests: ['舞蹈', '手工', '旅行'], bg: '#f0fdf4', greeted: false }
 ])
+
+const filteredActivities = computed(() => {
+  return activities.value.filter(item => {
+    return !keyword.value || item.name.includes(keyword.value) || item.location.includes(keyword.value)
+  })
+})
+
+const filteredCircles = computed(() => {
+  return circles.value.filter(item => {
+    return !keyword.value || item.name.includes(keyword.value)
+  })
+})
+
+const filteredFriends = computed(() => {
+  return friends.value.filter(item => {
+    return !keyword.value || item.name.includes(keyword.value) || item.interests.some(i => i.includes(keyword.value!))
+  })
+})
 
 const onJoinActivity = (item: Activity) => {
   if (item.joined) return
@@ -162,6 +188,35 @@ const onGreet = (item: Friend) => {
   background-color: #faf8f5;
   display: flex;
   flex-direction: column;
+}
+
+.search-bar {
+  padding: 20rpx 24rpx;
+}
+
+.search-input-wrap {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1rpx solid #e8e0d6;
+  border-radius: 12rpx;
+  padding: 16rpx 24rpx;
+}
+
+.search-icon {
+  font-size: 28rpx;
+  margin-right: 12rpx;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 28rpx;
+  color: #1a1612;
+}
+
+.search-placeholder {
+  color: #a89888;
+  font-size: 28rpx;
 }
 
 .banner-wrap {

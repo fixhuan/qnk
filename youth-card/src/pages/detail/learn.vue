@@ -1,5 +1,12 @@
 <template>
   <view class="page">
+    <view class="search-bar">
+      <view class="search-input-wrap">
+        <text class="search-icon">🔍</text>
+        <input class="search-input" placeholder="搜索课程、学习计划、资料" placeholder-class="search-placeholder" v-model="keyword" />
+      </view>
+    </view>
+
     <view class="stats-bar">
       <view class="stat-card" hover-class="card-hover">
         <text class="stat-value">2.5h</text>
@@ -29,7 +36,7 @@
 
     <scroll-view class="list-scroll" scroll-y>
       <template v-if="currentCategory === '推荐课程'">
-        <view class="course-card" v-for="item in courses" :key="item.id" hover-class="card-hover">
+        <view class="course-card" v-for="item in filteredCourses" :key="item.id" hover-class="card-hover" @click="onCourseClick(item)">
           <view class="course-cover" :style="{ background: item.bg }"></view>
           <view class="course-info">
             <text class="course-name">{{ item.name }}</text>
@@ -46,7 +53,7 @@
       </template>
 
       <template v-if="currentCategory === '学习计划'">
-        <view class="plan-card" v-for="item in plans" :key="item.id" hover-class="card-hover">
+        <view class="plan-card" v-for="item in filteredPlans" :key="item.id" hover-class="card-hover">
           <view class="plan-header">
             <text class="plan-name">{{ item.name }}</text>
             <text class="plan-days">已坚持{{ item.days }}天</text>
@@ -64,7 +71,7 @@
       </template>
 
       <template v-if="currentCategory === '资料库'">
-        <view class="resource-card" v-for="item in resources" :key="item.id" hover-class="card-hover">
+        <view class="resource-card" v-for="item in filteredResources" :key="item.id" hover-class="card-hover">
           <view class="resource-icon" :style="{ background: item.bg }">
             <text class="resource-icon-text">{{ item.typeIcon }}</text>
           </view>
@@ -85,7 +92,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 interface Course {
   id: number
@@ -115,6 +122,7 @@ interface Resource {
 
 const currentCategory = ref('推荐课程')
 const categories = ['推荐课程', '学习计划', '资料库']
+const keyword = ref('')
 
 const courses = ref<Course[]>([
   { id: 1, name: 'Vue3从入门到实战', teacher: '张老师', learners: 2386, progress: 68, bg: '#fef3ee' },
@@ -142,6 +150,28 @@ const resources = ref<Resource[]>([
   { id: 6, name: 'Node.js最佳实践', type: 'EPUB', typeIcon: 'EPUB', size: '6.8MB', bg: '#fefce8', downloaded: true }
 ])
 
+const filteredCourses = computed(() => {
+  return courses.value.filter(item => {
+    return !keyword.value || item.name.includes(keyword.value) || item.teacher.includes(keyword.value)
+  })
+})
+
+const filteredPlans = computed(() => {
+  return plans.value.filter(item => {
+    return !keyword.value || item.name.includes(keyword.value)
+  })
+})
+
+const filteredResources = computed(() => {
+  return resources.value.filter(item => {
+    return !keyword.value || item.name.includes(keyword.value) || item.type.includes(keyword.value)
+  })
+})
+
+const onCourseClick = (item: Course) => {
+  uni.showToast({ title: `${item.name} · ${item.teacher}`, icon: 'none' })
+}
+
 const onContinueLearn = (item: Plan) => {
   uni.showToast({ title: '继续学习中', icon: 'success' })
 }
@@ -159,6 +189,35 @@ const onDownload = (item: Resource) => {
   background-color: #faf8f5;
   display: flex;
   flex-direction: column;
+}
+
+.search-bar {
+  padding: 20rpx 24rpx;
+}
+
+.search-input-wrap {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1rpx solid #e8e0d6;
+  border-radius: 12rpx;
+  padding: 16rpx 24rpx;
+}
+
+.search-icon {
+  font-size: 28rpx;
+  margin-right: 12rpx;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 28rpx;
+  color: #1a1612;
+}
+
+.search-placeholder {
+  color: #a89888;
+  font-size: 28rpx;
 }
 
 .stats-bar {

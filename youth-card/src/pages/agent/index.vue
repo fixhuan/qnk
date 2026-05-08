@@ -212,7 +212,7 @@ const onTagTap = (tag: string) => {
 }
 
 const onFuncTap = (func: { icon: string; name: string; keyword: string }) => {
-  inputText.value = func.name
+  inputText.value = func.keyword
   sendMessage()
 }
 
