@@ -1,14 +1,88 @@
 <template>
   <view class="page">
-    <view class="container">
-      <text class="icon">💼</text>
-      <text class="title">求职</text>
-      <text class="desc">功能开发中，敬请期待...</text>
+    <view class="search-bar">
+      <view class="search-input-wrap">
+        <text class="search-icon">🔍</text>
+        <input class="search-input" placeholder="搜索职位" placeholder-class="search-placeholder" v-model="keyword" />
+      </view>
     </view>
+
+    <scroll-view class="category-scroll" scroll-x :show-scrollbar="false">
+      <view
+        class="category-tag"
+        :class="{ active: currentCategory === item }"
+        v-for="item in categories"
+        :key="item"
+        @click="currentCategory = item"
+      >
+        <text class="category-text" :class="{ 'active-text': currentCategory === item }">{{ item }}</text>
+      </view>
+    </scroll-view>
+
+    <scroll-view class="list-scroll" scroll-y>
+      <view class="job-card" v-for="item in filteredJobs" :key="item.id">
+        <view class="job-header">
+          <text class="job-name">{{ item.name }}</text>
+          <text class="job-salary">{{ item.salary }}</text>
+        </view>
+        <text class="job-company">{{ item.company }}</text>
+        <view class="job-tags">
+          <text class="job-tag" v-for="tag in item.tags" :key="tag">{{ tag }}</text>
+        </view>
+        <view class="job-bottom">
+          <text class="job-meta">{{ item.location }} · {{ item.time }}</text>
+          <view class="apply-btn" :class="{ applied: item.applied }" @click="onApply(item)">
+            <text class="apply-btn-text" :class="{ applied: item.applied }">{{ item.applied ? '已投递' : '投递' }}</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
   </view>
 </template>
 
 <script setup lang="ts">
+import { ref, computed } from 'vue'
+
+interface Job {
+  id: number
+  name: string
+  company: string
+  salary: string
+  location: string
+  tags: string[]
+  time: string
+  category: string
+  applied: boolean
+}
+
+const keyword = ref('')
+const currentCategory = ref('推荐')
+const categories = ['推荐', '技术', '设计', '运营', '市场', '产品']
+
+const jobs = ref<Job[]>([
+  { id: 1, name: '前端开发工程师', company: '星辰科技有限公司', salary: '8K-15K', location: '城东', tags: ['五险一金', '弹性工作'], time: '2天前', category: '技术', applied: false },
+  { id: 2, name: 'Java后端开发', company: '云端网络科技', salary: '10K-20K', location: '城西', tags: ['五险一金', '年终奖', '远程'], time: '1天前', category: '技术', applied: false },
+  { id: 3, name: 'UI设计师', company: '创想设计工作室', salary: '7K-12K', location: '城南', tags: ['弹性工作', '远程'], time: '3天前', category: '设计', applied: false },
+  { id: 4, name: '视觉设计师', company: '美图传媒', salary: '8K-14K', location: '城东', tags: ['五险一金', '餐补'], time: '1天前', category: '设计', applied: true },
+  { id: 5, name: '新媒体运营', company: '潮流文化', salary: '6K-10K', location: '城北', tags: ['弹性工作', '下午茶'], time: '5天前', category: '运营', applied: false },
+  { id: 6, name: '用户运营专员', company: '乐享科技', salary: '7K-11K', location: '城东', tags: ['五险一金', '带薪年假'], time: '2天前', category: '运营', applied: false },
+  { id: 7, name: '市场推广经理', company: '锐步商贸', salary: '8K-16K', location: '城西', tags: ['五险一金', '绩效奖金'], time: '4天前', category: '市场', applied: false },
+  { id: 8, name: '产品经理', company: '智联科技', salary: '12K-25K', location: '城南', tags: ['五险一金', '弹性工作', '远程'], time: '1天前', category: '产品', applied: false }
+])
+
+const filteredJobs = computed(() => {
+  return jobs.value.filter(item => {
+    const matchCategory = currentCategory.value === '推荐' || item.category === currentCategory.value
+    const matchKeyword = !keyword.value || item.name.includes(keyword.value) || item.company.includes(keyword.value)
+    return matchCategory && matchKeyword
+  })
+})
+
+const onApply = (item: Job) => {
+  if (item.applied) return
+  item.applied = true
+  uni.showToast({ title: '投递成功', icon: 'success' })
+}
 </script>
 
 <style>
@@ -16,31 +90,149 @@
   min-height: 100vh;
   background-color: #F5F6FA;
   display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.container {
-  display: flex;
   flex-direction: column;
+}
+
+.search-bar {
+  padding: 20rpx 24rpx;
+  background-color: #FFFFFF;
+}
+
+.search-input-wrap {
+  display: flex;
+  align-items: center;
+  background-color: #F5F6FA;
+  border-radius: 36rpx;
+  padding: 16rpx 24rpx;
+}
+
+.search-icon {
+  font-size: 28rpx;
+  margin-right: 12rpx;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 28rpx;
+  color: #333333;
+}
+
+.search-placeholder {
+  color: #999999;
+  font-size: 28rpx;
+}
+
+.category-scroll {
+  white-space: nowrap;
+  background-color: #FFFFFF;
+  padding: 16rpx 24rpx;
+  border-bottom: 1rpx solid #F0F0F0;
+}
+
+.category-tag {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  padding: 12rpx 32rpx;
+  border-radius: 32rpx;
+  background-color: #F0F2F5;
+  margin-right: 16rpx;
 }
 
-.icon {
-  font-size: 80rpx;
-  margin-bottom: 32rpx;
+.category-tag.active {
+  background-color: #4F6EF7;
 }
 
-.title {
-  font-size: 36rpx;
+.category-text {
+  font-size: 26rpx;
+  color: #666666;
+}
+
+.category-text.active-text {
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+.list-scroll {
+  flex: 1;
+  padding: 20rpx 24rpx;
+}
+
+.job-card {
+  background-color: #FFFFFF;
+  border-radius: 20rpx;
+  padding: 28rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.job-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.job-name {
+  font-size: 32rpx;
   font-weight: 700;
   color: #333333;
-  margin-bottom: 20rpx;
 }
 
-.desc {
-  font-size: 28rpx;
+.job-salary {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #FF6B6B;
+}
+
+.job-company {
+  font-size: 26rpx;
+  color: #666666;
+  margin-top: 12rpx;
+}
+
+.job-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-top: 16rpx;
+}
+
+.job-tag {
+  font-size: 22rpx;
+  color: #4F6EF7;
+  background-color: rgba(79, 110, 247, 0.1);
+  padding: 6rpx 16rpx;
+  border-radius: 16rpx;
+}
+
+.job-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20rpx;
+}
+
+.job-meta {
+  font-size: 22rpx;
+  color: #999999;
+}
+
+.apply-btn {
+  padding: 10rpx 36rpx;
+  background-color: #4F6EF7;
+  border-radius: 28rpx;
+}
+
+.apply-btn.applied {
+  background-color: #E0E0E0;
+}
+
+.apply-btn-text {
+  font-size: 24rpx;
+  color: #FFFFFF;
+}
+
+.apply-btn-text.applied {
   color: #999999;
 }
 </style>
