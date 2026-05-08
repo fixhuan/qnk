@@ -169,7 +169,7 @@ const onApplyIncubator = (item: Incubator) => {
 <style>
 .page {
   min-height: 100vh;
-  background-color: #faf8f5;
+  background-color: #F1F3F4;
   display: flex;
   flex-direction: column;
 }
@@ -186,25 +186,24 @@ const onApplyIncubator = (item: Incubator) => {
   flex-direction: column;
   align-items: center;
   padding: 24rpx 0;
-  background: #ffffff;
-  border: 1rpx solid #f0ebe3;
-  border-radius: 12rpx;
-  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.03);
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
 }
 
 .card-hover {
-  opacity: 0.6;
+  background: #F8F9FA;
 }
 
 .stat-value {
   font-size: 36rpx;
   font-weight: 700;
-  color: #c2410c;
+  color: #416C81;
 }
 
 .stat-label {
   font-size: 22rpx;
-  color: #6b5e52;
+  color: #8E8E93;
   margin-top: 8rpx;
 }
 
@@ -219,21 +218,21 @@ const onApplyIncubator = (item: Incubator) => {
   justify-content: center;
   padding: 12rpx 32rpx;
   border-radius: 999rpx;
-  background: #f5f0ea;
+  background: #F8F9FA;
   margin-right: 16rpx;
 }
 
 .category-tag.active {
-  background: #c2410c;
+  background: #416C81;
 }
 
 .category-text {
   font-size: 26rpx;
-  color: #6b5e52;
+  color: #8E8E93;
 }
 
 .category-text.active-text {
-  color: #ffffff;
+  color: #FFFFFF;
   font-weight: 600;
 }
 
@@ -243,12 +242,11 @@ const onApplyIncubator = (item: Incubator) => {
 }
 
 .project-card {
-  background: #ffffff;
-  border: 1rpx solid #f0ebe3;
-  border-radius: 12rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
   padding: 28rpx;
   margin-bottom: 20rpx;
-  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.03);
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
 }
 
 .project-header {
@@ -260,20 +258,20 @@ const onApplyIncubator = (item: Incubator) => {
 .project-name {
   font-size: 32rpx;
   font-weight: 600;
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .project-stage {
   font-size: 22rpx;
-  color: #c2410c;
-  background: #fef3ee;
+  color: #416C81;
+  background: rgba(65,108,129,0.08);
   padding: 6rpx 16rpx;
   border-radius: 999rpx;
 }
 
 .project-desc {
   font-size: 26rpx;
-  color: #6b5e52;
+  color: #8E8E93;
   margin-top: 12rpx;
   line-height: 1.6;
 }
@@ -284,24 +282,23 @@ const onApplyIncubator = (item: Incubator) => {
 
 .project-funding {
   font-size: 24rpx;
-  color: #a89888;
-  background: #f5f0ea;
+  color: #8E8E93;
+  background: #F8F9FA;
   padding: 6rpx 16rpx;
   border-radius: 999rpx;
 }
 
 .project-funding.funded {
-  color: #c2410c;
-  background: #fef3ee;
+  color: #416C81;
+  background: rgba(65,108,129,0.08);
 }
 
 .incubator-card {
-  background: #ffffff;
-  border: 1rpx solid #f0ebe3;
-  border-radius: 12rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
   padding: 28rpx;
   margin-bottom: 20rpx;
-  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.03);
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
 }
 
 .incubator-header {
@@ -313,12 +310,12 @@ const onApplyIncubator = (item: Incubator) => {
 .incubator-name {
   font-size: 32rpx;
   font-weight: 600;
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .incubator-address {
   font-size: 24rpx;
-  color: #a89888;
+  color: #AEAEB2;
   margin-top: 8rpx;
 }
 
@@ -337,51 +334,50 @@ const onApplyIncubator = (item: Incubator) => {
 .incubator-stat-value {
   font-size: 32rpx;
   font-weight: 700;
-  color: #c2410c;
+  color: #416C81;
 }
 
 .incubator-stat-label {
   font-size: 22rpx;
-  color: #a89888;
+  color: #AEAEB2;
   margin-top: 4rpx;
 }
 
 .incubator-btn {
   margin-top: 20rpx;
   padding: 14rpx 0;
-  background: #c2410c;
-  border-radius: 8rpx;
+  background: #416C81;
+  border-radius: 12rpx;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .incubator-btn.applied {
-  background: #f5f0ea;
+  background: #F8F9FA;
 }
 
 .incubator-btn-text {
   font-size: 26rpx;
-  color: #ffffff;
+  color: #FFFFFF;
 }
 
 .incubator-btn-text.applied {
-  color: #a89888;
+  color: #8E8E93;
 }
 
 .policy-card {
-  background: #ffffff;
-  border: 1rpx solid #f0ebe3;
-  border-radius: 12rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
   padding: 28rpx;
   margin-bottom: 20rpx;
-  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.03);
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
 }
 
 .policy-name {
   font-size: 30rpx;
   font-weight: 600;
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .policy-meta {
@@ -393,24 +389,23 @@ const onApplyIncubator = (item: Incubator) => {
 
 .policy-dept {
   font-size: 24rpx;
-  color: #1d4ed8;
-  background: #eff6ff;
+  color: #007AFF;
+  background: rgba(90,200,250,0.08);
   padding: 4rpx 12rpx;
   border-radius: 999rpx;
 }
 
 .policy-period {
   font-size: 22rpx;
-  color: #a89888;
+  color: #AEAEB2;
 }
 
 .finance-card {
-  background: #ffffff;
-  border: 1rpx solid #f0ebe3;
-  border-radius: 12rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
   padding: 28rpx;
   margin-bottom: 20rpx;
-  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.03);
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
 }
 
 .finance-header {
@@ -422,13 +417,13 @@ const onApplyIncubator = (item: Incubator) => {
 .finance-name {
   font-size: 32rpx;
   font-weight: 600;
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .finance-stage {
   font-size: 22rpx;
-  color: #c2410c;
-  background: #fef3ee;
+  color: #416C81;
+  background: rgba(65,108,129,0.08);
   padding: 6rpx 16rpx;
   border-radius: 999rpx;
 }
@@ -436,7 +431,7 @@ const onApplyIncubator = (item: Incubator) => {
 .finance-amount {
   font-size: 28rpx;
   font-weight: 600;
-  color: #c2410c;
+  color: #416C81;
   margin-top: 16rpx;
 }
 </style>

@@ -17,6 +17,7 @@
         @tap="switchTab(index)"
       >
         <text class="tab-text" :class="{ 'tab-text-active': currentTab === index }">{{ tab }}</text>
+        <view v-if="currentTab === index" class="tab-indicator"></view>
       </view>
     </view>
 
@@ -65,14 +66,14 @@ const tabs = ['商户', '课程', '公寓', '职位']
 const currentTab = ref(0)
 
 const favorites = ref<Favorite[]>([
-  { type: 0, icon: '☕', name: '星巴克（大学城店）', desc: '青年卡专享8折优惠', color: '#fef3ee' },
-  { type: 0, icon: '🍲', name: '海底捞（高新区店）', desc: '青年卡立减30元', color: '#fefce8' },
-  { type: 1, icon: '💻', name: 'Python编程入门', desc: '零基础到实战·夜校热门课', color: '#eff6ff' },
-  { type: 1, icon: '🎨', name: 'UI设计进阶课', desc: '从理论到项目实战', color: '#f0fdf4' },
-  { type: 2, icon: '🏠', name: '高新区青年公寓', desc: '精装单间·地铁直达·月租1200起', color: '#fef3ee' },
-  { type: 2, icon: '🏢', name: '大学城人才公寓', desc: '一室一厅·配套齐全·月租1800起', color: '#fefce8' },
-  { type: 3, icon: '💼', name: '前端开发工程师', desc: '字节跳动·15-25K·应届可投', color: '#eff6ff' },
-  { type: 3, icon: '📊', name: '数据分析师', desc: '腾讯·12-20K·实习转正', color: '#f0fdf4' }
+  { type: 0, icon: '☕', name: '星巴克（大学城店）', desc: '青年卡专享8折优惠', color: '#E8F1F5' },
+  { type: 0, icon: '🍲', name: '海底捞（高新区店）', desc: '青年卡立减30元', color: '#F8F9FA' },
+  { type: 1, icon: '💻', name: 'Python编程入门', desc: '零基础到实战·夜校热门课', color: '#E8F1F5' },
+  { type: 1, icon: '🎨', name: 'UI设计进阶课', desc: '从理论到项目实战', color: '#F8F9FA' },
+  { type: 2, icon: '🏠', name: '高新区青年公寓', desc: '精装单间·地铁直达·月租1200起', color: '#E8F1F5' },
+  { type: 2, icon: '🏢', name: '大学城人才公寓', desc: '一室一厅·配套齐全·月租1800起', color: '#F8F9FA' },
+  { type: 3, icon: '💼', name: '前端开发工程师', desc: '字节跳动·15-25K·应届可投', color: '#E8F1F5' },
+  { type: 3, icon: '📊', name: '数据分析师', desc: '腾讯·12-20K·实习转正', color: '#F8F9FA' }
 ])
 
 const filteredFavorites = computed(() => {
@@ -105,7 +106,7 @@ const onUnfav = (item: Favorite, index: number) => {
 <style scoped>
 .page {
   min-height: 100vh;
-  background-color: #faf8f5;
+  background-color: #F1F3F4;
 }
 
 .nav-bar {
@@ -113,7 +114,7 @@ const onUnfav = (item: Favorite, index: number) => {
   align-items: center;
   justify-content: space-between;
   padding: 60rpx 32rpx 16rpx;
-  background-color: #faf8f5;
+  background-color: #F1F3F4;
 }
 
 .nav-back {
@@ -130,19 +131,19 @@ const onUnfav = (item: Favorite, index: number) => {
 
 .nav-back-icon {
   font-size: 44rpx;
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .nav-title {
   font-size: 34rpx;
   font-weight: 700;
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .tabs {
   display: flex;
   padding: 16rpx 32rpx;
-  background-color: #faf8f5;
+  background-color: #F1F3F4;
 }
 
 .tab-item {
@@ -151,20 +152,28 @@ const onUnfav = (item: Favorite, index: number) => {
   align-items: center;
   justify-content: center;
   padding: 20rpx 0;
-  border-bottom: 3rpx solid transparent;
+  position: relative;
+  flex-direction: column;
 }
 
-.tab-active {
-  border-bottom-color: #c2410c;
+.tab-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40rpx;
+  height: 3rpx;
+  background: #416C81;
+  border-radius: 2rpx;
 }
 
 .tab-text {
   font-size: 26rpx;
-  color: #a89888;
+  color: #8E8E93;
 }
 
 .tab-text-active {
-  color: #c2410c;
+  color: #416C81;
   font-weight: 600;
 }
 
@@ -176,9 +185,9 @@ const onUnfav = (item: Favorite, index: number) => {
 .fav-card {
   display: flex;
   align-items: center;
-  background: #ffffff;
-  border: 1rpx solid #f0ebe3;
+  background: #FFFFFF;
   border-radius: 16rpx;
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
   padding: 24rpx;
   margin-bottom: 20rpx;
 }
@@ -186,7 +195,7 @@ const onUnfav = (item: Favorite, index: number) => {
 .fav-thumb {
   width: 100rpx;
   height: 100rpx;
-  border-radius: 12rpx;
+  border-radius: 16rpx;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -208,7 +217,7 @@ const onUnfav = (item: Favorite, index: number) => {
 .fav-name {
   font-size: 28rpx;
   font-weight: 600;
-  color: #1a1612;
+  color: #1C1C1E;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -216,7 +225,7 @@ const onUnfav = (item: Favorite, index: number) => {
 
 .fav-desc {
   font-size: 24rpx;
-  color: #a89888;
+  color: #8E8E93;
   margin-top: 8rpx;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -226,18 +235,18 @@ const onUnfav = (item: Favorite, index: number) => {
 .fav-unfav {
   flex-shrink: 0;
   padding: 10rpx 20rpx;
-  background: #f5f0ea;
+  background: #F8F9FA;
   border-radius: 999rpx;
   margin-left: 16rpx;
 }
 
 .fav-unfav-active {
-  opacity: 0.6;
+  background: #E5E5EA;
 }
 
 .fav-unfav-text {
   font-size: 22rpx;
-  color: #6b5e52;
+  color: #8E8E93;
 }
 
 .empty {
@@ -254,6 +263,6 @@ const onUnfav = (item: Favorite, index: number) => {
 
 .empty-text {
   font-size: 28rpx;
-  color: #a89888;
+  color: #AEAEB2;
 }
 </style>

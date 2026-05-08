@@ -65,14 +65,14 @@ const currentCategory = ref('全部')
 const categories = ['全部', '技能培训', '语言学习', '艺术修养', '职业资格']
 
 const courses = ref<Course[]>([
-  { id: 1, name: 'Python编程入门', teacher: '张明老师', time: '每周二、四 19:00-21:00', enrolled: false, enrolledCount: 28, total: 40, price: 0, category: '技能培训', bg: '#fef3ee' },
-  { id: 2, name: '短视频剪辑实战', teacher: '李华老师', time: '每周一、三 19:30-21:00', enrolled: false, enrolledCount: 35, total: 40, price: 299, category: '技能培训', bg: '#eff6ff' },
-  { id: 3, name: '日语N3精讲班', teacher: '田中老师', time: '每周三、五 18:30-20:30', enrolled: true, enrolledCount: 30, total: 35, price: 599, category: '语言学习', bg: '#fefce8' },
-  { id: 4, name: '商务英语口语', teacher: 'Sarah老师', time: '每周二、四 20:00-21:30', enrolled: false, enrolledCount: 18, total: 30, price: 499, category: '语言学习', bg: '#f0fdf4' },
-  { id: 5, name: '水彩画基础', teacher: '王艺老师', time: '每周六 14:00-17:00', enrolled: false, enrolledCount: 15, total: 25, price: 0, category: '艺术修养', bg: '#fef3ee' },
-  { id: 6, name: '吉他弹唱入门', teacher: '刘乐老师', time: '每周日 10:00-12:00', enrolled: false, enrolledCount: 22, total: 30, price: 399, category: '艺术修养', bg: '#fefce8' },
-  { id: 7, name: '人力资源管理师', teacher: '陈老师', time: '每周六 9:00-12:00', enrolled: false, enrolledCount: 32, total: 50, price: 899, category: '职业资格', bg: '#eff6ff' },
-  { id: 8, name: '心理咨询师培训', teacher: '赵老师', time: '每周日 14:00-17:00', enrolled: false, enrolledCount: 20, total: 40, price: 1299, category: '职业资格', bg: '#f0fdf4' }
+  { id: 1, name: 'Python编程入门', teacher: '张明老师', time: '每周二、四 19:00-21:00', enrolled: false, enrolledCount: 28, total: 40, price: 0, category: '技能培训', bg: 'rgba(65,108,129,0.08)' },
+  { id: 2, name: '短视频剪辑实战', teacher: '李华老师', time: '每周一、三 19:30-21:00', enrolled: false, enrolledCount: 35, total: 40, price: 299, category: '技能培训', bg: 'rgba(90,200,250,0.08)' },
+  { id: 3, name: '日语N3精讲班', teacher: '田中老师', time: '每周三、五 18:30-20:30', enrolled: true, enrolledCount: 30, total: 35, price: 599, category: '语言学习', bg: 'rgba(255,149,0,0.08)' },
+  { id: 4, name: '商务英语口语', teacher: 'Sarah老师', time: '每周二、四 20:00-21:30', enrolled: false, enrolledCount: 18, total: 30, price: 499, category: '语言学习', bg: 'rgba(52,199,89,0.08)' },
+  { id: 5, name: '水彩画基础', teacher: '王艺老师', time: '每周六 14:00-17:00', enrolled: false, enrolledCount: 15, total: 25, price: 0, category: '艺术修养', bg: 'rgba(65,108,129,0.08)' },
+  { id: 6, name: '吉他弹唱入门', teacher: '刘乐老师', time: '每周日 10:00-12:00', enrolled: false, enrolledCount: 22, total: 30, price: 399, category: '艺术修养', bg: 'rgba(255,149,0,0.08)' },
+  { id: 7, name: '人力资源管理师', teacher: '陈老师', time: '每周六 9:00-12:00', enrolled: false, enrolledCount: 32, total: 50, price: 899, category: '职业资格', bg: 'rgba(90,200,250,0.08)' },
+  { id: 8, name: '心理咨询师培训', teacher: '赵老师', time: '每周日 14:00-17:00', enrolled: false, enrolledCount: 20, total: 40, price: 1299, category: '职业资格', bg: 'rgba(52,199,89,0.08)' }
 ])
 
 const filteredCourses = computed(() => {
@@ -94,7 +94,7 @@ const onEnroll = (item: Course) => {
 <style>
 .page {
   min-height: 100vh;
-  background-color: #faf8f5;
+  background-color: #F1F3F4;
   display: flex;
   flex-direction: column;
 }
@@ -106,10 +106,10 @@ const onEnroll = (item: Course) => {
 .search-input-wrap {
   display: flex;
   align-items: center;
-  background: #ffffff;
-  border: 1rpx solid #e8e0d6;
+  background: #FFFFFF;
   border-radius: 12rpx;
   padding: 16rpx 24rpx;
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
 }
 
 .search-icon {
@@ -120,11 +120,11 @@ const onEnroll = (item: Course) => {
 .search-input {
   flex: 1;
   font-size: 28rpx;
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .search-placeholder {
-  color: #a89888;
+  color: #AEAEB2;
   font-size: 28rpx;
 }
 
@@ -139,21 +139,21 @@ const onEnroll = (item: Course) => {
   justify-content: center;
   padding: 12rpx 32rpx;
   border-radius: 999rpx;
-  background: #f5f0ea;
+  background: #F8F9FA;
   margin-right: 16rpx;
 }
 
 .category-tag.active {
-  background: #c2410c;
+  background: #416C81;
 }
 
 .category-text {
   font-size: 26rpx;
-  color: #6b5e52;
+  color: #8E8E93;
 }
 
 .category-text.active-text {
-  color: #ffffff;
+  color: #FFFFFF;
   font-weight: 600;
 }
 
@@ -164,16 +164,15 @@ const onEnroll = (item: Course) => {
 
 .course-card {
   display: flex;
-  background: #ffffff;
-  border: 1rpx solid #f0ebe3;
-  border-radius: 12rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
   padding: 24rpx;
   margin-bottom: 20rpx;
-  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.03);
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
 }
 
 .card-hover {
-  opacity: 0.6;
+  background: #F8F9FA;
 }
 
 .course-cover {
@@ -194,18 +193,18 @@ const onEnroll = (item: Course) => {
 .course-name {
   font-size: 30rpx;
   font-weight: 600;
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .course-teacher {
   font-size: 24rpx;
-  color: #6b5e52;
+  color: #8E8E93;
   margin-top: 8rpx;
 }
 
 .course-time {
   font-size: 22rpx;
-  color: #a89888;
+  color: #AEAEB2;
   margin-top: 6rpx;
 }
 
@@ -218,20 +217,20 @@ const onEnroll = (item: Course) => {
 .progress-bar {
   flex: 1;
   height: 8rpx;
-  background: #ede8e0;
+  background: #E5E5EA;
   border-radius: 4rpx;
   overflow: hidden;
 }
 
 .progress-fill {
   height: 100%;
-  background: #c2410c;
+  background: #416C81;
   border-radius: 4rpx;
 }
 
 .progress-text {
   font-size: 20rpx;
-  color: #a89888;
+  color: #AEAEB2;
   margin-left: 12rpx;
 }
 
@@ -245,12 +244,12 @@ const onEnroll = (item: Course) => {
 .course-price {
   font-size: 32rpx;
   font-weight: 600;
-  color: #c2410c;
+  color: #416C81;
 }
 
 .course-price.free {
-  color: #15803d;
-  background: #f0fdf4;
+  color: #248A3D;
+  background: rgba(52,199,89,0.08);
   font-size: 24rpx;
   padding: 4rpx 16rpx;
   border-radius: 999rpx;
@@ -258,20 +257,20 @@ const onEnroll = (item: Course) => {
 
 .enroll-btn {
   padding: 10rpx 32rpx;
-  background: #c2410c;
-  border-radius: 8rpx;
+  background: #416C81;
+  border-radius: 12rpx;
 }
 
 .enroll-btn.enrolled {
-  background: #f5f0ea;
+  background: #F8F9FA;
 }
 
 .enroll-btn-text {
   font-size: 24rpx;
-  color: #ffffff;
+  color: #FFFFFF;
 }
 
 .enroll-btn-text.enrolled {
-  color: #a89888;
+  color: #8E8E93;
 }
 </style>

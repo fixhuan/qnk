@@ -59,14 +59,14 @@ const currentCategory = ref('全部')
 const categories = ['全部', '美食', '饮品', '生活', '娱乐', '健身', '美发']
 
 const shops = ref<Shop[]>([
-  { id: 1, name: '老街烧烤', desc: '地道炭火烧烤，回味无穷', discount: '8折', distance: '500m', category: '美食', bg: '#fef3ee', favorited: false },
-  { id: 2, name: '鲜味火锅', desc: '正宗川味火锅，麻辣鲜香', discount: '满100减20', distance: '800m', category: '美食', bg: '#fefce8', favorited: false },
-  { id: 3, name: '茶百道', desc: '新式茶饮，鲜果现做', discount: '买一送一', distance: '300m', category: '饮品', bg: '#f0fdf4', favorited: true },
-  { id: 4, name: '瑞幸咖啡', desc: '精品咖啡，每日新鲜烘焙', discount: '9折', distance: '450m', category: '饮品', bg: '#eff6ff', favorited: false },
-  { id: 5, name: '优品生活馆', desc: '品质生活，一站式购物', discount: '满200减50', distance: '1.2km', category: '生活', bg: '#fef3ee', favorited: false },
-  { id: 6, name: '星空KTV', desc: '欢唱之夜，释放自我', discount: '7折', distance: '1.5km', category: '娱乐', bg: '#eff6ff', favorited: true },
-  { id: 7, name: '力美健身', desc: '专业教练指导，科学健身', discount: '年卡8折', distance: '900m', category: '健身', bg: '#f0fdf4', favorited: false },
-  { id: 8, name: '型格造型', desc: '潮流发型设计，焕然一新', discount: '首次5折', distance: '600m', category: '美发', bg: '#fefce8', favorited: false }
+  { id: 1, name: '老街烧烤', desc: '地道炭火烧烤，回味无穷', discount: '8折', distance: '500m', category: '美食', bg: 'rgba(65,108,129,0.08)', favorited: false },
+  { id: 2, name: '鲜味火锅', desc: '正宗川味火锅，麻辣鲜香', discount: '满100减20', distance: '800m', category: '美食', bg: 'rgba(255,149,0,0.08)', favorited: false },
+  { id: 3, name: '茶百道', desc: '新式茶饮，鲜果现做', discount: '买一送一', distance: '300m', category: '饮品', bg: 'rgba(52,199,89,0.08)', favorited: true },
+  { id: 4, name: '瑞幸咖啡', desc: '精品咖啡，每日新鲜烘焙', discount: '9折', distance: '450m', category: '饮品', bg: 'rgba(90,200,250,0.08)', favorited: false },
+  { id: 5, name: '优品生活馆', desc: '品质生活，一站式购物', discount: '满200减50', distance: '1.2km', category: '生活', bg: 'rgba(65,108,129,0.08)', favorited: false },
+  { id: 6, name: '星空KTV', desc: '欢唱之夜，释放自我', discount: '7折', distance: '1.5km', category: '娱乐', bg: 'rgba(90,200,250,0.08)', favorited: true },
+  { id: 7, name: '力美健身', desc: '专业教练指导，科学健身', discount: '年卡8折', distance: '900m', category: '健身', bg: 'rgba(52,199,89,0.08)', favorited: false },
+  { id: 8, name: '型格造型', desc: '潮流发型设计，焕然一新', discount: '首次5折', distance: '600m', category: '美发', bg: 'rgba(255,149,0,0.08)', favorited: false }
 ])
 
 const filteredShops = computed(() => {
@@ -81,7 +81,7 @@ const filteredShops = computed(() => {
 <style>
 .page {
   min-height: 100vh;
-  background-color: #faf8f5;
+  background-color: #F1F3F4;
   display: flex;
   flex-direction: column;
 }
@@ -93,10 +93,10 @@ const filteredShops = computed(() => {
 .search-input-wrap {
   display: flex;
   align-items: center;
-  background: #ffffff;
-  border: 1rpx solid #e8e0d6;
+  background: #FFFFFF;
   border-radius: 12rpx;
   padding: 16rpx 24rpx;
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
 }
 
 .search-icon {
@@ -107,11 +107,11 @@ const filteredShops = computed(() => {
 .search-input {
   flex: 1;
   font-size: 28rpx;
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .search-placeholder {
-  color: #a89888;
+  color: #AEAEB2;
   font-size: 28rpx;
 }
 
@@ -126,21 +126,21 @@ const filteredShops = computed(() => {
   justify-content: center;
   padding: 12rpx 32rpx;
   border-radius: 999rpx;
-  background: #f5f0ea;
+  background: #F8F9FA;
   margin-right: 16rpx;
 }
 
 .category-tag.active {
-  background: #c2410c;
+  background: #416C81;
 }
 
 .category-text {
   font-size: 26rpx;
-  color: #6b5e52;
+  color: #8E8E93;
 }
 
 .category-text.active-text {
-  color: #ffffff;
+  color: #FFFFFF;
   font-weight: 600;
 }
 
@@ -151,16 +151,15 @@ const filteredShops = computed(() => {
 
 .shop-card {
   display: flex;
-  background: #ffffff;
-  border: 1rpx solid #f0ebe3;
-  border-radius: 12rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
   padding: 24rpx;
   margin-bottom: 20rpx;
-  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.03);
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
 }
 
 .card-hover {
-  opacity: 0.6;
+  background: #F8F9FA;
 }
 
 .shop-img {
@@ -181,12 +180,12 @@ const filteredShops = computed(() => {
 .shop-name {
   font-size: 32rpx;
   font-weight: 600;
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .shop-desc {
   font-size: 24rpx;
-  color: #6b5e52;
+  color: #8E8E93;
   margin-top: 8rpx;
 }
 
@@ -197,8 +196,8 @@ const filteredShops = computed(() => {
 
 .discount-tag {
   font-size: 22rpx;
-  color: #c2410c;
-  background: #fef3ee;
+  color: #416C81;
+  background: rgba(65,108,129,0.08);
   padding: 4rpx 16rpx;
   border-radius: 999rpx;
 }
@@ -212,7 +211,7 @@ const filteredShops = computed(() => {
 
 .shop-distance {
   font-size: 22rpx;
-  color: #a89888;
+  color: #8E8E93;
 }
 
 .fav-btn {
@@ -221,10 +220,10 @@ const filteredShops = computed(() => {
 
 .fav-icon {
   font-size: 32rpx;
-  color: #e8e0d6;
+  color: #C6C6C8;
 }
 
 .fav-icon.favorited {
-  color: #c2410c;
+  color: #FF3B30;
 }
 </style>

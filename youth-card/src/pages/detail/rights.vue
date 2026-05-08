@@ -2,20 +2,23 @@
   <view class="page">
     <view class="card-wrap">
       <view class="youth-card">
-        <view class="card-top">
-          <text class="card-label">青年卡</text>
-          <text class="card-type">YOUTH CARD</text>
-        </view>
-        <view class="card-body">
-          <text class="card-no">No. YC2026001234</text>
-          <view class="card-info-row">
-            <view class="card-info-item">
-              <text class="card-info-label">持卡人</text>
-              <text class="card-info-value">张**</text>
-            </view>
-            <view class="card-info-item">
-              <text class="card-info-label">有效期</text>
-              <text class="card-info-value">2026-12-31</text>
+        <view class="card-accent"></view>
+        <view class="card-content">
+          <view class="card-top">
+            <text class="card-label">青年卡</text>
+            <text class="card-type">YOUTH CARD</text>
+          </view>
+          <view class="card-body">
+            <text class="card-no">No. YC2026001234</text>
+            <view class="card-info-row">
+              <view class="card-info-item">
+                <text class="card-info-label">持卡人</text>
+                <text class="card-info-value">张**</text>
+              </view>
+              <view class="card-info-item">
+                <text class="card-info-label">有效期</text>
+                <text class="card-info-value">2026-12-31</text>
+              </view>
             </view>
           </view>
         </view>
@@ -70,16 +73,16 @@ const currentCategory = ref('生活权益')
 const categories = ['生活权益', '出行权益', '娱乐权益', '教育权益']
 
 const rights = ref<Right[]>([
-  { id: 1, name: '美食8折优惠', desc: '指定餐饮商户消费享8折', icon: '🍜', bg: '#fef3ee', category: '生活权益', status: 'available', statusText: '可领取' },
-  { id: 2, name: '超市满减券', desc: '满100减20，每月限领1次', icon: '🛒', bg: '#eff6ff', category: '生活权益', status: 'claimed', statusText: '已领取' },
-  { id: 3, name: '健身月卡折扣', desc: '合作健身房月卡7折优惠', icon: '💪', bg: '#f0fdf4', category: '生活权益', status: 'available', statusText: '可领取' },
-  { id: 4, name: '公交月卡8折', desc: '全市公交月卡享8折优惠', icon: '🚌', bg: '#eff6ff', category: '出行权益', status: 'claimed', statusText: '已领取' },
-  { id: 5, name: '共享单车月卡', desc: '每月免费领取单车月卡1次', icon: '🚲', bg: '#f0fdf4', category: '出行权益', status: 'available', statusText: '可领取' },
-  { id: 6, name: '地铁优惠通道', desc: '高峰期快速通行权益', icon: '🚇', bg: '#fefce8', category: '出行权益', status: 'used', statusText: '已使用' },
-  { id: 7, name: '电影票买一送一', desc: '每周三电影票买一送一', icon: '🎬', bg: '#fef3ee', category: '娱乐权益', status: 'available', statusText: '可领取' },
-  { id: 8, name: 'KTV欢唱券', desc: '指定KTV免费欢唱2小时', icon: '🎤', bg: '#fefce8', category: '娱乐权益', status: 'used', statusText: '已使用' },
-  { id: 9, name: '景区门票半价', desc: '合作景区门票享半价优惠', icon: '🏔️', bg: '#f0fdf4', category: '娱乐权益', status: 'available', statusText: '可领取' },
-  { id: 10, name: '在线课程免费学', desc: '精选课程每月3次免费学习', icon: '📚', bg: '#eff6ff', category: '教育权益', status: 'available', statusText: '可领取' }
+  { id: 1, name: '美食8折优惠', desc: '指定餐饮商户消费享8折', icon: '🍜', bg: 'rgba(65,108,129,0.08)', category: '生活权益', status: 'available', statusText: '可领取' },
+  { id: 2, name: '超市满减券', desc: '满100减20，每月限领1次', icon: '🛒', bg: 'rgba(90,200,250,0.08)', category: '生活权益', status: 'claimed', statusText: '已领取' },
+  { id: 3, name: '健身月卡折扣', desc: '合作健身房月卡7折优惠', icon: '💪', bg: 'rgba(52,199,89,0.08)', category: '生活权益', status: 'available', statusText: '可领取' },
+  { id: 4, name: '公交月卡8折', desc: '全市公交月卡享8折优惠', icon: '🚌', bg: 'rgba(90,200,250,0.08)', category: '出行权益', status: 'claimed', statusText: '已领取' },
+  { id: 5, name: '共享单车月卡', desc: '每月免费领取单车月卡1次', icon: '🚲', bg: 'rgba(52,199,89,0.08)', category: '出行权益', status: 'available', statusText: '可领取' },
+  { id: 6, name: '地铁优惠通道', desc: '高峰期快速通行权益', icon: '🚇', bg: 'rgba(255,149,0,0.08)', category: '出行权益', status: 'used', statusText: '已使用' },
+  { id: 7, name: '电影票买一送一', desc: '每周三电影票买一送一', icon: '🎬', bg: 'rgba(65,108,129,0.08)', category: '娱乐权益', status: 'available', statusText: '可领取' },
+  { id: 8, name: 'KTV欢唱券', desc: '指定KTV免费欢唱2小时', icon: '🎤', bg: 'rgba(255,149,0,0.08)', category: '娱乐权益', status: 'used', statusText: '已使用' },
+  { id: 9, name: '景区门票半价', desc: '合作景区门票享半价优惠', icon: '🏔️', bg: 'rgba(52,199,89,0.08)', category: '娱乐权益', status: 'available', statusText: '可领取' },
+  { id: 10, name: '在线课程免费学', desc: '精选课程每月3次免费学习', icon: '📚', bg: 'rgba(90,200,250,0.08)', category: '教育权益', status: 'available', statusText: '可领取' }
 ])
 
 const filteredRights = computed(() => {
@@ -97,7 +100,7 @@ const onUseRight = (item: Right) => {
 <style>
 .page {
   min-height: 100vh;
-  background-color: #faf8f5;
+  background-color: #F1F3F4;
   display: flex;
   flex-direction: column;
 }
@@ -107,11 +110,22 @@ const onUseRight = (item: Right) => {
 }
 
 .youth-card {
-  background: #1a1612;
-  border-radius: 12rpx;
-  padding: 36rpx;
-  position: relative;
+  display: flex;
+  background: #FFFFFF;
+  border-radius: 16rpx;
   overflow: hidden;
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
+}
+
+.card-accent {
+  width: 8rpx;
+  background: #416C81;
+  flex-shrink: 0;
+}
+
+.card-content {
+  flex: 1;
+  padding: 36rpx;
 }
 
 .card-top {
@@ -124,12 +138,12 @@ const onUseRight = (item: Right) => {
 .card-label {
   font-size: 36rpx;
   font-weight: 700;
-  color: #c2410c;
+  color: #416C81;
 }
 
 .card-type {
   font-size: 22rpx;
-  color: #a89888;
+  color: #AEAEB2;
   letter-spacing: 4rpx;
 }
 
@@ -140,7 +154,7 @@ const onUseRight = (item: Right) => {
 
 .card-no {
   font-size: 28rpx;
-  color: #ffffff;
+  color: #1C1C1E;
   letter-spacing: 2rpx;
   margin-bottom: 32rpx;
 }
@@ -157,14 +171,14 @@ const onUseRight = (item: Right) => {
 
 .card-info-label {
   font-size: 22rpx;
-  color: #a89888;
+  color: #AEAEB2;
   margin-bottom: 8rpx;
 }
 
 .card-info-value {
   font-size: 28rpx;
   font-weight: 600;
-  color: #ffffff;
+  color: #1C1C1E;
 }
 
 .category-scroll {
@@ -178,21 +192,21 @@ const onUseRight = (item: Right) => {
   justify-content: center;
   padding: 12rpx 32rpx;
   border-radius: 999rpx;
-  background: #f5f0ea;
+  background: #F8F9FA;
   margin-right: 16rpx;
 }
 
 .category-tag.active {
-  background: #c2410c;
+  background: #416C81;
 }
 
 .category-text {
   font-size: 26rpx;
-  color: #6b5e52;
+  color: #8E8E93;
 }
 
 .category-text.active-text {
-  color: #ffffff;
+  color: #FFFFFF;
   font-weight: 600;
 }
 
@@ -204,16 +218,15 @@ const onUseRight = (item: Right) => {
 .right-card {
   display: flex;
   align-items: center;
-  background: #ffffff;
-  border: 1rpx solid #f0ebe3;
-  border-radius: 12rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
   padding: 24rpx;
   margin-bottom: 20rpx;
-  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.03);
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
 }
 
 .card-hover {
-  opacity: 0.6;
+  background: #F8F9FA;
 }
 
 .right-icon {
@@ -238,46 +251,46 @@ const onUseRight = (item: Right) => {
 .right-name {
   font-size: 28rpx;
   font-weight: 600;
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .right-desc {
   font-size: 22rpx;
-  color: #a89888;
+  color: #AEAEB2;
   margin-top: 6rpx;
 }
 
 .right-status {
   font-size: 22rpx;
   margin-top: 8rpx;
-  color: #15803d;
+  color: #248A3D;
 }
 
 .right-status.used {
-  color: #a89888;
+  color: #AEAEB2;
 }
 
 .right-status.available {
-  color: #c2410c;
+  color: #416C81;
 }
 
 .right-btn {
   padding: 10rpx 24rpx;
-  background: #c2410c;
-  border-radius: 8rpx;
+  background: #416C81;
+  border-radius: 12rpx;
   flex-shrink: 0;
 }
 
 .right-btn.disabled {
-  background: #f5f0ea;
+  background: #F8F9FA;
 }
 
 .right-btn-text {
   font-size: 24rpx;
-  color: #ffffff;
+  color: #FFFFFF;
 }
 
 .right-btn-text.disabled {
-  color: #a89888;
+  color: #8E8E93;
 }
 </style>

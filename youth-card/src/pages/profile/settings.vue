@@ -59,7 +59,7 @@
             </view>
             <text class="setting-label">消息通知</text>
           </view>
-          <switch :checked="notifyEnabled" color="#c2410c" @change="toggleNotify" />
+          <switch :checked="notifyEnabled" color="#416C81" @change="toggleNotify" />
         </view>
         <view class="setting-item setting-item-last">
           <view class="setting-left">
@@ -68,7 +68,7 @@
             </view>
             <text class="setting-label">活动提醒</text>
           </view>
-          <switch :checked="activityEnabled" color="#c2410c" @change="toggleActivity" />
+          <switch :checked="activityEnabled" color="#416C81" @change="toggleActivity" />
         </view>
       </view>
     </view>
@@ -228,7 +228,7 @@ const onLogout = () => {
 <style scoped>
 .page {
   min-height: 100vh;
-  background-color: #faf8f5;
+  background-color: #F1F3F4;
   padding-bottom: 60rpx;
 }
 
@@ -237,7 +237,7 @@ const onLogout = () => {
   align-items: center;
   justify-content: space-between;
   padding: 60rpx 32rpx 16rpx;
-  background-color: #faf8f5;
+  background-color: #F1F3F4;
 }
 
 .nav-back {
@@ -254,13 +254,13 @@ const onLogout = () => {
 
 .nav-back-icon {
   font-size: 44rpx;
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .nav-title {
   font-size: 34rpx;
   font-weight: 700;
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .section {
@@ -269,15 +269,15 @@ const onLogout = () => {
 
 .section-title {
   font-size: 26rpx;
-  color: #a89888;
+  color: #8E8E93;
   padding: 24rpx 32rpx 12rpx;
 }
 
 .setting-card {
   margin: 0 32rpx;
-  background: #ffffff;
-  border: 1rpx solid #f0ebe3;
+  background: #FFFFFF;
   border-radius: 16rpx;
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
   overflow: hidden;
 }
 
@@ -286,7 +286,7 @@ const onLogout = () => {
   align-items: center;
   justify-content: space-between;
   padding: 28rpx 32rpx;
-  border-bottom: 1rpx solid #f0ebe3;
+  border-bottom: 0.5rpx solid #E5E5EA;
 }
 
 .setting-item-last {
@@ -294,7 +294,7 @@ const onLogout = () => {
 }
 
 .setting-item-active {
-  background: #f5f0ea;
+  background: #F8F9FA;
 }
 
 .setting-left {
@@ -306,7 +306,7 @@ const onLogout = () => {
   width: 52rpx;
   height: 52rpx;
   border-radius: 50%;
-  background: #f5f0ea;
+  background: rgba(65,108,129,0.08);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -319,7 +319,7 @@ const onLogout = () => {
 
 .setting-label {
   font-size: 28rpx;
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .setting-right {
@@ -329,37 +329,36 @@ const onLogout = () => {
 
 .setting-value {
   font-size: 26rpx;
-  color: #a89888;
+  color: #8E8E93;
   margin-right: 8rpx;
 }
 
 .setting-value.verified {
-  color: #15803d;
+  color: #34C759;
 }
 
 .setting-arrow {
   font-size: 32rpx;
-  color: #e8e0d6;
+  color: #C6C6C8;
 }
 
 .logout-btn {
   margin: 40rpx 32rpx 0;
   height: 88rpx;
-  background: #ffffff;
-  border: 1rpx solid #f0ebe3;
+  background: #FFFFFF;
   border-radius: 16rpx;
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .logout-btn-active {
-  opacity: 0.6;
-  background: #f5f0ea;
+  background: #F8F9FA;
 }
 
 .logout-text {
   font-size: 30rpx;
-  color: #c2410c;
+  color: #FF3B30;
 }
 </style>

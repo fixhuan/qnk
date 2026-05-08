@@ -226,21 +226,21 @@ const onVoiceTap = () => {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: #faf8f5;
+  background-color: #F1F3F4;
 }
 
 .ai-header {
   display: flex;
   align-items: center;
   padding: 60rpx 32rpx 24rpx;
-  background-color: #faf8f5;
+  background-color: #F1F3F4;
 }
 
 .ai-avatar {
   width: 48rpx;
   height: 48rpx;
   border-radius: 50%;
-  background: #fef3ee;
+  background: rgba(65,108,129,0.08);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -260,7 +260,7 @@ const onVoiceTap = () => {
 .ai-name {
   font-size: 32rpx;
   font-weight: 600;
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .ai-status {
@@ -273,17 +273,17 @@ const onVoiceTap = () => {
   width: 6rpx;
   height: 6rpx;
   border-radius: 50%;
-  background-color: #15803d;
+  background-color: #34C759;
   margin-right: 8rpx;
 }
 
 .status-text {
   font-size: 22rpx;
-  color: #15803d;
+  color: #34C759;
 }
 
 .func-scroll {
-  background-color: #faf8f5;
+  background-color: #F1F3F4;
   padding-bottom: 16rpx;
 }
 
@@ -295,9 +295,9 @@ const onVoiceTap = () => {
 
 .func-card {
   flex-shrink: 0;
-  background: #ffffff;
-  border: 1rpx solid #f0ebe3;
-  border-radius: 12rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -307,7 +307,7 @@ const onVoiceTap = () => {
 }
 
 .func-card-active {
-  opacity: 0.6;
+  background: #F8F9FA;
 }
 
 .func-icon {
@@ -317,7 +317,7 @@ const onVoiceTap = () => {
 
 .func-name {
   font-size: 22rpx;
-  color: #6b5e52;
+  color: #8E8E93;
 }
 
 .message-list {
@@ -338,18 +338,18 @@ const onVoiceTap = () => {
 
 .quick-tag {
   flex-shrink: 0;
-  background: #fef3ee;
+  background: rgba(65,108,129,0.08);
   border-radius: 999rpx;
   padding: 12rpx 28rpx;
 }
 
 .quick-tag-active {
-  opacity: 0.6;
+  background: rgba(65,108,129,0.16);
 }
 
 .quick-tag-text {
   font-size: 24rpx;
-  color: #c2410c;
+  color: #416C81;
   white-space: nowrap;
 }
 
@@ -371,7 +371,7 @@ const onVoiceTap = () => {
   width: 32rpx;
   height: 32rpx;
   border-radius: 50%;
-  background: #fef3ee;
+  background: rgba(65,108,129,0.08);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -401,22 +401,22 @@ const onVoiceTap = () => {
 }
 
 .bubble-user {
-  background: #c2410c;
+  background: #416C81;
   border-top-right-radius: 4rpx;
 }
 
 .bubble-ai {
-  background: #ffffff;
-  border: 1rpx solid #f0ebe3;
+  background: #FFFFFF;
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
   border-top-left-radius: 4rpx;
 }
 
 .text-ai {
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .text-user {
-  color: #ffffff;
+  color: #FFFFFF;
 }
 
 .message-text {
@@ -426,7 +426,7 @@ const onVoiceTap = () => {
 
 .message-time {
   font-size: 20rpx;
-  color: #a89888;
+  color: #AEAEB2;
   margin-top: 8rpx;
 }
 
@@ -444,7 +444,7 @@ const onVoiceTap = () => {
   width: 12rpx;
   height: 12rpx;
   border-radius: 50%;
-  background: #ede8e0;
+  background: #C6C6C8;
 }
 
 .dot1 {
@@ -475,15 +475,15 @@ const onVoiceTap = () => {
   align-items: center;
   padding: 16rpx 32rpx;
   padding-bottom: calc(16rpx + env(safe-area-inset-bottom));
-  background: #ffffff;
-  border-top: 1rpx solid #f0ebe3;
+  background: #FFFFFF;
+  border-top: 0.5rpx solid #E5E5EA;
 }
 
 .input-wrapper {
   flex: 1;
   display: flex;
   align-items: center;
-  background: #f5f0ea;
+  background: #F1F3F4;
   border-radius: 999rpx;
   padding: 0 24rpx;
   height: 76rpx;
@@ -493,12 +493,12 @@ const onVoiceTap = () => {
   flex: 1;
   height: 76rpx;
   font-size: 28rpx;
-  color: #1a1612;
+  color: #1C1C1E;
   background-color: transparent;
 }
 
 .input-placeholder {
-  color: #a89888;
+  color: #AEAEB2;
 }
 
 .voice-btn {
@@ -508,12 +508,12 @@ const onVoiceTap = () => {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: #f5f0ea;
+  background: #F1F3F4;
   margin-left: 12rpx;
 }
 
 .voice-btn-active {
-  opacity: 0.6;
+  background: #E5E5EA;
 }
 
 .voice-icon {
@@ -524,7 +524,7 @@ const onVoiceTap = () => {
   margin-left: 16rpx;
   width: 76rpx;
   height: 76rpx;
-  background: #c2410c;
+  background: #416C81;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -532,12 +532,11 @@ const onVoiceTap = () => {
 }
 
 .send-btn-active {
-  background: #9a3412;
-  opacity: 0.9;
+  background: #2D5A6F;
 }
 
 .send-icon {
-  color: #ffffff;
+  color: #FFFFFF;
   font-size: 32rpx;
 }
 </style>

@@ -17,6 +17,7 @@
         @tap="switchTab(index)"
       >
         <text class="tab-text" :class="{ 'tab-text-active': currentTab === index }">{{ tab }}</text>
+        <view v-if="currentTab === index" class="tab-indicator"></view>
       </view>
     </view>
 
@@ -163,7 +164,7 @@ const onDelete = (order: Order) => {
 <style scoped>
 .page {
   min-height: 100vh;
-  background-color: #faf8f5;
+  background-color: #F1F3F4;
 }
 
 .nav-bar {
@@ -171,7 +172,7 @@ const onDelete = (order: Order) => {
   align-items: center;
   justify-content: space-between;
   padding: 60rpx 32rpx 16rpx;
-  background-color: #faf8f5;
+  background-color: #F1F3F4;
 }
 
 .nav-back {
@@ -188,19 +189,19 @@ const onDelete = (order: Order) => {
 
 .nav-back-icon {
   font-size: 44rpx;
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .nav-title {
   font-size: 34rpx;
   font-weight: 700;
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .tabs {
   display: flex;
   padding: 16rpx 32rpx;
-  background-color: #faf8f5;
+  background-color: #F1F3F4;
 }
 
 .tab-item {
@@ -209,20 +210,28 @@ const onDelete = (order: Order) => {
   align-items: center;
   justify-content: center;
   padding: 20rpx 0;
-  border-bottom: 3rpx solid transparent;
+  position: relative;
+  flex-direction: column;
 }
 
-.tab-active {
-  border-bottom-color: #c2410c;
+.tab-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40rpx;
+  height: 3rpx;
+  background: #416C81;
+  border-radius: 2rpx;
 }
 
 .tab-text {
   font-size: 26rpx;
-  color: #a89888;
+  color: #8E8E93;
 }
 
 .tab-text-active {
-  color: #c2410c;
+  color: #416C81;
   font-weight: 600;
 }
 
@@ -232,9 +241,9 @@ const onDelete = (order: Order) => {
 }
 
 .order-card {
-  background: #ffffff;
-  border: 1rpx solid #f0ebe3;
+  background: #FFFFFF;
   border-radius: 16rpx;
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
   padding: 28rpx;
   margin-bottom: 20rpx;
 }
@@ -249,7 +258,7 @@ const onDelete = (order: Order) => {
 .order-shop {
   font-size: 30rpx;
   font-weight: 600;
-  color: #1a1612;
+  color: #1C1C1E;
   flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -265,23 +274,23 @@ const onDelete = (order: Order) => {
 }
 
 .status-pending {
-  color: #a16207;
-  background: #fefce8;
+  color: #C93400;
+  background: rgba(255,149,0,0.08);
 }
 
 .status-using {
-  color: #1d4ed8;
-  background: #eff6ff;
+  color: #007AFF;
+  background: rgba(90,200,250,0.08);
 }
 
 .status-done {
-  color: #15803d;
-  background: #f0fdf4;
+  color: #248A3D;
+  background: rgba(52,199,89,0.08);
 }
 
 .status-cancel {
-  color: #a89888;
-  background: #f5f0ea;
+  color: #8E8E93;
+  background: #F8F9FA;
 }
 
 .order-body {
@@ -289,17 +298,17 @@ const onDelete = (order: Order) => {
   flex-direction: column;
   gap: 8rpx;
   padding-bottom: 20rpx;
-  border-bottom: 1rpx solid #f0ebe3;
+  border-bottom: 0.5rpx solid #E5E5EA;
 }
 
 .order-no {
   font-size: 24rpx;
-  color: #a89888;
+  color: #8E8E93;
 }
 
 .order-time {
   font-size: 24rpx;
-  color: #a89888;
+  color: #8E8E93;
 }
 
 .order-footer {
@@ -312,7 +321,7 @@ const onDelete = (order: Order) => {
 .order-price {
   font-size: 34rpx;
   font-weight: 700;
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .order-actions {
@@ -322,15 +331,15 @@ const onDelete = (order: Order) => {
 
 .action-btn {
   padding: 10rpx 28rpx;
-  border-radius: 8rpx;
+  border-radius: 12rpx;
 }
 
 .action-btn-primary {
-  background: #c2410c;
+  background: #416C81;
 }
 
 .action-btn-default {
-  background: #f5f0ea;
+  background: #F8F9FA;
 }
 
 .action-btn-active {
@@ -339,12 +348,13 @@ const onDelete = (order: Order) => {
 
 .action-btn-text-primary {
   font-size: 24rpx;
-  color: #ffffff;
+  color: #FFFFFF;
+  font-weight: 600;
 }
 
 .action-btn-text-default {
   font-size: 24rpx;
-  color: #6b5e52;
+  color: #8E8E93;
 }
 
 .empty {
@@ -361,6 +371,6 @@ const onDelete = (order: Order) => {
 
 .empty-text {
   font-size: 28rpx;
-  color: #a89888;
+  color: #AEAEB2;
 }
 </style>

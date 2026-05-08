@@ -110,29 +110,29 @@ const currentCategory = ref('活动')
 const categories = ['活动', '圈子', '交友']
 
 const activities = ref<Activity[]>([
-  { id: 1, name: '周末徒步登山', time: '5月10日 08:00', location: '城郊森林公园', people: 32, bg: '#f0fdf4', joined: false },
-  { id: 2, name: '读书分享会', time: '5月11日 14:00', location: '青年活动中心', people: 18, bg: '#eff6ff', joined: true },
-  { id: 3, name: '桌游之夜', time: '5月12日 19:00', location: '星空桌游吧', people: 24, bg: '#fef3ee', joined: false },
-  { id: 4, name: '摄影采风行', time: '5月15日 09:00', location: '城市文化广场', people: 15, bg: '#fefce8', joined: false },
-  { id: 5, name: '飞盘运动趴', time: '5月16日 16:00', location: '体育公园', people: 28, bg: '#f0fdf4', joined: false },
-  { id: 6, name: '音乐Live夜', time: '5月18日 20:00', location: 'LiveHouse', people: 45, bg: '#eff6ff', joined: false }
+  { id: 1, name: '周末徒步登山', time: '5月10日 08:00', location: '城郊森林公园', people: 32, bg: 'rgba(52,199,89,0.08)', joined: false },
+  { id: 2, name: '读书分享会', time: '5月11日 14:00', location: '青年活动中心', people: 18, bg: 'rgba(90,200,250,0.08)', joined: true },
+  { id: 3, name: '桌游之夜', time: '5月12日 19:00', location: '星空桌游吧', people: 24, bg: 'rgba(65,108,129,0.08)', joined: false },
+  { id: 4, name: '摄影采风行', time: '5月15日 09:00', location: '城市文化广场', people: 15, bg: 'rgba(255,149,0,0.08)', joined: false },
+  { id: 5, name: '飞盘运动趴', time: '5月16日 16:00', location: '体育公园', people: 28, bg: 'rgba(52,199,89,0.08)', joined: false },
+  { id: 6, name: '音乐Live夜', time: '5月18日 20:00', location: 'LiveHouse', people: 45, bg: 'rgba(90,200,250,0.08)', joined: false }
 ])
 
 const circles = ref<Circle[]>([
-  { id: 1, name: '读书爱好者', members: 256, topics: 89, bg: '#eff6ff', joined: true },
-  { id: 2, name: '跑步达人', members: 432, topics: 156, bg: '#f0fdf4', joined: false },
-  { id: 3, name: '摄影圈', members: 189, topics: 67, bg: '#fef3ee', joined: false },
-  { id: 4, name: '美食探店', members: 367, topics: 203, bg: '#fefce8', joined: false },
-  { id: 5, name: '编程交流', members: 198, topics: 112, bg: '#eff6ff', joined: true }
+  { id: 1, name: '读书爱好者', members: 256, topics: 89, bg: 'rgba(90,200,250,0.08)', joined: true },
+  { id: 2, name: '跑步达人', members: 432, topics: 156, bg: 'rgba(52,199,89,0.08)', joined: false },
+  { id: 3, name: '摄影圈', members: 189, topics: 67, bg: 'rgba(65,108,129,0.08)', joined: false },
+  { id: 4, name: '美食探店', members: 367, topics: 203, bg: 'rgba(255,149,0,0.08)', joined: false },
+  { id: 5, name: '编程交流', members: 198, topics: 112, bg: 'rgba(90,200,250,0.08)', joined: true }
 ])
 
 const friends = ref<Friend[]>([
-  { id: 1, name: '小明', interests: ['篮球', '摄影', '旅行'], bg: '#fef3ee', greeted: false },
-  { id: 2, name: '小红', interests: ['读书', '瑜伽', '烘焙'], bg: '#f0fdf4', greeted: true },
-  { id: 3, name: '阿杰', interests: ['编程', '游戏', '咖啡'], bg: '#eff6ff', greeted: false },
-  { id: 4, name: '小美', interests: ['绘画', '音乐', '猫'], bg: '#fefce8', greeted: false },
-  { id: 5, name: '大伟', interests: ['健身', '电影', '美食'], bg: '#fef3ee', greeted: false },
-  { id: 6, name: '小琳', interests: ['舞蹈', '手工', '旅行'], bg: '#f0fdf4', greeted: false }
+  { id: 1, name: '小明', interests: ['篮球', '摄影', '旅行'], bg: 'rgba(65,108,129,0.08)', greeted: false },
+  { id: 2, name: '小红', interests: ['读书', '瑜伽', '烘焙'], bg: 'rgba(52,199,89,0.08)', greeted: true },
+  { id: 3, name: '阿杰', interests: ['编程', '游戏', '咖啡'], bg: 'rgba(90,200,250,0.08)', greeted: false },
+  { id: 4, name: '小美', interests: ['绘画', '音乐', '猫'], bg: 'rgba(255,149,0,0.08)', greeted: false },
+  { id: 5, name: '大伟', interests: ['健身', '电影', '美食'], bg: 'rgba(65,108,129,0.08)', greeted: false },
+  { id: 6, name: '小琳', interests: ['舞蹈', '手工', '旅行'], bg: 'rgba(52,199,89,0.08)', greeted: false }
 ])
 
 const onJoinActivity = (item: Activity) => {
@@ -159,7 +159,7 @@ const onGreet = (item: Friend) => {
 <style>
 .page {
   min-height: 100vh;
-  background-color: #faf8f5;
+  background-color: #F1F3F4;
   display: flex;
   flex-direction: column;
 }
@@ -169,25 +169,25 @@ const onGreet = (item: Friend) => {
 }
 
 .banner {
-  border-radius: 12rpx;
+  border-radius: 16rpx;
   padding: 40rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #fef3ee;
-  border: 1rpx solid #f0ebe3;
+  background: rgba(65,108,129,0.08);
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
 }
 
 .banner-title {
   font-size: 36rpx;
   font-weight: 600;
-  color: #1a1612;
+  color: #1C1C1E;
   margin-bottom: 8rpx;
 }
 
 .banner-desc {
   font-size: 26rpx;
-  color: #6b5e52;
+  color: #8E8E93;
 }
 
 .category-scroll {
@@ -201,21 +201,21 @@ const onGreet = (item: Friend) => {
   justify-content: center;
   padding: 12rpx 32rpx;
   border-radius: 999rpx;
-  background: #f5f0ea;
+  background: #F8F9FA;
   margin-right: 16rpx;
 }
 
 .category-tag.active {
-  background: #c2410c;
+  background: #416C81;
 }
 
 .category-text {
   font-size: 26rpx;
-  color: #6b5e52;
+  color: #8E8E93;
 }
 
 .category-text.active-text {
-  color: #ffffff;
+  color: #FFFFFF;
   font-weight: 600;
 }
 
@@ -225,16 +225,15 @@ const onGreet = (item: Friend) => {
 }
 
 .activity-card {
-  background: #ffffff;
-  border: 1rpx solid #f0ebe3;
-  border-radius: 12rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
   padding: 24rpx;
   margin-bottom: 20rpx;
-  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.03);
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
 }
 
 .card-hover {
-  opacity: 0.6;
+  background: #F8F9FA;
 }
 
 .activity-cover {
@@ -250,18 +249,18 @@ const onGreet = (item: Friend) => {
 .activity-name {
   font-size: 32rpx;
   font-weight: 600;
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .activity-time {
   font-size: 24rpx;
-  color: #6b5e52;
+  color: #8E8E93;
   margin-top: 10rpx;
 }
 
 .activity-location {
   font-size: 24rpx;
-  color: #a89888;
+  color: #AEAEB2;
   margin-top: 6rpx;
 }
 
@@ -274,38 +273,37 @@ const onGreet = (item: Friend) => {
 
 .activity-people {
   font-size: 24rpx;
-  color: #a89888;
+  color: #AEAEB2;
 }
 
 .join-btn {
   padding: 10rpx 32rpx;
-  background: #c2410c;
-  border-radius: 8rpx;
+  background: #416C81;
+  border-radius: 12rpx;
 }
 
 .join-btn.joined {
-  background: #f5f0ea;
+  background: #F8F9FA;
 }
 
 .join-btn-text {
   font-size: 24rpx;
-  color: #ffffff;
+  color: #FFFFFF;
 }
 
 .join-btn-text.joined {
-  color: #a89888;
+  color: #8E8E93;
 }
 
 .circle-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #ffffff;
-  border: 1rpx solid #f0ebe3;
-  border-radius: 12rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
   padding: 24rpx;
   margin-bottom: 20rpx;
-  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.03);
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
 }
 
 .circle-info {
@@ -328,7 +326,7 @@ const onGreet = (item: Friend) => {
 .circle-name {
   font-size: 30rpx;
   font-weight: 600;
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .circle-stats {
@@ -339,12 +337,12 @@ const onGreet = (item: Friend) => {
 
 .circle-stat {
   font-size: 22rpx;
-  color: #a89888;
+  color: #AEAEB2;
 }
 
 .circle-stat-dot {
   font-size: 22rpx;
-  color: #e8e0d6;
+  color: #E5E5EA;
   margin: 0 8rpx;
 }
 
@@ -352,12 +350,11 @@ const onGreet = (item: Friend) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #ffffff;
-  border: 1rpx solid #f0ebe3;
-  border-radius: 12rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
   padding: 24rpx;
   margin-bottom: 20rpx;
-  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.03);
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
 }
 
 .friend-info {
@@ -381,7 +378,7 @@ const onGreet = (item: Friend) => {
 .friend-name {
   font-size: 30rpx;
   font-weight: 600;
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .friend-tags {
@@ -393,29 +390,29 @@ const onGreet = (item: Friend) => {
 
 .friend-tag {
   font-size: 20rpx;
-  color: #6b5e52;
-  background: #f5f0ea;
+  color: #8E8E93;
+  background: #F8F9FA;
   padding: 4rpx 12rpx;
   border-radius: 999rpx;
 }
 
 .greet-btn {
   padding: 10rpx 24rpx;
-  background: #c2410c;
-  border-radius: 8rpx;
+  background: #416C81;
+  border-radius: 12rpx;
   flex-shrink: 0;
 }
 
 .greet-btn.greeted {
-  background: #f5f0ea;
+  background: #F8F9FA;
 }
 
 .greet-btn-text {
   font-size: 24rpx;
-  color: #ffffff;
+  color: #FFFFFF;
 }
 
 .greet-btn-text.greeted {
-  color: #a89888;
+  color: #8E8E93;
 }
 </style>

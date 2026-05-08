@@ -16,22 +16,24 @@
     </view>
 
     <view class="youth-card">
-      <view class="card-deco-circle"></view>
-      <view class="card-top">
-        <text class="card-type">YOUTH CARD</text>
-        <text class="card-label">青年卡</text>
-      </view>
-      <view class="card-body">
-        <text class="card-number">YQ 2025 0001</text>
-      </view>
-      <view class="card-bottom">
-        <view class="card-holder">
-          <text class="card-holder-label">持卡人</text>
-          <text class="card-holder-name">青年用户</text>
+      <view class="card-accent"></view>
+      <view class="card-content">
+        <view class="card-top">
+          <view class="card-info-left">
+            <text class="card-number-label">卡号</text>
+            <text class="card-number">YQ 2025 0001</text>
+          </view>
+          <text class="card-label">青年卡</text>
         </view>
-        <view class="card-expire">
-          <text class="card-expire-label">有效期</text>
-          <text class="card-expire-date">2025-12</text>
+        <view class="card-bottom">
+          <view class="card-field">
+            <text class="card-field-label">持卡人</text>
+            <text class="card-field-value">青年用户</text>
+          </view>
+          <view class="card-field">
+            <text class="card-field-label">有效期</text>
+            <text class="card-field-value">2025-12</text>
+          </view>
         </view>
       </view>
     </view>
@@ -138,13 +140,13 @@ const onLogout = () => {
 <style scoped>
 .page {
   min-height: 100vh;
-  background-color: #faf8f5;
+  background-color: #F1F3F4;
   padding-bottom: 40rpx;
 }
 
 .header {
   padding: 80rpx 40rpx 40rpx;
-  background-color: #faf8f5;
+  background-color: #F1F3F4;
 }
 
 .user-info {
@@ -156,8 +158,7 @@ const onLogout = () => {
   width: 120rpx;
   height: 120rpx;
   border-radius: 50%;
-  background: #f5f0ea;
-  border: 3rpx solid #e8e0d6;
+  background: #E8F1F5;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -177,12 +178,12 @@ const onLogout = () => {
 .nickname {
   font-size: 36rpx;
   font-weight: 700;
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .card-no {
   margin-top: 12rpx;
-  background: #fef3ee;
+  background: rgba(65,108,129,0.08);
   border-radius: 999rpx;
   padding: 6rpx 20rpx;
   align-self: flex-start;
@@ -190,96 +191,96 @@ const onLogout = () => {
 
 .card-no-text {
   font-size: 22rpx;
-  color: #c2410c;
+  color: #416C81;
 }
 
 .signature {
   font-size: 24rpx;
-  color: #a89888;
+  color: #8E8E93;
   margin-top: 10rpx;
 }
 
 .youth-card {
-  position: relative;
   margin: 24rpx 32rpx;
-  padding: 36rpx 40rpx;
-  background: #1a1612;
-  border-radius: 16rpx;
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
   overflow: hidden;
+  display: flex;
 }
 
-.card-deco-circle {
-  position: absolute;
-  width: 120rpx;
-  height: 120rpx;
-  border-radius: 50%;
-  background: #c2410c;
-  opacity: 0.2;
-  bottom: -30rpx;
-  right: -20rpx;
+.card-accent {
+  width: 8rpx;
+  background: linear-gradient(to bottom, #416C81, #2D5A6F);
+  border-radius: 4rpx;
+  flex-shrink: 0;
+}
+
+.card-content {
+  flex: 1;
+  padding: 32rpx 36rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .card-top {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  position: relative;
 }
 
-.card-label {
-  font-size: 32rpx;
-  font-weight: 700;
-  color: #c2410c;
-}
-
-.card-type {
-  font-size: 20rpx;
-  color: rgba(255, 255, 255, 0.4);
-  letter-spacing: 4rpx;
-}
-
-.card-body {
-  margin: 36rpx 0 32rpx;
-  position: relative;
-}
-
-.card-number {
-  font-size: 36rpx;
-  font-weight: 700;
-  color: #ffffff;
-  letter-spacing: 6rpx;
-}
-
-.card-bottom {
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-}
-
-.card-holder,
-.card-expire {
+.card-info-left {
   display: flex;
   flex-direction: column;
 }
 
-.card-holder-label,
-.card-expire-label {
-  font-size: 20rpx;
-  color: rgba(255, 255, 255, 0.4);
+.card-number-label {
+  font-size: 22rpx;
+  color: #8E8E93;
+  margin-bottom: 8rpx;
 }
 
-.card-holder-name,
-.card-expire-date {
+.card-number {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #1C1C1E;
+  letter-spacing: 4rpx;
+}
+
+.card-label {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #416C81;
+}
+
+.card-bottom {
+  display: flex;
+  margin-top: 32rpx;
+  gap: 64rpx;
+}
+
+.card-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-field-label {
+  font-size: 22rpx;
+  color: #8E8E93;
+}
+
+.card-field-value {
   font-size: 26rpx;
-  color: #ffffff;
+  color: #1C1C1E;
   margin-top: 4rpx;
 }
 
 .stats-card {
   margin: 0 32rpx 24rpx;
-  background: #ffffff;
-  border: 1rpx solid #f0ebe3;
+  background: #FFFFFF;
   border-radius: 16rpx;
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
   display: flex;
 }
 
@@ -292,27 +293,27 @@ const onLogout = () => {
 }
 
 .stat-item-active {
-  background: #f5f0ea;
+  background: #F8F9FA;
   border-radius: 16rpx;
 }
 
 .stat-num {
   font-size: 36rpx;
   font-weight: 700;
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .stat-label {
   font-size: 24rpx;
-  color: #a89888;
+  color: #8E8E93;
   margin-top: 8rpx;
 }
 
 .quick-entry {
   margin: 0 32rpx 24rpx;
-  background: #ffffff;
-  border: 1rpx solid #f0ebe3;
+  background: #FFFFFF;
   border-radius: 16rpx;
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
   display: flex;
   padding: 32rpx 0;
 }
@@ -332,7 +333,7 @@ const onLogout = () => {
   width: 88rpx;
   height: 88rpx;
   border-radius: 50%;
-  background: #f5f0ea;
+  background: rgba(65,108,129,0.08);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -344,15 +345,15 @@ const onLogout = () => {
 
 .entry-name {
   font-size: 24rpx;
-  color: #6b5e52;
+  color: #8E8E93;
   margin-top: 12rpx;
 }
 
 .menu-card {
   margin: 0 32rpx 24rpx;
-  background: #ffffff;
-  border: 1rpx solid #f0ebe3;
+  background: #FFFFFF;
   border-radius: 16rpx;
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
   overflow: hidden;
 }
 
@@ -362,7 +363,7 @@ const onLogout = () => {
   justify-content: space-between;
   height: 100rpx;
   padding: 0 32rpx;
-  border-bottom: 1rpx solid #f0ebe3;
+  border-bottom: 0.5rpx solid #E5E5EA;
 }
 
 .menu-item-last {
@@ -370,7 +371,7 @@ const onLogout = () => {
 }
 
 .menu-item-active {
-  background: #f5f0ea;
+  background: #F8F9FA;
 }
 
 .menu-left {
@@ -382,7 +383,7 @@ const onLogout = () => {
   width: 56rpx;
   height: 56rpx;
   border-radius: 50%;
-  background: #f5f0ea;
+  background: rgba(65,108,129,0.08);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -395,32 +396,31 @@ const onLogout = () => {
 
 .menu-text {
   font-size: 30rpx;
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .menu-arrow {
   font-size: 36rpx;
-  color: #e8e0d6;
+  color: #C6C6C8;
 }
 
 .logout-btn {
   margin: 40rpx 32rpx 0;
   height: 88rpx;
-  background: #ffffff;
-  border: 1rpx solid #f0ebe3;
+  background: #FFFFFF;
   border-radius: 16rpx;
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .logout-btn-active {
-  opacity: 0.6;
-  background: #f5f0ea;
+  background: #F8F9FA;
 }
 
 .logout-text {
   font-size: 30rpx;
-  color: #c2410c;
+  color: #FF3B30;
 }
 </style>

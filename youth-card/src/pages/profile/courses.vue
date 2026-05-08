@@ -17,6 +17,7 @@
         @tap="switchTab(index)"
       >
         <text class="tab-text" :class="{ 'tab-text-active': currentTab === index }">{{ tab }}</text>
+        <view v-if="currentTab === index" class="tab-indicator"></view>
       </view>
     </view>
 
@@ -74,14 +75,14 @@ const tabs = ['进行中', '已完成', '已收藏']
 const currentTab = ref(0)
 
 const courses = ref<Course[]>([
-  { type: 0, icon: '💻', name: 'Python编程入门', teacher: '张明远', progress: 65, lastTime: '2025-05-07 20:30', color: '#fef3ee' },
-  { type: 0, icon: '🎨', name: 'UI设计进阶课', teacher: '李思雨', progress: 40, lastTime: '2025-05-06 19:15', color: '#f0fdf4' },
-  { type: 0, icon: '📱', name: '新媒体运营实战', teacher: '王浩然', progress: 20, lastTime: '2025-05-05 21:00', color: '#fefce8' },
-  { type: 0, icon: '🗣️', name: '英语口语提升班', teacher: 'Sarah Chen', progress: 55, lastTime: '2025-05-04 18:45', color: '#eff6ff' },
-  { type: 1, icon: '📊', name: '数据分析基础', teacher: '陈建国', progress: 100, lastTime: '2025-04-28 20:00', color: '#fef3ee' },
-  { type: 1, icon: '📝', name: '简历优化与面试技巧', teacher: '刘晓芳', progress: 100, lastTime: '2025-04-20 19:30', color: '#f0fdf4' },
-  { type: 2, icon: '🤖', name: '人工智能导论', teacher: '赵伟', progress: 0, lastTime: '未开始', color: '#fefce8' },
-  { type: 2, icon: '📷', name: '短视频剪辑入门', teacher: '周艺', progress: 0, lastTime: '未开始', color: '#eff6ff' }
+  { type: 0, icon: '💻', name: 'Python编程入门', teacher: '张明远', progress: 65, lastTime: '2025-05-07 20:30', color: '#E8F1F5' },
+  { type: 0, icon: '🎨', name: 'UI设计进阶课', teacher: '李思雨', progress: 40, lastTime: '2025-05-06 19:15', color: '#F8F9FA' },
+  { type: 0, icon: '📱', name: '新媒体运营实战', teacher: '王浩然', progress: 20, lastTime: '2025-05-05 21:00', color: '#E8F1F5' },
+  { type: 0, icon: '🗣️', name: '英语口语提升班', teacher: 'Sarah Chen', progress: 55, lastTime: '2025-05-04 18:45', color: '#F8F9FA' },
+  { type: 1, icon: '📊', name: '数据分析基础', teacher: '陈建国', progress: 100, lastTime: '2025-04-28 20:00', color: '#E8F1F5' },
+  { type: 1, icon: '📝', name: '简历优化与面试技巧', teacher: '刘晓芳', progress: 100, lastTime: '2025-04-20 19:30', color: '#F8F9FA' },
+  { type: 2, icon: '🤖', name: '人工智能导论', teacher: '赵伟', progress: 0, lastTime: '未开始', color: '#E8F1F5' },
+  { type: 2, icon: '📷', name: '短视频剪辑入门', teacher: '周艺', progress: 0, lastTime: '未开始', color: '#F8F9FA' }
 ])
 
 const filteredCourses = computed(() => {
@@ -104,7 +105,7 @@ const onContinue = (course: Course) => {
 <style scoped>
 .page {
   min-height: 100vh;
-  background-color: #faf8f5;
+  background-color: #F1F3F4;
 }
 
 .nav-bar {
@@ -112,7 +113,7 @@ const onContinue = (course: Course) => {
   align-items: center;
   justify-content: space-between;
   padding: 60rpx 32rpx 16rpx;
-  background-color: #faf8f5;
+  background-color: #F1F3F4;
 }
 
 .nav-back {
@@ -129,19 +130,19 @@ const onContinue = (course: Course) => {
 
 .nav-back-icon {
   font-size: 44rpx;
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .nav-title {
   font-size: 34rpx;
   font-weight: 700;
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .tabs {
   display: flex;
   padding: 16rpx 32rpx;
-  background-color: #faf8f5;
+  background-color: #F1F3F4;
 }
 
 .tab-item {
@@ -150,20 +151,28 @@ const onContinue = (course: Course) => {
   align-items: center;
   justify-content: center;
   padding: 20rpx 0;
-  border-bottom: 3rpx solid transparent;
+  position: relative;
+  flex-direction: column;
 }
 
-.tab-active {
-  border-bottom-color: #c2410c;
+.tab-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40rpx;
+  height: 3rpx;
+  background: #416C81;
+  border-radius: 2rpx;
 }
 
 .tab-text {
   font-size: 26rpx;
-  color: #a89888;
+  color: #8E8E93;
 }
 
 .tab-text-active {
-  color: #c2410c;
+  color: #416C81;
   font-weight: 600;
 }
 
@@ -174,9 +183,9 @@ const onContinue = (course: Course) => {
 
 .course-card {
   display: flex;
-  background: #ffffff;
-  border: 1rpx solid #f0ebe3;
+  background: #FFFFFF;
   border-radius: 16rpx;
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
   padding: 24rpx;
   margin-bottom: 20rpx;
 }
@@ -184,7 +193,7 @@ const onContinue = (course: Course) => {
 .course-cover {
   width: 120rpx;
   height: 120rpx;
-  border-radius: 12rpx;
+  border-radius: 16rpx;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -206,12 +215,12 @@ const onContinue = (course: Course) => {
 .course-name {
   font-size: 28rpx;
   font-weight: 600;
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .course-teacher {
   font-size: 24rpx;
-  color: #a89888;
+  color: #8E8E93;
   margin-top: 6rpx;
 }
 
@@ -224,47 +233,49 @@ const onContinue = (course: Course) => {
 .progress-bar {
   flex: 1;
   height: 10rpx;
-  background: #ede8e0;
+  background: #E5E5EA;
   border-radius: 5rpx;
   overflow: hidden;
 }
 
 .progress-fill {
   height: 100%;
-  background: #c2410c;
+  background: #416C81;
   border-radius: 5rpx;
 }
 
 .progress-text {
   font-size: 22rpx;
-  color: #c2410c;
+  color: #416C81;
   margin-left: 12rpx;
   flex-shrink: 0;
+  font-weight: 600;
 }
 
 .course-time {
   font-size: 22rpx;
-  color: #a89888;
+  color: #AEAEB2;
   margin-top: 6rpx;
 }
 
 .course-btn {
   flex-shrink: 0;
   align-self: center;
-  background: #c2410c;
-  border-radius: 8rpx;
+  background: #416C81;
+  border-radius: 12rpx;
   padding: 12rpx 24rpx;
   margin-left: 16rpx;
 }
 
 .course-btn-active {
-  opacity: 0.6;
+  background: #2D5A6F;
 }
 
 .course-btn-text {
   font-size: 24rpx;
-  color: #ffffff;
+  color: #FFFFFF;
   white-space: nowrap;
+  font-weight: 600;
 }
 
 .empty {
@@ -281,6 +292,6 @@ const onContinue = (course: Course) => {
 
 .empty-text {
   font-size: 28rpx;
-  color: #a89888;
+  color: #AEAEB2;
 }
 </style>

@@ -123,11 +123,11 @@ const volunteerActivities = ref<VolunteerActivity[]>([
 ])
 
 const organizations = ref<Organization[]>([
-  { id: 1, name: '青年志愿者协会', desc: '组织青年参与社会公益服务', activities: 86, bg: '#fef3ee', followed: true },
-  { id: 2, name: '绿色环保联盟', desc: '推动城市环保与可持续发展', activities: 52, bg: '#f0fdf4', followed: false },
-  { id: 3, name: '爱心助学中心', desc: '帮助困难学生完成学业', activities: 38, bg: '#eff6ff', followed: false },
-  { id: 4, name: '社区互助会', desc: '促进社区邻里互助与关爱', activities: 64, bg: '#fefce8', followed: false },
-  { id: 5, name: '阳光助残协会', desc: '关爱残疾人群体，提供志愿服务', activities: 29, bg: '#fef3ee', followed: true }
+  { id: 1, name: '青年志愿者协会', desc: '组织青年参与社会公益服务', activities: 86, bg: 'rgba(65,108,129,0.08)', followed: true },
+  { id: 2, name: '绿色环保联盟', desc: '推动城市环保与可持续发展', activities: 52, bg: 'rgba(52,199,89,0.08)', followed: false },
+  { id: 3, name: '爱心助学中心', desc: '帮助困难学生完成学业', activities: 38, bg: 'rgba(90,200,250,0.08)', followed: false },
+  { id: 4, name: '社区互助会', desc: '促进社区邻里互助与关爱', activities: 64, bg: 'rgba(255,149,0,0.08)', followed: false },
+  { id: 5, name: '阳光助残协会', desc: '关爱残疾人群体，提供志愿服务', activities: 29, bg: 'rgba(65,108,129,0.08)', followed: true }
 ])
 
 const certificates = ref<Certificate[]>([
@@ -155,7 +155,7 @@ const onFollow = (item: Organization) => {
 <style>
 .page {
   min-height: 100vh;
-  background-color: #faf8f5;
+  background-color: #F1F3F4;
   display: flex;
   flex-direction: column;
 }
@@ -172,25 +172,24 @@ const onFollow = (item: Organization) => {
   flex-direction: column;
   align-items: center;
   padding: 24rpx 0;
-  background: #ffffff;
-  border: 1rpx solid #f0ebe3;
-  border-radius: 12rpx;
-  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.03);
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
 }
 
 .card-hover {
-  opacity: 0.6;
+  background: #F8F9FA;
 }
 
 .stat-value {
   font-size: 36rpx;
   font-weight: 700;
-  color: #c2410c;
+  color: #416C81;
 }
 
 .stat-label {
   font-size: 22rpx;
-  color: #6b5e52;
+  color: #8E8E93;
   margin-top: 8rpx;
 }
 
@@ -205,21 +204,21 @@ const onFollow = (item: Organization) => {
   justify-content: center;
   padding: 12rpx 32rpx;
   border-radius: 999rpx;
-  background: #f5f0ea;
+  background: #F8F9FA;
   margin-right: 16rpx;
 }
 
 .category-tag.active {
-  background: #c2410c;
+  background: #416C81;
 }
 
 .category-text {
   font-size: 26rpx;
-  color: #6b5e52;
+  color: #8E8E93;
 }
 
 .category-text.active-text {
-  color: #ffffff;
+  color: #FFFFFF;
   font-weight: 600;
 }
 
@@ -229,29 +228,28 @@ const onFollow = (item: Organization) => {
 }
 
 .volunteer-card {
-  background: #ffffff;
-  border: 1rpx solid #f0ebe3;
-  border-radius: 12rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
   padding: 28rpx;
   margin-bottom: 20rpx;
-  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.03);
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
 }
 
 .volunteer-name {
   font-size: 32rpx;
   font-weight: 600;
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .volunteer-time {
   font-size: 24rpx;
-  color: #6b5e52;
+  color: #8E8E93;
   margin-top: 12rpx;
 }
 
 .volunteer-location {
   font-size: 24rpx;
-  color: #a89888;
+  color: #AEAEB2;
   margin-top: 6rpx;
 }
 
@@ -264,45 +262,44 @@ const onFollow = (item: Organization) => {
 
 .volunteer-hours {
   font-size: 24rpx;
-  color: #c2410c;
+  color: #416C81;
   font-weight: 600;
 }
 
 .volunteer-people {
   font-size: 22rpx;
-  color: #a89888;
+  color: #AEAEB2;
 }
 
 .volunteer-btn {
   margin-top: 20rpx;
   padding: 14rpx 0;
-  background: #c2410c;
-  border-radius: 8rpx;
+  background: #416C81;
+  border-radius: 12rpx;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .volunteer-btn.joined {
-  background: #f5f0ea;
+  background: #F8F9FA;
 }
 
 .volunteer-btn-text {
   font-size: 26rpx;
-  color: #ffffff;
+  color: #FFFFFF;
 }
 
 .volunteer-btn-text.joined {
-  color: #a89888;
+  color: #8E8E93;
 }
 
 .org-card {
-  background: #ffffff;
-  border: 1rpx solid #f0ebe3;
-  border-radius: 12rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
   padding: 28rpx;
   margin-bottom: 20rpx;
-  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.03);
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
 }
 
 .org-header {
@@ -325,12 +322,12 @@ const onFollow = (item: Organization) => {
 .org-name {
   font-size: 30rpx;
   font-weight: 600;
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .org-desc {
   font-size: 24rpx;
-  color: #a89888;
+  color: #AEAEB2;
   margin-top: 6rpx;
 }
 
@@ -343,39 +340,38 @@ const onFollow = (item: Organization) => {
 
 .org-activities {
   font-size: 24rpx;
-  color: #15803d;
-  background: #f0fdf4;
+  color: #248A3D;
+  background: rgba(52,199,89,0.08);
   padding: 4rpx 12rpx;
   border-radius: 999rpx;
 }
 
 .follow-btn {
   padding: 10rpx 28rpx;
-  background: #c2410c;
-  border-radius: 8rpx;
+  background: #416C81;
+  border-radius: 12rpx;
 }
 
 .follow-btn.followed {
-  background: #f5f0ea;
+  background: #F8F9FA;
 }
 
 .follow-btn-text {
   font-size: 24rpx;
-  color: #ffffff;
+  color: #FFFFFF;
 }
 
 .follow-btn-text.followed {
-  color: #a89888;
+  color: #8E8E93;
 }
 
 .cert-card {
   display: flex;
-  background: #ffffff;
-  border: 1rpx solid #f0ebe3;
-  border-radius: 12rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
   padding: 28rpx;
   margin-bottom: 20rpx;
-  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.03);
+  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
 }
 
 .cert-icon-wrap {
@@ -384,7 +380,7 @@ const onFollow = (item: Organization) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #fefce8;
+  background: rgba(255,149,0,0.08);
   border-radius: 12rpx;
   flex-shrink: 0;
   margin-right: 24rpx;
@@ -401,24 +397,24 @@ const onFollow = (item: Organization) => {
 .cert-name {
   font-size: 30rpx;
   font-weight: 600;
-  color: #1a1612;
+  color: #1C1C1E;
 }
 
 .cert-org {
   font-size: 24rpx;
-  color: #6b5e52;
+  color: #8E8E93;
   margin-top: 8rpx;
 }
 
 .cert-time {
   font-size: 22rpx;
-  color: #a89888;
+  color: #AEAEB2;
   margin-top: 6rpx;
 }
 
 .cert-no {
   font-size: 20rpx;
-  color: #a89888;
+  color: #AEAEB2;
   margin-top: 6rpx;
 }
 </style>
