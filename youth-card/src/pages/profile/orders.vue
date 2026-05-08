@@ -1,5 +1,13 @@
 <template>
   <view class="page">
+    <view class="nav-bar">
+      <view class="nav-back" hover-class="nav-back-active" @tap="goBack">
+        <text class="nav-back-icon">‹</text>
+      </view>
+      <text class="nav-title">我的订单</text>
+      <view style="width: 60rpx;"></view>
+    </view>
+
     <view class="tabs">
       <view
         v-for="(tab, index) in tabs"
@@ -9,7 +17,6 @@
         @tap="switchTab(index)"
       >
         <text class="tab-text" :class="{ 'tab-text-active': currentTab === index }">{{ tab }}</text>
-        <view v-if="currentTab === index" class="tab-line"></view>
       </view>
     </view>
 
@@ -122,6 +129,10 @@ const statusClass = (status: number) => {
   return map[status] || ''
 }
 
+const goBack = () => {
+  uni.navigateBack()
+}
+
 const onPay = (order: Order) => {
   uni.showToast({ title: `支付 ¥${order.price}`, icon: 'none' })
 }
@@ -152,54 +163,86 @@ const onDelete = (order: Order) => {
 <style scoped>
 .page {
   min-height: 100vh;
-  background-color: #F5F6FA;
+  background-color: #0f0f2d;
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60rpx 24rpx 16rpx;
+  background-color: #0f0f2d;
+}
+
+.nav-back {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-back-active {
+  opacity: 0.6;
+}
+
+.nav-back-icon {
+  font-size: 44rpx;
+  color: #FFFFFF;
+}
+
+.nav-title {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #FFFFFF;
 }
 
 .tabs {
   display: flex;
-  background-color: #FFFFFF;
-  padding: 0 8rpx;
-  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+  padding: 16rpx 24rpx;
+  gap: 12rpx;
 }
 
 .tab-item {
   flex: 1;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  padding: 24rpx 0 16rpx;
-  position: relative;
+  justify-content: center;
+  padding: 16rpx 0;
+  border-radius: 32rpx;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+}
+
+.tab-active {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-color: transparent;
+  box-shadow: 0 4rpx 20rpx rgba(102, 126, 234, 0.4);
 }
 
 .tab-text {
-  font-size: 28rpx;
-  color: #666666;
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .tab-text-active {
-  color: #4F6EF7;
+  color: #FFFFFF;
   font-weight: 600;
 }
 
-.tab-line {
-  width: 40rpx;
-  height: 6rpx;
-  background-color: #4F6EF7;
-  border-radius: 3rpx;
-  margin-top: 8rpx;
-}
-
 .order-list {
-  height: calc(100vh - 80rpx);
-  padding: 24rpx;
+  height: calc(100vh - 180rpx);
+  padding: 0 24rpx 24rpx;
 }
 
 .order-card {
-  background-color: #FFFFFF;
-  border-radius: 20rpx;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border-radius: 24rpx;
   padding: 28rpx;
   margin-bottom: 20rpx;
-  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.06);
 }
 
 .order-header {
@@ -212,7 +255,7 @@ const onDelete = (order: Order) => {
 .order-shop {
   font-size: 30rpx;
   font-weight: 600;
-  color: #333333;
+  color: #FFFFFF;
   flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -221,30 +264,34 @@ const onDelete = (order: Order) => {
 
 .order-status {
   font-size: 24rpx;
-  padding: 4rpx 16rpx;
-  border-radius: 16rpx;
+  padding: 6rpx 20rpx;
+  border-radius: 20rpx;
   flex-shrink: 0;
   margin-left: 16rpx;
 }
 
 .status-pending {
-  color: #FF9500;
-  background-color: #FFF7E6;
+  color: #fee140;
+  background: linear-gradient(135deg, rgba(250, 112, 154, 0.2), rgba(254, 225, 64, 0.2));
+  border: 1rpx solid rgba(254, 225, 64, 0.3);
 }
 
 .status-using {
-  color: #4F6EF7;
-  background-color: #EEF1FF;
+  color: #00f2fe;
+  background: linear-gradient(135deg, rgba(79, 172, 254, 0.2), rgba(0, 242, 254, 0.2));
+  border: 1rpx solid rgba(0, 242, 254, 0.3);
 }
 
 .status-done {
-  color: #4CD964;
-  background-color: #EDFFF3;
+  color: #43e97b;
+  background: linear-gradient(135deg, rgba(67, 233, 123, 0.2), rgba(56, 249, 215, 0.2));
+  border: 1rpx solid rgba(67, 233, 123, 0.3);
 }
 
 .status-cancel {
-  color: #999999;
-  background-color: #F5F5F5;
+  color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
 }
 
 .order-body {
@@ -252,17 +299,17 @@ const onDelete = (order: Order) => {
   flex-direction: column;
   gap: 8rpx;
   padding-bottom: 20rpx;
-  border-bottom: 1rpx solid #F0F0F5;
+  border-bottom: 1rpx solid rgba(255, 255, 255, 0.06);
 }
 
 .order-no {
   font-size: 24rpx;
-  color: #999999;
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .order-time {
   font-size: 24rpx;
-  color: #999999;
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .order-footer {
@@ -275,7 +322,10 @@ const onDelete = (order: Order) => {
 .order-price {
   font-size: 34rpx;
   font-weight: 700;
-  color: #FF4D4F;
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .order-actions {
@@ -289,17 +339,18 @@ const onDelete = (order: Order) => {
 }
 
 .action-btn-primary {
-  background-color: #4F6EF7;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  box-shadow: 0 4rpx 16rpx rgba(102, 126, 234, 0.3);
 }
 
 .action-btn-default {
-  background-color: #FFFFFF;
-  border: 1rpx solid #CCCCCC;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.15);
 }
 
 .action-btn-active {
-  opacity: 0.7;
-  transform: scale(0.96);
+  transform: scale(0.95);
+  opacity: 0.8;
 }
 
 .action-btn-text-primary {
@@ -309,7 +360,7 @@ const onDelete = (order: Order) => {
 
 .action-btn-text-default {
   font-size: 24rpx;
-  color: #666666;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .empty {
@@ -326,6 +377,6 @@ const onDelete = (order: Order) => {
 
 .empty-text {
   font-size: 28rpx;
-  color: #999999;
+  color: rgba(255, 255, 255, 0.3);
 }
 </style>

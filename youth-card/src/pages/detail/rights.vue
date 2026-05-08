@@ -1,7 +1,13 @@
 <template>
   <view class="page">
+    <view class="orb orb-1"></view>
+    <view class="orb orb-2"></view>
+
     <view class="card-wrap">
       <view class="youth-card">
+        <view class="card-orb card-orb-1"></view>
+        <view class="card-orb card-orb-2"></view>
+        <view class="card-glow"></view>
         <view class="card-top">
           <text class="card-label">青年卡</text>
           <text class="card-type">YOUTH CARD</text>
@@ -35,7 +41,7 @@
     </scroll-view>
 
     <scroll-view class="list-scroll" scroll-y>
-      <view class="right-card" v-for="item in filteredRights" :key="item.id">
+      <view class="right-card" v-for="item in filteredRights" :key="item.id" hover-class="card-hover">
         <view class="right-icon" :style="{ background: item.bg }">
           <text class="right-icon-text">{{ item.icon }}</text>
         </view>
@@ -70,16 +76,16 @@ const currentCategory = ref('生活权益')
 const categories = ['生活权益', '出行权益', '娱乐权益', '教育权益']
 
 const rights = ref<Right[]>([
-  { id: 1, name: '美食8折优惠', desc: '指定餐饮商户消费享8折', icon: '🍜', bg: 'linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%)', category: '生活权益', status: 'available', statusText: '可领取' },
-  { id: 2, name: '超市满减券', desc: '满100减20，每月限领1次', icon: '🛒', bg: 'linear-gradient(135deg, #4F6EF7 0%, #7B9AFF 100%)', category: '生活权益', status: 'claimed', statusText: '已领取' },
-  { id: 3, name: '健身月卡折扣', desc: '合作健身房月卡7折优惠', icon: '💪', bg: 'linear-gradient(135deg, #2ECC71 0%, #58D68D 100%)', category: '生活权益', status: 'available', statusText: '可领取' },
-  { id: 4, name: '公交月卡8折', desc: '全市公交月卡享8折优惠', icon: '🚌', bg: 'linear-gradient(135deg, #4FC7F7 0%, #88D8FF 100%)', category: '出行权益', status: 'claimed', statusText: '已领取' },
-  { id: 5, name: '共享单车月卡', desc: '每月免费领取单车月卡1次', icon: '🚲', bg: 'linear-gradient(135deg, #2ECC71 0%, #58D68D 100%)', category: '出行权益', status: 'available', statusText: '可领取' },
-  { id: 6, name: '地铁优惠通道', desc: '高峰期快速通行权益', icon: '🚇', bg: 'linear-gradient(135deg, #9B59B6 0%, #C39BD3 100%)', category: '出行权益', status: 'used', statusText: '已使用' },
-  { id: 7, name: '电影票买一送一', desc: '每周三电影票买一送一', icon: '🎬', bg: 'linear-gradient(135deg, #F7854F 0%, #FFB088 100%)', category: '娱乐权益', status: 'available', statusText: '可领取' },
-  { id: 8, name: 'KTV欢唱券', desc: '指定KTV免费欢唱2小时', icon: '🎤', bg: 'linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%)', category: '娱乐权益', status: 'used', statusText: '已使用' },
-  { id: 9, name: '景区门票半价', desc: '合作景区门票享半价优惠', icon: '🏔️', bg: 'linear-gradient(135deg, #4F6EF7 0%, #7B9AFF 100%)', category: '娱乐权益', status: 'available', statusText: '可领取' },
-  { id: 10, name: '在线课程免费学', desc: '精选课程每月3次免费学习', icon: '📚', bg: 'linear-gradient(135deg, #9B59B6 0%, #C39BD3 100%)', category: '教育权益', status: 'available', statusText: '可领取' }
+  { id: 1, name: '美食8折优惠', desc: '指定餐饮商户消费享8折', icon: '🍜', bg: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)', category: '生活权益', status: 'available', statusText: '可领取' },
+  { id: 2, name: '超市满减券', desc: '满100减20，每月限领1次', icon: '🛒', bg: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', category: '生活权益', status: 'claimed', statusText: '已领取' },
+  { id: 3, name: '健身月卡折扣', desc: '合作健身房月卡7折优惠', icon: '💪', bg: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)', category: '生活权益', status: 'available', statusText: '可领取' },
+  { id: 4, name: '公交月卡8折', desc: '全市公交月卡享8折优惠', icon: '🚌', bg: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)', category: '出行权益', status: 'claimed', statusText: '已领取' },
+  { id: 5, name: '共享单车月卡', desc: '每月免费领取单车月卡1次', icon: '🚲', bg: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)', category: '出行权益', status: 'available', statusText: '可领取' },
+  { id: 6, name: '地铁优惠通道', desc: '高峰期快速通行权益', icon: '🚇', bg: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', category: '出行权益', status: 'used', statusText: '已使用' },
+  { id: 7, name: '电影票买一送一', desc: '每周三电影票买一送一', icon: '🎬', bg: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)', category: '娱乐权益', status: 'available', statusText: '可领取' },
+  { id: 8, name: 'KTV欢唱券', desc: '指定KTV免费欢唱2小时', icon: '🎤', bg: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)', category: '娱乐权益', status: 'used', statusText: '已使用' },
+  { id: 9, name: '景区门票半价', desc: '合作景区门票享半价优惠', icon: '🏔️', bg: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', category: '娱乐权益', status: 'available', statusText: '可领取' },
+  { id: 10, name: '在线课程免费学', desc: '精选课程每月3次免费学习', icon: '📚', bg: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)', category: '教育权益', status: 'available', statusText: '可领取' }
 ])
 
 const filteredRights = computed(() => {
@@ -97,20 +103,87 @@ const onUseRight = (item: Right) => {
 <style>
 .page {
   min-height: 100vh;
-  background-color: #F5F6FA;
+  background-color: #0f0f2d;
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80rpx);
+  z-index: 0;
+}
+
+.orb-1 {
+  width: 400rpx;
+  height: 400rpx;
+  background: #667eea;
+  opacity: 0.15;
+  top: -80rpx;
+  right: -100rpx;
+}
+
+.orb-2 {
+  width: 300rpx;
+  height: 300rpx;
+  background: #f093fb;
+  opacity: 0.1;
+  top: 350rpx;
+  left: -80rpx;
 }
 
 .card-wrap {
   padding: 24rpx;
+  position: relative;
+  z-index: 1;
 }
 
 .youth-card {
-  background: linear-gradient(135deg, #4F6EF7 0%, #3A56D4 50%, #7B9AFF 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
   border-radius: 24rpx;
   padding: 36rpx;
-  box-shadow: 0 12rpx 32rpx rgba(79, 110, 247, 0.3);
+  box-shadow: 0 12rpx 40rpx rgba(102, 126, 234, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60rpx);
+}
+
+.card-orb-1 {
+  width: 200rpx;
+  height: 200rpx;
+  background: #f093fb;
+  opacity: 0.4;
+  top: -60rpx;
+  right: -40rpx;
+}
+
+.card-orb-2 {
+  width: 160rpx;
+  height: 160rpx;
+  background: #4facfe;
+  opacity: 0.3;
+  bottom: -40rpx;
+  left: -30rpx;
+}
+
+.card-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300rpx;
+  height: 300rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  filter: blur(40rpx);
 }
 
 .card-top {
@@ -118,6 +191,8 @@ const onUseRight = (item: Right) => {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 40rpx;
+  position: relative;
+  z-index: 1;
 }
 
 .card-label {
@@ -135,6 +210,8 @@ const onUseRight = (item: Right) => {
 .card-body {
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 1;
 }
 
 .card-no {
@@ -168,9 +245,9 @@ const onUseRight = (item: Right) => {
 
 .category-scroll {
   white-space: nowrap;
-  background-color: #FFFFFF;
   padding: 16rpx 24rpx;
-  border-bottom: 1rpx solid #F0F0F0;
+  position: relative;
+  z-index: 1;
 }
 
 .category-tag {
@@ -179,17 +256,21 @@ const onUseRight = (item: Right) => {
   justify-content: center;
   padding: 12rpx 32rpx;
   border-radius: 32rpx;
-  background-color: #F0F2F5;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
   margin-right: 16rpx;
+  transition: all 0.3s;
 }
 
 .category-tag.active {
-  background-color: #4F6EF7;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-color: transparent;
+  box-shadow: 0 4rpx 16rpx rgba(102, 126, 234, 0.4);
 }
 
 .category-text {
   font-size: 26rpx;
-  color: #666666;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .category-text.active-text {
@@ -200,16 +281,25 @@ const onUseRight = (item: Right) => {
 .list-scroll {
   flex: 1;
   padding: 20rpx 24rpx;
+  position: relative;
+  z-index: 1;
 }
 
 .right-card {
   display: flex;
   align-items: center;
-  background-color: #FFFFFF;
-  border-radius: 20rpx;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  border-radius: 24rpx;
   padding: 24rpx;
   margin-bottom: 20rpx;
-  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(20px);
+  transition: all 0.3s;
+}
+
+.card-hover {
+  transform: scale(0.95);
+  opacity: 0.85;
 }
 
 .right-icon {
@@ -234,38 +324,47 @@ const onUseRight = (item: Right) => {
 .right-name {
   font-size: 28rpx;
   font-weight: 700;
-  color: #333333;
+  color: #FFFFFF;
 }
 
 .right-desc {
   font-size: 22rpx;
-  color: #999999;
+  color: rgba(255, 255, 255, 0.4);
   margin-top: 6rpx;
 }
 
 .right-status {
   font-size: 22rpx;
   margin-top: 8rpx;
-  color: #4F6EF7;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .right-status.used {
-  color: #CCCCCC;
+  background: rgba(255, 255, 255, 0.3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .right-status.available {
-  color: #2ECC71;
+  background: linear-gradient(135deg, #43e97b, #38f9d7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .right-btn {
   padding: 10rpx 24rpx;
-  background-color: #4F6EF7;
-  border-radius: 28rpx;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 40rpx;
+  box-shadow: 0 4rpx 20rpx rgba(102, 126, 234, 0.4);
   flex-shrink: 0;
 }
 
 .right-btn.disabled {
-  background-color: #E0E0E0;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  box-shadow: none;
 }
 
 .right-btn-text {
@@ -274,6 +373,6 @@ const onUseRight = (item: Right) => {
 }
 
 .right-btn-text.disabled {
-  color: #999999;
+  color: rgba(255, 255, 255, 0.4);
 }
 </style>

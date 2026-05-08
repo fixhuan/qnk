@@ -9,111 +9,143 @@
     {
       "path": "pages/agent/index",
       "style": {
-        "navigationBarTitleText": "智能助手"
+        "navigationBarTitleText": "智能助手",
+        "navigationBarBackgroundColor": "#0f0f2d",
+        "navigationBarTextStyle": "white"
       }
     },
     {
       "path": "pages/profile/index",
       "style": {
-        "navigationBarTitleText": "我的"
+        "navigationBarTitleText": "我的",
+        "navigationBarBackgroundColor": "#0f0f2d",
+        "navigationBarTextStyle": "white"
       }
     },
     {
       "path": "pages/detail/shop",
       "style": {
-        "navigationBarTitleText": "优惠商户"
+        "navigationBarTitleText": "优惠商户",
+        "navigationBarBackgroundColor": "#0f0f2d",
+        "navigationBarTextStyle": "white"
       }
     },
     {
       "path": "pages/detail/school",
       "style": {
-        "navigationBarTitleText": "学校"
+        "navigationBarTitleText": "学校",
+        "navigationBarBackgroundColor": "#0f0f2d",
+        "navigationBarTextStyle": "white"
       }
     },
     {
       "path": "pages/detail/apartment",
       "style": {
-        "navigationBarTitleText": "青年公寓"
+        "navigationBarTitleText": "青年公寓",
+        "navigationBarBackgroundColor": "#0f0f2d",
+        "navigationBarTextStyle": "white"
       }
     },
     {
       "path": "pages/detail/job",
       "style": {
-        "navigationBarTitleText": "就业"
+        "navigationBarTitleText": "就业",
+        "navigationBarBackgroundColor": "#0f0f2d",
+        "navigationBarTextStyle": "white"
       }
     },
     {
       "path": "pages/detail/startup",
       "style": {
-        "navigationBarTitleText": "创业"
+        "navigationBarTitleText": "创业",
+        "navigationBarBackgroundColor": "#0f0f2d",
+        "navigationBarTextStyle": "white"
       }
     },
     {
       "path": "pages/detail/social",
       "style": {
-        "navigationBarTitleText": "社交"
+        "navigationBarTitleText": "社交",
+        "navigationBarBackgroundColor": "#0f0f2d",
+        "navigationBarTextStyle": "white"
       }
     },
     {
       "path": "pages/detail/volunteer",
       "style": {
-        "navigationBarTitleText": "志愿者"
+        "navigationBarTitleText": "志愿者",
+        "navigationBarBackgroundColor": "#0f0f2d",
+        "navigationBarTextStyle": "white"
       }
     },
     {
       "path": "pages/detail/learn",
       "style": {
-        "navigationBarTitleText": "学习"
+        "navigationBarTitleText": "学习",
+        "navigationBarBackgroundColor": "#0f0f2d",
+        "navigationBarTextStyle": "white"
       }
     },
     {
       "path": "pages/detail/rights",
       "style": {
-        "navigationBarTitleText": "权益"
+        "navigationBarTitleText": "权益",
+        "navigationBarBackgroundColor": "#0f0f2d",
+        "navigationBarTextStyle": "white"
       }
     },
     {
       "path": "pages/profile/orders",
       "style": {
-        "navigationBarTitleText": "我的订单"
+        "navigationBarTitleText": "我的订单",
+        "navigationBarBackgroundColor": "#0f0f2d",
+        "navigationBarTextStyle": "white"
       }
     },
     {
       "path": "pages/profile/favorites",
       "style": {
-        "navigationBarTitleText": "我的收藏"
+        "navigationBarTitleText": "我的收藏",
+        "navigationBarBackgroundColor": "#0f0f2d",
+        "navigationBarTextStyle": "white"
       }
     },
     {
       "path": "pages/profile/courses",
       "style": {
-        "navigationBarTitleText": "我的课程"
+        "navigationBarTitleText": "我的课程",
+        "navigationBarBackgroundColor": "#0f0f2d",
+        "navigationBarTextStyle": "white"
       }
     },
     {
       "path": "pages/profile/about",
       "style": {
-        "navigationBarTitleText": "关于我们"
+        "navigationBarTitleText": "关于我们",
+        "navigationBarBackgroundColor": "#0f0f2d",
+        "navigationBarTextStyle": "white"
       }
     },
     {
       "path": "pages/profile/settings",
       "style": {
-        "navigationBarTitleText": "设置"
+        "navigationBarTitleText": "设置",
+        "navigationBarBackgroundColor": "#0f0f2d",
+        "navigationBarTextStyle": "white"
       }
     }
   ],
   "globalStyle": {
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "青年卡",
-    "navigationBarBackgroundColor": "#4F6EF7",
-    "backgroundColor": "#F8F8F8"
+    "navigationBarBackgroundColor": "#0f0f2d",
+    "backgroundColor": "#0f0f2d"
   },
   "tabBar": {
-    "color": "#999999",
-    "selectedColor": "#4F6EF7",
+    "color": "rgba(255,255,255,0.4)",
+    "selectedColor": "#7c5cfc",
     "borderStyle": "black",
-    "backgroundColor": "#FFFFFF",
+    "backgroundColor": "#0f0f2d",
     "list": [
       {
         "pagePath": "pages/index/index",

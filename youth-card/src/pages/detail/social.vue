@@ -1,7 +1,11 @@
 <template>
   <view class="page">
+    <view class="orb orb-1"></view>
+    <view class="orb orb-2"></view>
+
     <view class="banner-wrap">
-      <view class="banner" :style="{ background: 'linear-gradient(135deg, #4F6EF7 0%, #7B9AFF 100%)' }">
+      <view class="banner">
+        <view class="banner-orb"></view>
         <text class="banner-title">🎉 青年社交季</text>
         <text class="banner-desc">认识新朋友，发现新世界</text>
       </view>
@@ -21,7 +25,7 @@
 
     <scroll-view class="list-scroll" scroll-y>
       <template v-if="currentCategory === '活动'">
-        <view class="activity-card" v-for="item in activities" :key="item.id">
+        <view class="activity-card" v-for="item in activities" :key="item.id" hover-class="card-hover">
           <view class="activity-cover" :style="{ background: item.bg }"></view>
           <view class="activity-info">
             <text class="activity-name">{{ item.name }}</text>
@@ -38,7 +42,7 @@
       </template>
 
       <template v-if="currentCategory === '圈子'">
-        <view class="circle-card" v-for="item in circles" :key="item.id">
+        <view class="circle-card" v-for="item in circles" :key="item.id" hover-class="card-hover">
           <view class="circle-info">
             <view class="circle-avatar" :style="{ background: item.bg }"></view>
             <view class="circle-detail">
@@ -57,7 +61,7 @@
       </template>
 
       <template v-if="currentCategory === '交友'">
-        <view class="friend-card" v-for="item in friends" :key="item.id">
+        <view class="friend-card" v-for="item in friends" :key="item.id" hover-class="card-hover">
           <view class="friend-info">
             <view class="friend-avatar" :style="{ background: item.bg }"></view>
             <view class="friend-detail">
@@ -110,29 +114,29 @@ const currentCategory = ref('活动')
 const categories = ['活动', '圈子', '交友']
 
 const activities = ref<Activity[]>([
-  { id: 1, name: '周末徒步登山', time: '5月10日 08:00', location: '城郊森林公园', people: 32, bg: 'linear-gradient(135deg, #2ECC71 0%, #58D68D 100%)', joined: false },
-  { id: 2, name: '读书分享会', time: '5月11日 14:00', location: '青年活动中心', people: 18, bg: 'linear-gradient(135deg, #4F6EF7 0%, #7B9AFF 100%)', joined: true },
-  { id: 3, name: '桌游之夜', time: '5月12日 19:00', location: '星空桌游吧', people: 24, bg: 'linear-gradient(135deg, #9B59B6 0%, #C39BD3 100%)', joined: false },
-  { id: 4, name: '摄影采风行', time: '5月15日 09:00', location: '城市文化广场', people: 15, bg: 'linear-gradient(135deg, #F7854F 0%, #FFB088 100%)', joined: false },
-  { id: 5, name: '飞盘运动趴', time: '5月16日 16:00', location: '体育公园', people: 28, bg: 'linear-gradient(135deg, #4FC7F7 0%, #88D8FF 100%)', joined: false },
-  { id: 6, name: '音乐Live夜', time: '5月18日 20:00', location: 'LiveHouse', people: 45, bg: 'linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%)', joined: false }
+  { id: 1, name: '周末徒步登山', time: '5月10日 08:00', location: '城郊森林公园', people: 32, bg: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)', joined: false },
+  { id: 2, name: '读书分享会', time: '5月11日 14:00', location: '青年活动中心', people: 18, bg: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', joined: true },
+  { id: 3, name: '桌游之夜', time: '5月12日 19:00', location: '星空桌游吧', people: 24, bg: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)', joined: false },
+  { id: 4, name: '摄影采风行', time: '5月15日 09:00', location: '城市文化广场', people: 15, bg: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)', joined: false },
+  { id: 5, name: '飞盘运动趴', time: '5月16日 16:00', location: '体育公园', people: 28, bg: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)', joined: false },
+  { id: 6, name: '音乐Live夜', time: '5月18日 20:00', location: 'LiveHouse', people: 45, bg: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', joined: false }
 ])
 
 const circles = ref<Circle[]>([
-  { id: 1, name: '读书爱好者', members: 256, topics: 89, bg: 'linear-gradient(135deg, #4F6EF7 0%, #7B9AFF 100%)', joined: true },
-  { id: 2, name: '跑步达人', members: 432, topics: 156, bg: 'linear-gradient(135deg, #2ECC71 0%, #58D68D 100%)', joined: false },
-  { id: 3, name: '摄影圈', members: 189, topics: 67, bg: 'linear-gradient(135deg, #F7854F 0%, #FFB088 100%)', joined: false },
-  { id: 4, name: '美食探店', members: 367, topics: 203, bg: 'linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%)', joined: false },
-  { id: 5, name: '编程交流', members: 198, topics: 112, bg: 'linear-gradient(135deg, #9B59B6 0%, #C39BD3 100%)', joined: true }
+  { id: 1, name: '读书爱好者', members: 256, topics: 89, bg: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', joined: true },
+  { id: 2, name: '跑步达人', members: 432, topics: 156, bg: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)', joined: false },
+  { id: 3, name: '摄影圈', members: 189, topics: 67, bg: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)', joined: false },
+  { id: 4, name: '美食探店', members: 367, topics: 203, bg: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)', joined: false },
+  { id: 5, name: '编程交流', members: 198, topics: 112, bg: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)', joined: true }
 ])
 
 const friends = ref<Friend[]>([
-  { id: 1, name: '小明', interests: ['篮球', '摄影', '旅行'], bg: 'linear-gradient(135deg, #4F6EF7 0%, #7B9AFF 100%)', greeted: false },
-  { id: 2, name: '小红', interests: ['读书', '瑜伽', '烘焙'], bg: 'linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%)', greeted: true },
-  { id: 3, name: '阿杰', interests: ['编程', '游戏', '咖啡'], bg: 'linear-gradient(135deg, #2ECC71 0%, #58D68D 100%)', greeted: false },
-  { id: 4, name: '小美', interests: ['绘画', '音乐', '猫'], bg: 'linear-gradient(135deg, #9B59B6 0%, #C39BD3 100%)', greeted: false },
-  { id: 5, name: '大伟', interests: ['健身', '电影', '美食'], bg: 'linear-gradient(135deg, #F7854F 0%, #FFB088 100%)', greeted: false },
-  { id: 6, name: '小琳', interests: ['舞蹈', '手工', '旅行'], bg: 'linear-gradient(135deg, #4FC7F7 0%, #88D8FF 100%)', greeted: false }
+  { id: 1, name: '小明', interests: ['篮球', '摄影', '旅行'], bg: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', greeted: false },
+  { id: 2, name: '小红', interests: ['读书', '瑜伽', '烘焙'], bg: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)', greeted: true },
+  { id: 3, name: '阿杰', interests: ['编程', '游戏', '咖啡'], bg: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)', greeted: false },
+  { id: 4, name: '小美', interests: ['绘画', '音乐', '猫'], bg: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)', greeted: false },
+  { id: 5, name: '大伟', interests: ['健身', '电影', '美食'], bg: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)', greeted: false },
+  { id: 6, name: '小琳', interests: ['舞蹈', '手工', '旅行'], bg: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)', greeted: false }
 ])
 
 const onJoinActivity = (item: Activity) => {
@@ -159,22 +163,66 @@ const onGreet = (item: Friend) => {
 <style>
 .page {
   min-height: 100vh;
-  background-color: #F5F6FA;
+  background-color: #0f0f2d;
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80rpx);
+  z-index: 0;
+}
+
+.orb-1 {
+  width: 400rpx;
+  height: 400rpx;
+  background: #f093fb;
+  opacity: 0.12;
+  top: -100rpx;
+  left: -80rpx;
+}
+
+.orb-2 {
+  width: 300rpx;
+  height: 300rpx;
+  background: #4facfe;
+  opacity: 0.1;
+  top: 350rpx;
+  right: -100rpx;
 }
 
 .banner-wrap {
   padding: 24rpx;
+  position: relative;
+  z-index: 1;
 }
 
 .banner {
-  border-radius: 20rpx;
+  border-radius: 24rpx;
   padding: 40rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0 8rpx 24rpx rgba(79, 110, 247, 0.2);
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  box-shadow: 0 8rpx 32rpx rgba(102, 126, 234, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.banner-orb {
+  position: absolute;
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 50%;
+  background: #f093fb;
+  opacity: 0.3;
+  filter: blur(60rpx);
+  top: -40rpx;
+  right: -40rpx;
 }
 
 .banner-title {
@@ -182,18 +230,22 @@ const onGreet = (item: Friend) => {
   font-weight: 700;
   color: #FFFFFF;
   margin-bottom: 8rpx;
+  position: relative;
+  z-index: 1;
 }
 
 .banner-desc {
   font-size: 26rpx;
   color: rgba(255, 255, 255, 0.85);
+  position: relative;
+  z-index: 1;
 }
 
 .category-scroll {
   white-space: nowrap;
-  background-color: #FFFFFF;
   padding: 16rpx 24rpx;
-  border-bottom: 1rpx solid #F0F0F0;
+  position: relative;
+  z-index: 1;
 }
 
 .category-tag {
@@ -202,17 +254,21 @@ const onGreet = (item: Friend) => {
   justify-content: center;
   padding: 12rpx 32rpx;
   border-radius: 32rpx;
-  background-color: #F0F2F5;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
   margin-right: 16rpx;
+  transition: all 0.3s;
 }
 
 .category-tag.active {
-  background-color: #4F6EF7;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-color: transparent;
+  box-shadow: 0 4rpx 16rpx rgba(102, 126, 234, 0.4);
 }
 
 .category-text {
   font-size: 26rpx;
-  color: #666666;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .category-text.active-text {
@@ -223,14 +279,23 @@ const onGreet = (item: Friend) => {
 .list-scroll {
   flex: 1;
   padding: 20rpx 24rpx;
+  position: relative;
+  z-index: 1;
 }
 
 .activity-card {
-  background-color: #FFFFFF;
-  border-radius: 20rpx;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  border-radius: 24rpx;
   padding: 24rpx;
   margin-bottom: 20rpx;
-  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(20px);
+  transition: all 0.3s;
+}
+
+.card-hover {
+  transform: scale(0.95);
+  opacity: 0.85;
 }
 
 .activity-cover {
@@ -246,18 +311,18 @@ const onGreet = (item: Friend) => {
 .activity-name {
   font-size: 32rpx;
   font-weight: 700;
-  color: #333333;
+  color: #FFFFFF;
 }
 
 .activity-time {
   font-size: 24rpx;
-  color: #666666;
+  color: rgba(255, 255, 255, 0.6);
   margin-top: 10rpx;
 }
 
 .activity-location {
   font-size: 24rpx;
-  color: #666666;
+  color: rgba(255, 255, 255, 0.6);
   margin-top: 6rpx;
 }
 
@@ -270,17 +335,20 @@ const onGreet = (item: Friend) => {
 
 .activity-people {
   font-size: 24rpx;
-  color: #999999;
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .join-btn {
   padding: 10rpx 32rpx;
-  background-color: #4F6EF7;
-  border-radius: 28rpx;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 40rpx;
+  box-shadow: 0 4rpx 20rpx rgba(102, 126, 234, 0.4);
 }
 
 .join-btn.joined {
-  background-color: #E0E0E0;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  box-shadow: none;
 }
 
 .join-btn-text {
@@ -289,18 +357,20 @@ const onGreet = (item: Friend) => {
 }
 
 .join-btn-text.joined {
-  color: #999999;
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .circle-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #FFFFFF;
-  border-radius: 20rpx;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  border-radius: 24rpx;
   padding: 24rpx;
   margin-bottom: 20rpx;
-  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(20px);
+  transition: all 0.3s;
 }
 
 .circle-info {
@@ -323,7 +393,7 @@ const onGreet = (item: Friend) => {
 .circle-name {
   font-size: 30rpx;
   font-weight: 700;
-  color: #333333;
+  color: #FFFFFF;
 }
 
 .circle-stats {
@@ -334,12 +404,12 @@ const onGreet = (item: Friend) => {
 
 .circle-stat {
   font-size: 22rpx;
-  color: #999999;
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .circle-stat-dot {
   font-size: 22rpx;
-  color: #CCCCCC;
+  color: rgba(255, 255, 255, 0.2);
   margin: 0 8rpx;
 }
 
@@ -347,11 +417,13 @@ const onGreet = (item: Friend) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #FFFFFF;
-  border-radius: 20rpx;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  border-radius: 24rpx;
   padding: 24rpx;
   margin-bottom: 20rpx;
-  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(20px);
+  transition: all 0.3s;
 }
 
 .friend-info {
@@ -375,7 +447,7 @@ const onGreet = (item: Friend) => {
 .friend-name {
   font-size: 30rpx;
   font-weight: 700;
-  color: #333333;
+  color: #FFFFFF;
 }
 
 .friend-tags {
@@ -387,21 +459,25 @@ const onGreet = (item: Friend) => {
 
 .friend-tag {
   font-size: 20rpx;
-  color: #4F6EF7;
-  background-color: rgba(79, 110, 247, 0.1);
+  color: rgba(255, 255, 255, 0.6);
+  background: transparent;
+  border: 1rpx solid rgba(102, 126, 234, 0.4);
   padding: 4rpx 12rpx;
   border-radius: 12rpx;
 }
 
 .greet-btn {
   padding: 10rpx 24rpx;
-  background-color: #4F6EF7;
-  border-radius: 28rpx;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 40rpx;
+  box-shadow: 0 4rpx 20rpx rgba(102, 126, 234, 0.4);
   flex-shrink: 0;
 }
 
 .greet-btn.greeted {
-  background-color: #E0E0E0;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  box-shadow: none;
 }
 
 .greet-btn-text {
@@ -410,6 +486,6 @@ const onGreet = (item: Friend) => {
 }
 
 .greet-btn-text.greeted {
-  color: #999999;
+  color: rgba(255, 255, 255, 0.4);
 }
 </style>

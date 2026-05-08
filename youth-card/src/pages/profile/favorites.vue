@@ -1,5 +1,13 @@
 <template>
   <view class="page">
+    <view class="nav-bar">
+      <view class="nav-back" hover-class="nav-back-active" @tap="goBack">
+        <text class="nav-back-icon">‹</text>
+      </view>
+      <text class="nav-title">我的收藏</text>
+      <view style="width: 60rpx;"></view>
+    </view>
+
     <view class="tabs">
       <view
         v-for="(tab, index) in tabs"
@@ -9,7 +17,6 @@
         @tap="switchTab(index)"
       >
         <text class="tab-text" :class="{ 'tab-text-active': currentTab === index }">{{ tab }}</text>
-        <view v-if="currentTab === index" class="tab-line"></view>
       </view>
     </view>
 
@@ -76,6 +83,10 @@ const switchTab = (index: number) => {
   currentTab.value = index
 }
 
+const goBack = () => {
+  uni.navigateBack()
+}
+
 const onUnfav = (item: Favorite, index: number) => {
   uni.showModal({
     title: '提示',
@@ -94,62 +105,94 @@ const onUnfav = (item: Favorite, index: number) => {
 <style scoped>
 .page {
   min-height: 100vh;
-  background-color: #F5F6FA;
+  background-color: #0f0f2d;
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60rpx 24rpx 16rpx;
+  background-color: #0f0f2d;
+}
+
+.nav-back {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-back-active {
+  opacity: 0.6;
+}
+
+.nav-back-icon {
+  font-size: 44rpx;
+  color: #FFFFFF;
+}
+
+.nav-title {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #FFFFFF;
 }
 
 .tabs {
   display: flex;
-  background-color: #FFFFFF;
-  padding: 0 8rpx;
-  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+  padding: 16rpx 24rpx;
+  gap: 12rpx;
 }
 
 .tab-item {
   flex: 1;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  padding: 24rpx 0 16rpx;
-  position: relative;
+  justify-content: center;
+  padding: 16rpx 0;
+  border-radius: 32rpx;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+}
+
+.tab-active {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-color: transparent;
+  box-shadow: 0 4rpx 20rpx rgba(102, 126, 234, 0.4);
 }
 
 .tab-text {
-  font-size: 28rpx;
-  color: #666666;
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .tab-text-active {
-  color: #4F6EF7;
+  color: #FFFFFF;
   font-weight: 600;
 }
 
-.tab-line {
-  width: 40rpx;
-  height: 6rpx;
-  background-color: #4F6EF7;
-  border-radius: 3rpx;
-  margin-top: 8rpx;
-}
-
 .fav-list {
-  height: calc(100vh - 80rpx);
-  padding: 24rpx;
+  height: calc(100vh - 180rpx);
+  padding: 0 24rpx 24rpx;
 }
 
 .fav-card {
   display: flex;
   align-items: center;
-  background-color: #FFFFFF;
-  border-radius: 20rpx;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border-radius: 24rpx;
   padding: 24rpx;
   margin-bottom: 20rpx;
-  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.06);
 }
 
 .fav-thumb {
   width: 100rpx;
   height: 100rpx;
-  border-radius: 16rpx;
+  border-radius: 20rpx;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -171,7 +214,7 @@ const onUnfav = (item: Favorite, index: number) => {
 .fav-name {
   font-size: 28rpx;
   font-weight: 600;
-  color: #333333;
+  color: #FFFFFF;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -179,7 +222,7 @@ const onUnfav = (item: Favorite, index: number) => {
 
 .fav-desc {
   font-size: 24rpx;
-  color: #999999;
+  color: rgba(255, 255, 255, 0.4);
   margin-top: 8rpx;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -189,19 +232,20 @@ const onUnfav = (item: Favorite, index: number) => {
 .fav-unfav {
   flex-shrink: 0;
   padding: 10rpx 20rpx;
-  border: 1rpx solid #CCCCCC;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.15);
   border-radius: 24rpx;
   margin-left: 16rpx;
 }
 
 .fav-unfav-active {
-  background-color: #F5F6FA;
-  transform: scale(0.96);
+  transform: scale(0.95);
+  opacity: 0.7;
 }
 
 .fav-unfav-text {
   font-size: 22rpx;
-  color: #666666;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .empty {
@@ -218,6 +262,6 @@ const onUnfav = (item: Favorite, index: number) => {
 
 .empty-text {
   font-size: 28rpx;
-  color: #999999;
+  color: rgba(255, 255, 255, 0.3);
 }
 </style>

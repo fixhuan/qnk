@@ -1,5 +1,8 @@
 <template>
   <view class="page">
+    <view class="orb orb-1"></view>
+    <view class="orb orb-2"></view>
+
     <view class="search-bar">
       <view class="search-input-wrap">
         <text class="search-icon">🔍</text>
@@ -20,7 +23,7 @@
     </scroll-view>
 
     <scroll-view class="list-scroll" scroll-y>
-      <view class="job-card" v-for="item in filteredJobs" :key="item.id">
+      <view class="job-card" v-for="item in filteredJobs" :key="item.id" hover-class="card-hover">
         <view class="job-header">
           <text class="job-name">{{ item.name }}</text>
           <text class="job-salary">{{ item.salary }}</text>
@@ -88,22 +91,52 @@ const onApply = (item: Job) => {
 <style>
 .page {
   min-height: 100vh;
-  background-color: #F5F6FA;
+  background-color: #0f0f2d;
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80rpx);
+  z-index: 0;
+}
+
+.orb-1 {
+  width: 400rpx;
+  height: 400rpx;
+  background: #667eea;
+  opacity: 0.15;
+  top: -80rpx;
+  left: -120rpx;
+}
+
+.orb-2 {
+  width: 300rpx;
+  height: 300rpx;
+  background: #f5576c;
+  opacity: 0.1;
+  top: 280rpx;
+  right: -80rpx;
 }
 
 .search-bar {
   padding: 20rpx 24rpx;
-  background-color: #FFFFFF;
+  position: relative;
+  z-index: 1;
 }
 
 .search-input-wrap {
   display: flex;
   align-items: center;
-  background-color: #F5F6FA;
-  border-radius: 36rpx;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  border-radius: 40rpx;
   padding: 16rpx 24rpx;
+  backdrop-filter: blur(20px);
 }
 
 .search-icon {
@@ -114,19 +147,19 @@ const onApply = (item: Job) => {
 .search-input {
   flex: 1;
   font-size: 28rpx;
-  color: #333333;
+  color: #FFFFFF;
 }
 
 .search-placeholder {
-  color: #999999;
+  color: rgba(255, 255, 255, 0.4);
   font-size: 28rpx;
 }
 
 .category-scroll {
   white-space: nowrap;
-  background-color: #FFFFFF;
   padding: 16rpx 24rpx;
-  border-bottom: 1rpx solid #F0F0F0;
+  position: relative;
+  z-index: 1;
 }
 
 .category-tag {
@@ -135,17 +168,21 @@ const onApply = (item: Job) => {
   justify-content: center;
   padding: 12rpx 32rpx;
   border-radius: 32rpx;
-  background-color: #F0F2F5;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
   margin-right: 16rpx;
+  transition: all 0.3s;
 }
 
 .category-tag.active {
-  background-color: #4F6EF7;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-color: transparent;
+  box-shadow: 0 4rpx 16rpx rgba(102, 126, 234, 0.4);
 }
 
 .category-text {
   font-size: 26rpx;
-  color: #666666;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .category-text.active-text {
@@ -156,14 +193,23 @@ const onApply = (item: Job) => {
 .list-scroll {
   flex: 1;
   padding: 20rpx 24rpx;
+  position: relative;
+  z-index: 1;
 }
 
 .job-card {
-  background-color: #FFFFFF;
-  border-radius: 20rpx;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  border-radius: 24rpx;
   padding: 28rpx;
   margin-bottom: 20rpx;
-  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(20px);
+  transition: all 0.3s;
+}
+
+.card-hover {
+  transform: scale(0.95);
+  opacity: 0.85;
 }
 
 .job-header {
@@ -175,18 +221,20 @@ const onApply = (item: Job) => {
 .job-name {
   font-size: 32rpx;
   font-weight: 700;
-  color: #333333;
+  color: #FFFFFF;
 }
 
 .job-salary {
   font-size: 30rpx;
   font-weight: 700;
-  color: #FF6B6B;
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .job-company {
   font-size: 26rpx;
-  color: #666666;
+  color: rgba(255, 255, 255, 0.6);
   margin-top: 12rpx;
 }
 
@@ -199,8 +247,9 @@ const onApply = (item: Job) => {
 
 .job-tag {
   font-size: 22rpx;
-  color: #4F6EF7;
-  background-color: rgba(79, 110, 247, 0.1);
+  color: rgba(255, 255, 255, 0.6);
+  background: transparent;
+  border: 1rpx solid rgba(102, 126, 234, 0.4);
   padding: 6rpx 16rpx;
   border-radius: 16rpx;
 }
@@ -214,17 +263,20 @@ const onApply = (item: Job) => {
 
 .job-meta {
   font-size: 22rpx;
-  color: #999999;
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .apply-btn {
   padding: 10rpx 36rpx;
-  background-color: #4F6EF7;
-  border-radius: 28rpx;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 40rpx;
+  box-shadow: 0 4rpx 20rpx rgba(102, 126, 234, 0.4);
 }
 
 .apply-btn.applied {
-  background-color: #E0E0E0;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  box-shadow: none;
 }
 
 .apply-btn-text {
@@ -233,6 +285,6 @@ const onApply = (item: Job) => {
 }
 
 .apply-btn-text.applied {
-  color: #999999;
+  color: rgba(255, 255, 255, 0.4);
 }
 </style>

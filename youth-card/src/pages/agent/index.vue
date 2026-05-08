@@ -1,6 +1,8 @@
 <template>
   <view class="agent-page">
     <view class="ai-header">
+      <view class="header-orb header-orb-1"></view>
+      <view class="header-orb header-orb-2"></view>
       <view class="ai-avatar">
         <text class="ai-avatar-icon">🤖</text>
       </view>
@@ -22,8 +24,12 @@
           hover-class="func-card-active"
           @tap="onFuncTap(func)"
         >
-          <text class="func-icon">{{ func.icon }}</text>
-          <text class="func-name">{{ func.name }}</text>
+          <view class="func-card-border" :style="{ background: func.gradient }">
+            <view class="func-card-inner">
+              <text class="func-icon">{{ func.icon }}</text>
+              <text class="func-name">{{ func.name }}</text>
+            </view>
+          </view>
         </view>
       </view>
     </scroll-view>
@@ -65,10 +71,7 @@
             class="message-bubble"
             :class="msg.role === 'user' ? 'bubble-user' : 'bubble-ai'"
           >
-            <text
-              class="message-text"
-              :class="msg.role === 'user' ? 'text-user' : 'text-ai'"
-            >{{ msg.content }}</text>
+            <text class="message-text">{{ msg.content }}</text>
           </view>
           <text class="message-time">{{ msg.time }}</text>
         </view>
@@ -98,6 +101,7 @@
           class="input-box"
           v-model="inputText"
           placeholder="请输入你的问题..."
+          placeholder-class="input-placeholder"
           confirm-type="send"
           @confirm="sendMessage"
         />
@@ -122,10 +126,10 @@ interface Message {
 }
 
 const funcList = ref([
-  { icon: '📋', name: '政策查询', keyword: '政策' },
-  { icon: '🏠', name: '租房助手', keyword: '租房' },
-  { icon: '💼', name: '求职指导', keyword: '求职' },
-  { icon: '🎓', name: '学习规划', keyword: '学习' }
+  { icon: '📋', name: '政策查询', keyword: '政策', gradient: 'linear-gradient(135deg, #667eea, #764ba2)' },
+  { icon: '🏠', name: '租房助手', keyword: '租房', gradient: 'linear-gradient(135deg, #4facfe, #00f2fe)' },
+  { icon: '💼', name: '求职指导', keyword: '求职', gradient: 'linear-gradient(135deg, #f093fb, #f5576c)' },
+  { icon: '🎓', name: '学习规划', keyword: '学习', gradient: 'linear-gradient(135deg, #43e97b, #38f9d7)' }
 ])
 
 const quickTags = ref([
@@ -228,66 +232,104 @@ const onVoiceTap = () => {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: #F5F6FA;
+  background-color: #0f0f2d;
 }
 
 .ai-header {
+  position: relative;
   display: flex;
   align-items: center;
-  padding: 20rpx 32rpx;
-  background-color: #FFFFFF;
+  padding: 60rpx 32rpx 24rpx;
+  background-color: #0f0f2d;
+  overflow: hidden;
+}
+
+.header-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80rpx);
+}
+
+.header-orb-1 {
+  width: 300rpx;
+  height: 300rpx;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  opacity: 0.3;
+  top: -100rpx;
+  left: -60rpx;
+}
+
+.header-orb-2 {
+  width: 200rpx;
+  height: 200rpx;
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+  opacity: 0.2;
+  top: -40rpx;
+  right: -40rpx;
 }
 
 .ai-avatar {
-  width: 60rpx;
-  height: 60rpx;
+  width: 80rpx;
+  height: 80rpx;
   border-radius: 50%;
-  background: linear-gradient(135deg, #4F6EF7, #7B93FA);
+  background: linear-gradient(135deg, #667eea, #764ba2);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  box-shadow: 0 0 30rpx rgba(124, 92, 252, 0.5);
 }
 
 .ai-avatar-icon {
-  font-size: 32rpx;
+  font-size: 40rpx;
 }
 
 .ai-info {
-  margin-left: 20rpx;
+  margin-left: 24rpx;
   display: flex;
   flex-direction: column;
 }
 
 .ai-name {
-  font-size: 30rpx;
-  font-weight: 600;
-  color: #333333;
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #FFFFFF;
 }
 
 .ai-status {
   display: flex;
   align-items: center;
-  margin-top: 4rpx;
+  margin-top: 6rpx;
 }
 
 .status-dot {
-  width: 12rpx;
-  height: 12rpx;
+  width: 14rpx;
+  height: 14rpx;
   border-radius: 50%;
-  background-color: #4CD964;
-  margin-right: 8rpx;
+  background-color: #43e97b;
+  margin-right: 10rpx;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(67, 233, 123, 0.6);
+  }
+  50% {
+    opacity: 0.8;
+    box-shadow: 0 0 0 10rpx rgba(67, 233, 123, 0);
+  }
 }
 
 .status-text {
-  font-size: 22rpx;
-  color: #4CD964;
+  font-size: 24rpx;
+  color: #43e97b;
 }
 
 .func-scroll {
-  background-color: #FFFFFF;
+  background-color: #0f0f2d;
   padding-bottom: 20rpx;
-  border-bottom: 1rpx solid #F0F0F5;
 }
 
 .func-list {
@@ -298,19 +340,33 @@ const onVoiceTap = () => {
 
 .func-card {
   flex-shrink: 0;
+  border-radius: 24rpx;
+  overflow: hidden;
+}
+
+.func-card-border {
+  padding: 2rpx;
+  border-radius: 24rpx;
+}
+
+.func-card-inner {
+  background: rgba(15, 15, 45, 0.9);
+  border-radius: 22rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 150rpx;
+  width: 160rpx;
   height: 120rpx;
-  background-color: #F5F6FA;
-  border-radius: 20rpx;
+  backdrop-filter: blur(20px);
 }
 
-.func-card-active {
-  background-color: #EEF1FF;
-  transform: scale(0.96);
+.func-card-active .func-card-inner {
+  background: rgba(102, 126, 234, 0.15);
+}
+
+.func-card-active .func-card-border {
+  box-shadow: 0 0 20rpx rgba(102, 126, 234, 0.4);
 }
 
 .func-icon {
@@ -320,7 +376,7 @@ const onVoiceTap = () => {
 
 .func-name {
   font-size: 22rpx;
-  color: #333333;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .message-list {
@@ -341,22 +397,24 @@ const onVoiceTap = () => {
 
 .quick-tag {
   flex-shrink: 0;
-  background-color: #EEF1FF;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
   border-radius: 32rpx;
   padding: 12rpx 28rpx;
+  backdrop-filter: blur(20px);
 }
 
 .quick-tag-active {
-  background-color: #4F6EF7;
-}
-
-.quick-tag-active .quick-tag-text {
-  color: #FFFFFF;
+  transform: scale(0.95);
+  opacity: 0.7;
 }
 
 .quick-tag-text {
   font-size: 24rpx;
-  color: #4F6EF7;
+  background: linear-gradient(135deg, #667eea, #f093fb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   white-space: nowrap;
 }
 
@@ -375,18 +433,19 @@ const onVoiceTap = () => {
 }
 
 .msg-avatar {
-  width: 60rpx;
-  height: 60rpx;
+  width: 64rpx;
+  height: 64rpx;
   border-radius: 50%;
-  background: linear-gradient(135deg, #4F6EF7, #7B93FA);
+  background: linear-gradient(135deg, #667eea, #764ba2);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  box-shadow: 0 0 20rpx rgba(124, 92, 252, 0.3);
 }
 
 .msg-avatar-icon {
-  font-size: 28rpx;
+  font-size: 30rpx;
 }
 
 .msg-content {
@@ -402,36 +461,32 @@ const onVoiceTap = () => {
 
 .message-bubble {
   padding: 20rpx 28rpx;
-  border-radius: 20rpx;
+  border-radius: 24rpx;
   word-break: break-all;
 }
 
 .bubble-user {
-  background-color: #4F6EF7;
+  background: linear-gradient(135deg, #667eea, #764ba2);
   border-top-right-radius: 4rpx;
+  box-shadow: 0 4rpx 20rpx rgba(102, 126, 234, 0.3);
 }
 
 .bubble-ai {
-  background-color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
   border-top-left-radius: 4rpx;
 }
 
 .message-text {
   font-size: 28rpx;
   line-height: 1.7;
-}
-
-.text-user {
   color: #FFFFFF;
-}
-
-.text-ai {
-  color: #333333;
 }
 
 .message-time {
   font-size: 20rpx;
-  color: #999999;
+  color: rgba(255, 255, 255, 0.3);
   margin-top: 8rpx;
 }
 
@@ -442,14 +497,14 @@ const onVoiceTap = () => {
 .typing-indicator {
   display: flex;
   align-items: center;
-  gap: 8rpx;
+  gap: 10rpx;
 }
 
 .typing-dot {
-  width: 12rpx;
-  height: 12rpx;
+  width: 14rpx;
+  height: 14rpx;
   border-radius: 50%;
-  background-color: #999999;
+  background: linear-gradient(135deg, #667eea, #764ba2);
 }
 
 .dot1 {
@@ -480,26 +535,33 @@ const onVoiceTap = () => {
   align-items: center;
   padding: 16rpx 24rpx;
   padding-bottom: calc(16rpx + env(safe-area-inset-bottom));
-  background-color: #FFFFFF;
-  box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.05);
+  background: rgba(15, 15, 45, 0.95);
+  border-top: 1rpx solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
 }
 
 .input-wrapper {
   flex: 1;
   display: flex;
   align-items: center;
-  background-color: #F5F6FA;
-  border-radius: 36rpx;
-  padding: 0 16rpx;
-  height: 72rpx;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  border-radius: 40rpx;
+  padding: 0 20rpx;
+  height: 76rpx;
+  backdrop-filter: blur(20px);
 }
 
 .input-box {
   flex: 1;
-  height: 72rpx;
+  height: 76rpx;
   font-size: 28rpx;
-  color: #333333;
+  color: #FFFFFF;
   background-color: transparent;
+}
+
+.input-placeholder {
+  color: rgba(255, 255, 255, 0.3);
 }
 
 .voice-btn {
@@ -509,30 +571,34 @@ const onVoiceTap = () => {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
 }
 
 .voice-btn-active {
-  background-color: #E8E8E8;
+  transform: scale(0.95);
+  opacity: 0.7;
 }
 
 .voice-icon {
-  font-size: 32rpx;
+  font-size: 28rpx;
 }
 
 .send-btn {
   margin-left: 16rpx;
-  width: 72rpx;
-  height: 72rpx;
-  background-color: #4F6EF7;
+  width: 76rpx;
+  height: 76rpx;
+  background: linear-gradient(135deg, #667eea, #764ba2);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 4rpx 20rpx rgba(102, 126, 234, 0.4);
 }
 
 .send-btn-active {
-  background-color: #3A56D4;
   transform: scale(0.95);
+  opacity: 0.8;
 }
 
 .send-icon {

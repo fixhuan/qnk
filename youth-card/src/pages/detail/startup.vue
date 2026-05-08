@@ -1,15 +1,18 @@
 <template>
   <view class="page">
+    <view class="orb orb-1"></view>
+    <view class="orb orb-2"></view>
+
     <view class="stats-bar">
-      <view class="stat-card">
+      <view class="stat-card" hover-class="card-hover">
         <text class="stat-value">128</text>
         <text class="stat-label">创业项目</text>
       </view>
-      <view class="stat-card">
+      <view class="stat-card" hover-class="card-hover">
         <text class="stat-value">36</text>
         <text class="stat-label">孵化器</text>
       </view>
-      <view class="stat-card">
+      <view class="stat-card" hover-class="card-hover">
         <text class="stat-value">2.8亿</text>
         <text class="stat-label">融资金额</text>
       </view>
@@ -29,7 +32,7 @@
 
     <scroll-view class="list-scroll" scroll-y>
       <template v-if="currentCategory === '创业项目'">
-        <view class="project-card" v-for="item in projects" :key="item.id">
+        <view class="project-card" v-for="item in projects" :key="item.id" hover-class="card-hover">
           <view class="project-header">
             <text class="project-name">{{ item.name }}</text>
             <text class="project-stage">{{ item.stage }}</text>
@@ -42,7 +45,7 @@
       </template>
 
       <template v-if="currentCategory === '孵化器'">
-        <view class="incubator-card" v-for="item in incubators" :key="item.id">
+        <view class="incubator-card" v-for="item in incubators" :key="item.id" hover-class="card-hover">
           <view class="incubator-header">
             <text class="incubator-name">{{ item.name }}</text>
           </view>
@@ -57,14 +60,14 @@
               <text class="incubator-stat-label">空位</text>
             </view>
           </view>
-          <view class="incubator-btn" @click="onApplyIncubator(item)">
-            <text class="incubator-btn-text">{{ item.applied ? '已申请' : '申请入驻' }}</text>
+          <view class="incubator-btn" :class="{ applied: item.applied }" @click="onApplyIncubator(item)">
+            <text class="incubator-btn-text" :class="{ applied: item.applied }">{{ item.applied ? '已申请' : '申请入驻' }}</text>
           </view>
         </view>
       </template>
 
       <template v-if="currentCategory === '政策扶持'">
-        <view class="policy-card" v-for="item in policies" :key="item.id">
+        <view class="policy-card" v-for="item in policies" :key="item.id" hover-class="card-hover">
           <view class="policy-header">
             <text class="policy-name">{{ item.name }}</text>
           </view>
@@ -76,7 +79,7 @@
       </template>
 
       <template v-if="currentCategory === '融资对接'">
-        <view class="finance-card" v-for="item in finances" :key="item.id">
+        <view class="finance-card" v-for="item in finances" :key="item.id" hover-class="card-hover">
           <view class="finance-header">
             <text class="finance-name">{{ item.name }}</text>
             <text class="finance-stage">{{ item.stage }}</text>
@@ -169,16 +172,44 @@ const onApplyIncubator = (item: Incubator) => {
 <style>
 .page {
   min-height: 100vh;
-  background-color: #F5F6FA;
+  background-color: #0f0f2d;
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80rpx);
+  z-index: 0;
+}
+
+.orb-1 {
+  width: 400rpx;
+  height: 400rpx;
+  background: #764ba2;
+  opacity: 0.15;
+  top: -100rpx;
+  right: -100rpx;
+}
+
+.orb-2 {
+  width: 350rpx;
+  height: 350rpx;
+  background: #43e97b;
+  opacity: 0.08;
+  top: 200rpx;
+  left: -120rpx;
 }
 
 .stats-bar {
   display: flex;
   padding: 24rpx;
   gap: 16rpx;
-  background-color: #FFFFFF;
+  position: relative;
+  z-index: 1;
 }
 
 .stat-card {
@@ -187,27 +218,37 @@ const onApplyIncubator = (item: Incubator) => {
   flex-direction: column;
   align-items: center;
   padding: 24rpx 0;
-  background: linear-gradient(135deg, #4F6EF7 0%, #7B9AFF 100%);
-  border-radius: 20rpx;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  border-radius: 24rpx;
+  backdrop-filter: blur(20px);
+  transition: all 0.3s;
+}
+
+.card-hover {
+  transform: scale(0.95);
+  opacity: 0.85;
 }
 
 .stat-value {
   font-size: 36rpx;
   font-weight: 700;
-  color: #FFFFFF;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .stat-label {
   font-size: 22rpx;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.6);
   margin-top: 8rpx;
 }
 
 .category-scroll {
   white-space: nowrap;
-  background-color: #FFFFFF;
   padding: 16rpx 24rpx;
-  border-bottom: 1rpx solid #F0F0F0;
+  position: relative;
+  z-index: 1;
 }
 
 .category-tag {
@@ -216,17 +257,21 @@ const onApplyIncubator = (item: Incubator) => {
   justify-content: center;
   padding: 12rpx 32rpx;
   border-radius: 32rpx;
-  background-color: #F0F2F5;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
   margin-right: 16rpx;
+  transition: all 0.3s;
 }
 
 .category-tag.active {
-  background-color: #4F6EF7;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-color: transparent;
+  box-shadow: 0 4rpx 16rpx rgba(102, 126, 234, 0.4);
 }
 
 .category-text {
   font-size: 26rpx;
-  color: #666666;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .category-text.active-text {
@@ -237,14 +282,18 @@ const onApplyIncubator = (item: Incubator) => {
 .list-scroll {
   flex: 1;
   padding: 20rpx 24rpx;
+  position: relative;
+  z-index: 1;
 }
 
 .project-card {
-  background-color: #FFFFFF;
-  border-radius: 20rpx;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  border-radius: 24rpx;
   padding: 28rpx;
   margin-bottom: 20rpx;
-  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(20px);
+  transition: all 0.3s;
 }
 
 .project-header {
@@ -256,20 +305,20 @@ const onApplyIncubator = (item: Incubator) => {
 .project-name {
   font-size: 32rpx;
   font-weight: 700;
-  color: #333333;
+  color: #FFFFFF;
 }
 
 .project-stage {
   font-size: 22rpx;
-  color: #4F6EF7;
-  background-color: rgba(79, 110, 247, 0.1);
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #667eea, #764ba2);
   padding: 6rpx 16rpx;
   border-radius: 16rpx;
 }
 
 .project-desc {
   font-size: 26rpx;
-  color: #666666;
+  color: rgba(255, 255, 255, 0.6);
   margin-top: 12rpx;
   line-height: 1.6;
 }
@@ -280,23 +329,27 @@ const onApplyIncubator = (item: Incubator) => {
 
 .project-funding {
   font-size: 24rpx;
-  color: #999999;
-  background-color: #F5F6FA;
+  color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
   padding: 6rpx 16rpx;
   border-radius: 16rpx;
 }
 
 .project-funding.funded {
-  color: #FF6B6B;
-  background-color: rgba(255, 107, 107, 0.1);
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+  border-color: transparent;
 }
 
 .incubator-card {
-  background-color: #FFFFFF;
-  border-radius: 20rpx;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  border-radius: 24rpx;
   padding: 28rpx;
   margin-bottom: 20rpx;
-  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(20px);
+  transition: all 0.3s;
 }
 
 .incubator-header {
@@ -308,12 +361,12 @@ const onApplyIncubator = (item: Incubator) => {
 .incubator-name {
   font-size: 32rpx;
   font-weight: 700;
-  color: #333333;
+  color: #FFFFFF;
 }
 
 .incubator-address {
   font-size: 24rpx;
-  color: #999999;
+  color: rgba(255, 255, 255, 0.4);
   margin-top: 8rpx;
 }
 
@@ -332,23 +385,32 @@ const onApplyIncubator = (item: Incubator) => {
 .incubator-stat-value {
   font-size: 32rpx;
   font-weight: 700;
-  color: #4F6EF7;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .incubator-stat-label {
   font-size: 22rpx;
-  color: #999999;
+  color: rgba(255, 255, 255, 0.4);
   margin-top: 4rpx;
 }
 
 .incubator-btn {
   margin-top: 20rpx;
   padding: 14rpx 0;
-  background-color: #4F6EF7;
-  border-radius: 28rpx;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 40rpx;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 4rpx 20rpx rgba(102, 126, 234, 0.4);
+}
+
+.incubator-btn.applied {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  box-shadow: none;
 }
 
 .incubator-btn-text {
@@ -356,18 +418,24 @@ const onApplyIncubator = (item: Incubator) => {
   color: #FFFFFF;
 }
 
+.incubator-btn-text.applied {
+  color: rgba(255, 255, 255, 0.4);
+}
+
 .policy-card {
-  background-color: #FFFFFF;
-  border-radius: 20rpx;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  border-radius: 24rpx;
   padding: 28rpx;
   margin-bottom: 20rpx;
-  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(20px);
+  transition: all 0.3s;
 }
 
 .policy-name {
   font-size: 30rpx;
   font-weight: 700;
-  color: #333333;
+  color: #FFFFFF;
 }
 
 .policy-meta {
@@ -379,20 +447,24 @@ const onApplyIncubator = (item: Incubator) => {
 
 .policy-dept {
   font-size: 24rpx;
-  color: #4F6EF7;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .policy-period {
   font-size: 22rpx;
-  color: #999999;
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .finance-card {
-  background-color: #FFFFFF;
-  border-radius: 20rpx;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  border-radius: 24rpx;
   padding: 28rpx;
   margin-bottom: 20rpx;
-  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(20px);
+  transition: all 0.3s;
 }
 
 .finance-header {
@@ -404,13 +476,13 @@ const onApplyIncubator = (item: Incubator) => {
 .finance-name {
   font-size: 32rpx;
   font-weight: 700;
-  color: #333333;
+  color: #FFFFFF;
 }
 
 .finance-stage {
   font-size: 22rpx;
-  color: #4F6EF7;
-  background-color: rgba(79, 110, 247, 0.1);
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #667eea, #764ba2);
   padding: 6rpx 16rpx;
   border-radius: 16rpx;
 }
@@ -418,7 +490,9 @@ const onApplyIncubator = (item: Incubator) => {
 .finance-amount {
   font-size: 28rpx;
   font-weight: 600;
-  color: #FF6B6B;
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin-top: 16rpx;
 }
 </style>

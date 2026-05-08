@@ -1,11 +1,21 @@
 <template>
   <view class="page">
+    <view class="nav-bar">
+      <view class="nav-back" hover-class="nav-back-active" @tap="goBack">
+        <text class="nav-back-icon">‹</text>
+      </view>
+      <text class="nav-title">设置</text>
+      <view style="width: 60rpx;"></view>
+    </view>
+
     <view class="section">
       <text class="section-title">账号与安全</text>
       <view class="setting-card">
         <view class="setting-item" hover-class="setting-item-active" @tap="onSetting('phone')">
           <view class="setting-left">
-            <text class="setting-icon">📱</text>
+            <view class="setting-icon-wrap" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+              <text class="setting-icon">📱</text>
+            </view>
             <text class="setting-label">手机号</text>
           </view>
           <view class="setting-right">
@@ -15,7 +25,9 @@
         </view>
         <view class="setting-item" hover-class="setting-item-active" @tap="onSetting('password')">
           <view class="setting-left">
-            <text class="setting-icon">🔑</text>
+            <view class="setting-icon-wrap" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+              <text class="setting-icon">🔑</text>
+            </view>
             <text class="setting-label">修改密码</text>
           </view>
           <view class="setting-right">
@@ -24,7 +36,9 @@
         </view>
         <view class="setting-item setting-item-last" hover-class="setting-item-active" @tap="onSetting('verify')">
           <view class="setting-left">
-            <text class="setting-icon">🪪</text>
+            <view class="setting-icon-wrap" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">
+              <text class="setting-icon">🪪</text>
+            </view>
             <text class="setting-label">实名认证</text>
           </view>
           <view class="setting-right">
@@ -40,17 +54,29 @@
       <view class="setting-card">
         <view class="setting-item">
           <view class="setting-left">
-            <text class="setting-icon">🔔</text>
+            <view class="setting-icon-wrap" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+              <text class="setting-icon">🔔</text>
+            </view>
             <text class="setting-label">消息通知</text>
           </view>
-          <switch :checked="notifyEnabled" @change="onNotifyChange" color="#4F6EF7" />
+          <view class="switch-wrap" :class="{ 'switch-on': notifyEnabled }" @tap="toggleNotify">
+            <view class="switch-track">
+              <view class="switch-thumb"></view>
+            </view>
+          </view>
         </view>
         <view class="setting-item setting-item-last">
           <view class="setting-left">
-            <text class="setting-icon">🎉</text>
+            <view class="setting-icon-wrap" style="background: linear-gradient(135deg, #fa709a, #fee140);">
+              <text class="setting-icon">🎉</text>
+            </view>
             <text class="setting-label">活动提醒</text>
           </view>
-          <switch :checked="activityEnabled" @change="onActivityChange" color="#4F6EF7" />
+          <view class="switch-wrap" :class="{ 'switch-on': activityEnabled }" @tap="toggleActivity">
+            <view class="switch-track">
+              <view class="switch-thumb"></view>
+            </view>
+          </view>
         </view>
       </view>
     </view>
@@ -60,7 +86,9 @@
       <view class="setting-card">
         <view class="setting-item" hover-class="setting-item-active" @tap="onSetting('language')">
           <view class="setting-left">
-            <text class="setting-icon">🌐</text>
+            <view class="setting-icon-wrap" style="background: linear-gradient(135deg, #a18cd1, #fbc2eb);">
+              <text class="setting-icon">🌐</text>
+            </view>
             <text class="setting-label">语言</text>
           </view>
           <view class="setting-right">
@@ -70,7 +98,9 @@
         </view>
         <view class="setting-item" hover-class="setting-item-active" @tap="onSetting('cache')">
           <view class="setting-left">
-            <text class="setting-icon">🗑️</text>
+            <view class="setting-icon-wrap" style="background: linear-gradient(135deg, #fccb90, #d57eeb);">
+              <text class="setting-icon">🗑️</text>
+            </view>
             <text class="setting-label">缓存清理</text>
           </view>
           <view class="setting-right">
@@ -80,7 +110,9 @@
         </view>
         <view class="setting-item setting-item-last" hover-class="setting-item-active" @tap="onSetting('update')">
           <view class="setting-left">
-            <text class="setting-icon">🔄</text>
+            <view class="setting-icon-wrap" style="background: linear-gradient(135deg, #96fbc4, #f9f586);">
+              <text class="setting-icon">🔄</text>
+            </view>
             <text class="setting-label">检查更新</text>
           </view>
           <view class="setting-right">
@@ -96,7 +128,9 @@
       <view class="setting-card">
         <view class="setting-item" hover-class="setting-item-active" @tap="onSetting('agreement')">
           <view class="setting-left">
-            <text class="setting-icon">📄</text>
+            <view class="setting-icon-wrap" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+              <text class="setting-icon">📄</text>
+            </view>
             <text class="setting-label">用户协议</text>
           </view>
           <view class="setting-right">
@@ -105,7 +139,9 @@
         </view>
         <view class="setting-item" hover-class="setting-item-active" @tap="onSetting('privacy')">
           <view class="setting-left">
-            <text class="setting-icon">🛡️</text>
+            <view class="setting-icon-wrap" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+              <text class="setting-icon">🛡️</text>
+            </view>
             <text class="setting-label">隐私政策</text>
           </view>
           <view class="setting-right">
@@ -114,7 +150,9 @@
         </view>
         <view class="setting-item setting-item-last" hover-class="setting-item-active" @tap="onSetting('about')">
           <view class="setting-left">
-            <text class="setting-icon">ℹ️</text>
+            <view class="setting-icon-wrap" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+              <text class="setting-icon">ℹ️</text>
+            </view>
             <text class="setting-label">关于</text>
           </view>
           <view class="setting-right">
@@ -136,12 +174,16 @@ import { ref } from 'vue'
 const notifyEnabled = ref(true)
 const activityEnabled = ref(true)
 
-const onNotifyChange = (e: any) => {
-  notifyEnabled.value = e.detail.value
+const toggleNotify = () => {
+  notifyEnabled.value = !notifyEnabled.value
 }
 
-const onActivityChange = (e: any) => {
-  activityEnabled.value = e.detail.value
+const toggleActivity = () => {
+  activityEnabled.value = !activityEnabled.value
+}
+
+const goBack = () => {
+  uni.navigateBack()
 }
 
 const onSetting = (type: string) => {
@@ -194,8 +236,39 @@ const onLogout = () => {
 <style scoped>
 .page {
   min-height: 100vh;
-  background-color: #F5F6FA;
+  background-color: #0f0f2d;
   padding-bottom: 60rpx;
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60rpx 24rpx 16rpx;
+  background-color: #0f0f2d;
+}
+
+.nav-back {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-back-active {
+  opacity: 0.6;
+}
+
+.nav-back-icon {
+  font-size: 44rpx;
+  color: #FFFFFF;
+}
+
+.nav-title {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #FFFFFF;
 }
 
 .section {
@@ -204,15 +277,16 @@ const onLogout = () => {
 
 .section-title {
   font-size: 26rpx;
-  color: #999999;
+  color: rgba(255, 255, 255, 0.4);
   padding: 24rpx 32rpx 12rpx;
 }
 
 .setting-card {
-  margin: 0 24rpx;
-  background-color: #FFFFFF;
-  border-radius: 20rpx;
-  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.06);
+  margin: 0 32rpx;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border-radius: 24rpx;
   overflow: hidden;
 }
 
@@ -221,7 +295,7 @@ const onLogout = () => {
   align-items: center;
   justify-content: space-between;
   padding: 28rpx 32rpx;
-  border-bottom: 1rpx solid #F0F0F5;
+  border-bottom: 1rpx solid rgba(255, 255, 255, 0.06);
 }
 
 .setting-item-last {
@@ -229,7 +303,7 @@ const onLogout = () => {
 }
 
 .setting-item-active {
-  background-color: #F5F6FA;
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .setting-left {
@@ -237,14 +311,23 @@ const onLogout = () => {
   align-items: center;
 }
 
-.setting-icon {
-  font-size: 36rpx;
+.setting-icon-wrap {
+  width: 52rpx;
+  height: 52rpx;
+  border-radius: 14rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-right: 16rpx;
+}
+
+.setting-icon {
+  font-size: 28rpx;
 }
 
 .setting-label {
   font-size: 28rpx;
-  color: #333333;
+  color: #FFFFFF;
 }
 
 .setting-right {
@@ -254,32 +337,71 @@ const onLogout = () => {
 
 .setting-value {
   font-size: 26rpx;
-  color: #999999;
+  color: rgba(255, 255, 255, 0.4);
   margin-right: 8rpx;
 }
 
 .setting-value.verified {
-  color: #4CD964;
+  color: #43e97b;
 }
 
 .setting-arrow {
   font-size: 32rpx;
-  color: #CCCCCC;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.switch-wrap {
+  position: relative;
+}
+
+.switch-track {
+  width: 88rpx;
+  height: 48rpx;
+  border-radius: 24rpx;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1rpx solid rgba(255, 255, 255, 0.15);
+  position: relative;
+  transition: all 0.3s;
+}
+
+.switch-on .switch-track {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-color: transparent;
+  box-shadow: 0 4rpx 16rpx rgba(102, 126, 234, 0.3);
+}
+
+.switch-thumb {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  background: #FFFFFF;
+  position: absolute;
+  top: 3rpx;
+  left: 4rpx;
+  transition: all 0.3s;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.2);
+}
+
+.switch-on .switch-thumb {
+  left: 44rpx;
 }
 
 .logout-btn {
-  margin: 40rpx 24rpx 0;
+  margin: 40rpx 32rpx 0;
   height: 88rpx;
-  background-color: #FFFFFF;
-  border-radius: 20rpx;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border-radius: 24rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.06);
 }
 
 .logout-btn-active {
-  background-color: #FFF0F0;
+  transform: scale(0.95);
+  background: rgba(255, 77, 79, 0.1);
+  border-color: rgba(255, 77, 79, 0.3);
 }
 
 .logout-text {

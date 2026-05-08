@@ -1,5 +1,13 @@
 <template>
   <view class="page">
+    <view class="nav-bar">
+      <view class="nav-back" hover-class="nav-back-active" @tap="goBack">
+        <text class="nav-back-icon">‹</text>
+      </view>
+      <text class="nav-title">我的课程</text>
+      <view style="width: 60rpx;"></view>
+    </view>
+
     <view class="tabs">
       <view
         v-for="(tab, index) in tabs"
@@ -9,7 +17,6 @@
         @tap="switchTab(index)"
       >
         <text class="tab-text" :class="{ 'tab-text-active': currentTab === index }">{{ tab }}</text>
-        <view v-if="currentTab === index" class="tab-line"></view>
       </view>
     </view>
 
@@ -85,6 +92,10 @@ const switchTab = (index: number) => {
   currentTab.value = index
 }
 
+const goBack = () => {
+  uni.navigateBack()
+}
+
 const onContinue = (course: Course) => {
   uni.showToast({ title: `继续学习：${course.name}`, icon: 'none' })
 }
@@ -93,61 +104,93 @@ const onContinue = (course: Course) => {
 <style scoped>
 .page {
   min-height: 100vh;
-  background-color: #F5F6FA;
+  background-color: #0f0f2d;
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60rpx 24rpx 16rpx;
+  background-color: #0f0f2d;
+}
+
+.nav-back {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-back-active {
+  opacity: 0.6;
+}
+
+.nav-back-icon {
+  font-size: 44rpx;
+  color: #FFFFFF;
+}
+
+.nav-title {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #FFFFFF;
 }
 
 .tabs {
   display: flex;
-  background-color: #FFFFFF;
-  padding: 0 8rpx;
-  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+  padding: 16rpx 24rpx;
+  gap: 12rpx;
 }
 
 .tab-item {
   flex: 1;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  padding: 24rpx 0 16rpx;
-  position: relative;
+  justify-content: center;
+  padding: 16rpx 0;
+  border-radius: 32rpx;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+}
+
+.tab-active {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-color: transparent;
+  box-shadow: 0 4rpx 20rpx rgba(102, 126, 234, 0.4);
 }
 
 .tab-text {
-  font-size: 28rpx;
-  color: #666666;
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .tab-text-active {
-  color: #4F6EF7;
+  color: #FFFFFF;
   font-weight: 600;
 }
 
-.tab-line {
-  width: 40rpx;
-  height: 6rpx;
-  background-color: #4F6EF7;
-  border-radius: 3rpx;
-  margin-top: 8rpx;
-}
-
 .course-list {
-  height: calc(100vh - 80rpx);
-  padding: 24rpx;
+  height: calc(100vh - 180rpx);
+  padding: 0 24rpx 24rpx;
 }
 
 .course-card {
   display: flex;
-  background-color: #FFFFFF;
-  border-radius: 20rpx;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border-radius: 24rpx;
   padding: 24rpx;
   margin-bottom: 20rpx;
-  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.06);
 }
 
 .course-cover {
   width: 120rpx;
   height: 120rpx;
-  border-radius: 16rpx;
+  border-radius: 20rpx;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -169,12 +212,12 @@ const onContinue = (course: Course) => {
 .course-name {
   font-size: 28rpx;
   font-weight: 600;
-  color: #333333;
+  color: #FFFFFF;
 }
 
 .course-teacher {
   font-size: 24rpx;
-  color: #999999;
+  color: rgba(255, 255, 255, 0.4);
   margin-top: 6rpx;
 }
 
@@ -187,42 +230,43 @@ const onContinue = (course: Course) => {
 .progress-bar {
   flex: 1;
   height: 10rpx;
-  background-color: #F0F0F5;
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 5rpx;
   overflow: hidden;
 }
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #4F6EF7, #7B93FA);
+  background: linear-gradient(90deg, #667eea, #764ba2);
   border-radius: 5rpx;
 }
 
 .progress-text {
   font-size: 22rpx;
-  color: #4F6EF7;
+  color: #7c5cfc;
   margin-left: 12rpx;
   flex-shrink: 0;
 }
 
 .course-time {
   font-size: 22rpx;
-  color: #CCCCCC;
+  color: rgba(255, 255, 255, 0.25);
   margin-top: 6rpx;
 }
 
 .course-btn {
   flex-shrink: 0;
   align-self: center;
-  background-color: #4F6EF7;
+  background: linear-gradient(135deg, #667eea, #764ba2);
   border-radius: 28rpx;
   padding: 12rpx 24rpx;
   margin-left: 16rpx;
+  box-shadow: 0 4rpx 16rpx rgba(102, 126, 234, 0.3);
 }
 
 .course-btn-active {
-  background-color: #3A56D4;
-  transform: scale(0.96);
+  transform: scale(0.95);
+  opacity: 0.8;
 }
 
 .course-btn-text {
@@ -245,6 +289,6 @@ const onContinue = (course: Course) => {
 
 .empty-text {
   font-size: 28rpx;
-  color: #999999;
+  color: rgba(255, 255, 255, 0.3);
 }
 </style>
