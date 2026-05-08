@@ -12,11 +12,11 @@ onHide(() => {
 </script>
 <style>
 page {
-  background-color: #F1F3F4;
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', 'PingFang SC', sans-serif;
+  background-color: #faf8f5;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', 'PingFang SC', 'Noto Sans SC', sans-serif;
   font-size: 28rpx;
-  color: #1C1C1E;
-  line-height: 1.5;
+  color: #1a1612;
+  line-height: 1.7;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

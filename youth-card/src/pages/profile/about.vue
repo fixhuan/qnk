@@ -75,10 +75,10 @@
 import { ref } from 'vue'
 
 const features = ref([
-  { icon: '🎯', title: '精准服务', desc: '基于青年需求，提供政策、租房、求职等一站式服务', bgColor: 'rgba(65,108,129,0.08)' },
-  { icon: '🔒', title: '安全可靠', desc: '政府背书，数据加密，保障您的信息安全', bgColor: 'rgba(52,199,89,0.08)' },
-  { icon: '⚡', title: '便捷高效', desc: '在线申请，一键办理，让服务触手可及', bgColor: 'rgba(90,200,250,0.08)' },
-  { icon: '🌟', title: '专属优惠', desc: '青年卡用户专享折扣和补贴，助力青年发展', bgColor: 'rgba(255,149,0,0.08)' }
+  { icon: '🎯', title: '精准服务', desc: '基于青年需求，提供政策、租房、求职等一站式服务', bgColor: '#fef3ee' },
+  { icon: '🔒', title: '安全可靠', desc: '政府背书，数据加密，保障您的信息安全', bgColor: '#f0fdf4' },
+  { icon: '⚡', title: '便捷高效', desc: '在线申请，一键办理，让服务触手可及', bgColor: '#eff6ff' },
+  { icon: '🌟', title: '专属优惠', desc: '青年卡用户专享折扣和补贴，助力青年发展', bgColor: '#fefce8' }
 ])
 
 const goBack = () => {
@@ -94,7 +94,7 @@ const onLink = (type: string) => {
 <style scoped>
 .page {
   min-height: 100vh;
-  background-color: #F1F3F4;
+  background-color: #faf8f5;
   padding-bottom: 60rpx;
 }
 
@@ -103,7 +103,7 @@ const onLink = (type: string) => {
   align-items: center;
   justify-content: space-between;
   padding: 60rpx 32rpx 16rpx;
-  background-color: #F1F3F4;
+  background-color: #faf8f5;
 }
 
 .nav-back {
@@ -120,13 +120,13 @@ const onLink = (type: string) => {
 
 .nav-back-icon {
   font-size: 44rpx;
-  color: #1C1C1E;
+  color: #1a1612;
 }
 
 .nav-title {
   font-size: 34rpx;
   font-weight: 700;
-  color: #1C1C1E;
+  color: #1a1612;
 }
 
 .logo-area {
@@ -140,7 +140,7 @@ const onLink = (type: string) => {
   width: 160rpx;
   height: 160rpx;
   border-radius: 50%;
-  background: rgba(65,108,129,0.08);
+  background: #fef3ee;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -153,21 +153,21 @@ const onLink = (type: string) => {
 .app-name {
   font-size: 40rpx;
   font-weight: 700;
-  color: #1C1C1E;
+  color: #1a1612;
   margin-top: 24rpx;
 }
 
 .app-version {
   font-size: 26rpx;
-  color: #8E8E93;
+  color: #a89888;
   margin-top: 8rpx;
 }
 
 .features-card {
   margin: 0 32rpx 24rpx;
-  background: #FFFFFF;
+  background: #ffffff;
+  border: 1rpx solid #f0ebe3;
   border-radius: 16rpx;
-  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
   padding: 32rpx;
 }
 
@@ -205,28 +205,28 @@ const onLink = (type: string) => {
 .feature-title {
   font-size: 30rpx;
   font-weight: 600;
-  color: #1C1C1E;
+  color: #1a1612;
 }
 
 .feature-desc {
   font-size: 24rpx;
-  color: #8E8E93;
+  color: #6b5e52;
   margin-top: 6rpx;
   line-height: 1.5;
 }
 
 .contact-card {
   margin: 0 32rpx 24rpx;
-  background: #FFFFFF;
+  background: #ffffff;
+  border: 1rpx solid #f0ebe3;
   border-radius: 16rpx;
-  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
   padding: 32rpx;
 }
 
 .card-title {
   font-size: 30rpx;
   font-weight: 600;
-  color: #1C1C1E;
+  color: #1a1612;
   margin-bottom: 24rpx;
 }
 
@@ -244,7 +244,7 @@ const onLink = (type: string) => {
   width: 52rpx;
   height: 52rpx;
   border-radius: 50%;
-  background: rgba(65,108,129,0.08);
+  background: #f5f0ea;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -258,14 +258,14 @@ const onLink = (type: string) => {
 
 .contact-text {
   font-size: 28rpx;
-  color: #8E8E93;
+  color: #6b5e52;
 }
 
 .links-card {
   margin: 0 32rpx 24rpx;
-  background: #FFFFFF;
+  background: #ffffff;
+  border: 1rpx solid #f0ebe3;
   border-radius: 16rpx;
-  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
   overflow: hidden;
 }
 
@@ -274,7 +274,7 @@ const onLink = (type: string) => {
   align-items: center;
   justify-content: space-between;
   padding: 28rpx 32rpx;
-  border-bottom: 0.5rpx solid #E5E5EA;
+  border-bottom: 1rpx solid #f0ebe3;
 }
 
 .link-item:last-child {
@@ -282,17 +282,17 @@ const onLink = (type: string) => {
 }
 
 .link-item-active {
-  background: #F8F9FA;
+  background: #f5f0ea;
 }
 
 .link-text {
   font-size: 28rpx;
-  color: #416C81;
+  color: #c2410c;
 }
 
 .link-arrow {
   font-size: 32rpx;
-  color: #C6C6C8;
+  color: #e8e0d6;
 }
 
 .copyright {
@@ -302,6 +302,6 @@ const onLink = (type: string) => {
 
 .copyright-text {
   font-size: 22rpx;
-  color: #AEAEB2;
+  color: #a89888;
 }
 </style>

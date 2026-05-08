@@ -88,7 +88,7 @@ const onApply = (item: Job) => {
 <style>
 .page {
   min-height: 100vh;
-  background-color: #F1F3F4;
+  background-color: #faf8f5;
   display: flex;
   flex-direction: column;
 }
@@ -100,10 +100,10 @@ const onApply = (item: Job) => {
 .search-input-wrap {
   display: flex;
   align-items: center;
-  background: #FFFFFF;
+  background: #ffffff;
+  border: 1rpx solid #e8e0d6;
   border-radius: 12rpx;
   padding: 16rpx 24rpx;
-  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
 }
 
 .search-icon {
@@ -114,11 +114,11 @@ const onApply = (item: Job) => {
 .search-input {
   flex: 1;
   font-size: 28rpx;
-  color: #1C1C1E;
+  color: #1a1612;
 }
 
 .search-placeholder {
-  color: #AEAEB2;
+  color: #a89888;
   font-size: 28rpx;
 }
 
@@ -133,21 +133,21 @@ const onApply = (item: Job) => {
   justify-content: center;
   padding: 12rpx 32rpx;
   border-radius: 999rpx;
-  background: #F8F9FA;
+  background: #f5f0ea;
   margin-right: 16rpx;
 }
 
 .category-tag.active {
-  background: #416C81;
+  background: #c2410c;
 }
 
 .category-text {
   font-size: 26rpx;
-  color: #8E8E93;
+  color: #6b5e52;
 }
 
 .category-text.active-text {
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: 600;
 }
 
@@ -157,15 +157,16 @@ const onApply = (item: Job) => {
 }
 
 .job-card {
-  background: #FFFFFF;
-  border-radius: 16rpx;
+  background: #ffffff;
+  border: 1rpx solid #f0ebe3;
+  border-radius: 12rpx;
   padding: 28rpx;
   margin-bottom: 20rpx;
-  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04), 0 0 1rpx rgba(0,0,0,0.1);
+  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.03);
 }
 
 .card-hover {
-  background: #F8F9FA;
+  opacity: 0.6;
 }
 
 .job-header {
@@ -177,18 +178,18 @@ const onApply = (item: Job) => {
 .job-name {
   font-size: 32rpx;
   font-weight: 600;
-  color: #1C1C1E;
+  color: #1a1612;
 }
 
 .job-salary {
   font-size: 30rpx;
   font-weight: 600;
-  color: #416C81;
+  color: #c2410c;
 }
 
 .job-company {
   font-size: 26rpx;
-  color: #8E8E93;
+  color: #6b5e52;
   margin-top: 12rpx;
 }
 
@@ -201,8 +202,8 @@ const onApply = (item: Job) => {
 
 .job-tag {
   font-size: 22rpx;
-  color: #C93400;
-  background: rgba(255,149,0,0.08);
+  color: #a16207;
+  background: #fefce8;
   padding: 6rpx 16rpx;
   border-radius: 999rpx;
 }
@@ -212,31 +213,29 @@ const onApply = (item: Job) => {
   align-items: center;
   justify-content: space-between;
   margin-top: 20rpx;
-  padding-top: 20rpx;
-  border-top: 0.5rpx solid #E5E5EA;
 }
 
 .job-meta {
   font-size: 22rpx;
-  color: #AEAEB2;
+  color: #a89888;
 }
 
 .apply-btn {
   padding: 10rpx 36rpx;
-  background: #416C81;
-  border-radius: 12rpx;
+  background: #c2410c;
+  border-radius: 8rpx;
 }
 
 .apply-btn.applied {
-  background: #F8F9FA;
+  background: #f5f0ea;
 }
 
 .apply-btn-text {
   font-size: 24rpx;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .apply-btn-text.applied {
-  color: #8E8E93;
+  color: #a89888;
 }
 </style>

@@ -176,77 +176,77 @@ const banners = ref<Banner[]>([
   {
     title: '青春惠享',
     desc: '专属优惠 畅享生活',
-    bg: '#416C81',
+    bg: '#c2410c',
     btn: '立即参与',
     path: '/pages/detail/shop'
   },
   {
     title: '夜校报名',
     desc: '技能提升 充实自我',
-    bg: '#1C1C1E',
+    bg: '#1a1612',
     btn: '马上报名',
     path: '/pages/detail/school'
   },
   {
     title: '青年公寓',
     desc: '温馨住所 安心安居',
-    bg: '#34C759',
+    bg: '#15803d',
     btn: '了解详情',
     path: '/pages/detail/apartment'
   }
 ])
 
 const modules = ref<Module[]>([
-  { icon: '🏪', name: '小店', path: '/pages/detail/shop', iconBg: 'rgba(65,108,129,0.08)' },
-  { icon: '📚', name: '夜校', path: '/pages/detail/school', iconBg: 'rgba(90,200,250,0.08)' },
-  { icon: '🏠', name: '公寓', path: '/pages/detail/apartment', iconBg: 'rgba(52,199,89,0.08)' },
-  { icon: '💼', name: '求职', path: '/pages/detail/job', iconBg: 'rgba(255,149,0,0.08)' },
-  { icon: '🚀', name: '创业', path: '/pages/detail/startup', iconBg: 'rgba(175,82,222,0.08)' },
-  { icon: '🎉', name: '社交', path: '/pages/detail/social', iconBg: 'rgba(255,59,48,0.08)' },
-  { icon: '❤️', name: '志愿', path: '/pages/detail/volunteer', iconBg: 'rgba(255,149,0,0.08)' },
-  { icon: '✏️', name: '学习', path: '/pages/detail/learn', iconBg: 'rgba(65,108,129,0.08)' },
-  { icon: '🛡️', name: '权益', path: '/pages/detail/rights', iconBg: 'rgba(52,199,89,0.08)' }
+  { icon: '🏪', name: '小店', path: '/pages/detail/shop', iconBg: '#fef3ee' },
+  { icon: '📚', name: '夜校', path: '/pages/detail/school', iconBg: '#eff6ff' },
+  { icon: '🏠', name: '公寓', path: '/pages/detail/apartment', iconBg: '#f0fdf4' },
+  { icon: '💼', name: '求职', path: '/pages/detail/job', iconBg: '#fefce8' },
+  { icon: '🚀', name: '创业', path: '/pages/detail/startup', iconBg: '#faf5ff' },
+  { icon: '🎉', name: '社交', path: '/pages/detail/social', iconBg: '#fff1f2' },
+  { icon: '❤️', name: '志愿', path: '/pages/detail/volunteer', iconBg: '#fef3ee' },
+  { icon: '✏️', name: '学习', path: '/pages/detail/learn', iconBg: '#eff6ff' },
+  { icon: '🛡️', name: '权益', path: '/pages/detail/rights', iconBg: '#f0fdf4' }
 ])
 
 const recommends = ref<Recommend[]>([
   {
     title: '创意咖啡工坊',
     desc: '手冲咖啡体验课程',
-    bg: 'rgba(65,108,129,0.08)',
+    bg: '#fef3ee',
     emoji: '☕',
     tag: '热门',
-    tagBg: 'rgba(65,108,129,0.08)',
-    tagColor: '#416C81',
+    tagBg: '#fef3ee',
+    tagColor: '#c2410c',
     path: '/pages/detail/shop'
   },
   {
     title: 'Python编程入门',
     desc: '零基础到实战项目',
-    bg: 'rgba(90,200,250,0.08)',
+    bg: '#eff6ff',
     emoji: '💻',
     tag: '新课',
-    tagBg: 'rgba(90,200,250,0.08)',
-    tagColor: '#007AFF',
+    tagBg: '#eff6ff',
+    tagColor: '#1d4ed8',
     path: '/pages/detail/learn'
   },
   {
     title: '青年创业沙龙',
     desc: '投资人面对面交流',
-    bg: 'rgba(175,82,222,0.08)',
+    bg: '#faf5ff',
     emoji: '🚀',
     tag: '推荐',
-    tagBg: 'rgba(65,108,129,0.08)',
-    tagColor: '#416C81',
+    tagBg: '#fef3ee',
+    tagColor: '#c2410c',
     path: '/pages/detail/startup'
   },
   {
     title: '周末户外徒步',
     desc: '结交志同道合伙伴',
-    bg: 'rgba(52,199,89,0.08)',
+    bg: '#f0fdf4',
     emoji: '🥾',
     tag: '社交',
-    tagBg: 'rgba(52,199,89,0.08)',
-    tagColor: '#248A3D',
+    tagBg: '#f0fdf4',
+    tagColor: '#15803d',
     path: '/pages/detail/social'
   }
 ])
@@ -256,7 +256,7 @@ const activities = ref<Activity[]>([
     title: '城市音乐节志愿者招募',
     time: '2026-05-15 14:00',
     people: 128,
-    bg: 'rgba(65,108,129,0.08)',
+    bg: '#fef3ee',
     icon: '🎵',
     path: '/pages/detail/volunteer'
   },
@@ -264,7 +264,7 @@ const activities = ref<Activity[]>([
     title: '青年读书分享会',
     time: '2026-05-18 19:00',
     people: 56,
-    bg: 'rgba(90,200,250,0.08)',
+    bg: '#eff6ff',
     icon: '📖',
     path: '/pages/detail/learn'
   },
@@ -272,7 +272,7 @@ const activities = ref<Activity[]>([
     title: '创业路演大赛',
     time: '2026-05-20 09:00',
     people: 234,
-    bg: 'rgba(255,149,0,0.08)',
+    bg: '#fefce8',
     icon: '🏆',
     path: '/pages/detail/startup'
   }
@@ -318,11 +318,11 @@ const onActivityClick = (item: Activity) => {
 <style scoped>
 .page {
   min-height: 100vh;
-  background-color: #F1F3F4;
+  background-color: #faf8f5;
 }
 
 .header {
-  background-color: #F1F3F4;
+  background-color: #faf8f5;
   padding: 0 32rpx 32rpx;
 }
 
@@ -339,10 +339,10 @@ const onActivityClick = (item: Activity) => {
 }
 
 .logo-text {
-  font-size: 34rpx;
+  font-size: 32rpx;
   font-weight: 700;
-  color: #1C1C1E;
-  letter-spacing: -0.02em;
+  color: #1a1612;
+  letter-spacing: 0.05em;
 }
 
 .notify-btn {
@@ -359,21 +359,21 @@ const onActivityClick = (item: Activity) => {
 
 .notify-icon {
   font-size: 36rpx;
-  color: #8E8E93;
+  color: #6b5e52;
 }
 
 .greeting-title {
-  font-size: 48rpx;
+  font-size: 44rpx;
   font-weight: 700;
-  color: #1C1C1E;
-  letter-spacing: -0.03em;
+  color: #1a1612;
+  letter-spacing: -0.02em;
   line-height: 1.2;
 }
 
 .greeting-sub {
   font-size: 26rpx;
-  color: #8E8E93;
-  margin-top: 4rpx;
+  color: #a89888;
+  margin-top: 8rpx;
   margin-bottom: 24rpx;
   display: block;
 }
@@ -383,24 +383,24 @@ const onActivityClick = (item: Activity) => {
   align-items: center;
   height: 80rpx;
   background-color: #ffffff;
+  border: 1rpx solid #e8e0d6;
   border-radius: 12rpx;
   padding: 0 24rpx;
-  box-shadow: 0 2rpx 16rpx rgba(0, 0, 0, 0.04), 0 0 1rpx rgba(0, 0, 0, 0.1);
 }
 
 .search-bar:active {
-  background-color: #F8F9FA;
+  background-color: #f5f0ea;
 }
 
 .search-icon {
   font-size: 28rpx;
   margin-right: 16rpx;
-  color: #8E8E93;
+  color: #a89888;
 }
 
 .search-placeholder {
   font-size: 26rpx;
-  color: #AEAEB2;
+  color: #a89888;
 }
 
 .content {
@@ -409,14 +409,15 @@ const onActivityClick = (item: Activity) => {
 
 .banner-card {
   background-color: #ffffff;
-  border-radius: 24rpx;
+  border: 1rpx solid #f0ebe3;
+  border-radius: 16rpx;
   overflow: hidden;
-  box-shadow: 0 2rpx 16rpx rgba(0, 0, 0, 0.04), 0 0 1rpx rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1rpx 4rpx rgba(0, 0, 0, 0.03);
 }
 
 .banner-swiper {
   width: 100%;
-  height: 300rpx;
+  height: 280rpx;
 }
 
 .banner-item {
@@ -473,25 +474,25 @@ const onActivityClick = (item: Activity) => {
   align-items: center;
   justify-content: center;
   padding: 16rpx 0 20rpx;
-  gap: 8rpx;
+  gap: 12rpx;
 }
 
 .banner-dot {
-  width: 8rpx;
-  height: 8rpx;
-  border-radius: 4rpx;
-  background-color: rgba(255, 255, 255, 0.4);
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background-color: #e8e0d6;
   transition: all 0.3s ease;
 }
 
 .banner-dot-active {
-  width: 24rpx;
-  border-radius: 4rpx;
-  background-color: #ffffff;
+  width: 28rpx;
+  border-radius: 6rpx;
+  background-color: #c2410c;
 }
 
 .section {
-  margin-top: 32rpx;
+  margin-top: 40rpx;
 }
 
 .section-header {
@@ -505,14 +506,14 @@ const onActivityClick = (item: Activity) => {
 .section-title {
   font-size: 32rpx;
   font-weight: 700;
-  color: #1C1C1E;
+  color: #1a1612;
   letter-spacing: -0.02em;
 }
 
 .section-more {
-  font-size: 26rpx;
-  color: #416C81;
-  font-weight: 500;
+  font-size: 24rpx;
+  color: #c2410c;
+  font-weight: 400;
 }
 
 .section-more:active {
@@ -521,9 +522,10 @@ const onActivityClick = (item: Activity) => {
 
 .grid-card {
   background-color: #ffffff;
-  border-radius: 24rpx;
+  border: 1rpx solid #f0ebe3;
+  border-radius: 16rpx;
   overflow: hidden;
-  box-shadow: 0 2rpx 16rpx rgba(0, 0, 0, 0.04), 0 0 1rpx rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1rpx 4rpx rgba(0, 0, 0, 0.03);
 }
 
 .grid-wrap {
@@ -542,12 +544,12 @@ const onActivityClick = (item: Activity) => {
 }
 
 .grid-item:active {
-  background-color: #F8F9FA;
+  opacity: 0.6;
 }
 
 .grid-icon-wrap {
-  width: 56rpx;
-  height: 56rpx;
+  width: 80rpx;
+  height: 80rpx;
   border-radius: 16rpx;
   display: flex;
   align-items: center;
@@ -555,14 +557,14 @@ const onActivityClick = (item: Activity) => {
 }
 
 .grid-icon {
-  font-size: 32rpx;
+  font-size: 40rpx;
 }
 
 .grid-name {
   font-size: 24rpx;
-  color: #1C1C1E;
+  color: #6b5e52;
   margin-top: 12rpx;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .recommend-scroll {
@@ -581,14 +583,15 @@ const onActivityClick = (item: Activity) => {
   flex-direction: column;
   width: 280rpx;
   background-color: #ffffff;
-  border-radius: 20rpx;
+  border: 1rpx solid #f0ebe3;
+  border-radius: 12rpx;
   overflow: hidden;
   flex-shrink: 0;
-  box-shadow: 0 2rpx 16rpx rgba(0, 0, 0, 0.04), 0 0 1rpx rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1rpx 4rpx rgba(0, 0, 0, 0.03);
 }
 
 .recommend-card:active {
-  background-color: #F8F9FA;
+  opacity: 0.6;
 }
 
 .recommend-img {
@@ -597,7 +600,6 @@ const onActivityClick = (item: Activity) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 20rpx 20rpx 0 0;
 }
 
 .recommend-img-emoji {
@@ -613,7 +615,7 @@ const onActivityClick = (item: Activity) => {
 .recommend-title {
   font-size: 28rpx;
   font-weight: 600;
-  color: #1C1C1E;
+  color: #1a1612;
   margin-bottom: 8rpx;
   white-space: nowrap;
   overflow: hidden;
@@ -622,7 +624,7 @@ const onActivityClick = (item: Activity) => {
 
 .recommend-desc {
   font-size: 22rpx;
-  color: #8E8E93;
+  color: #a89888;
   margin-bottom: 16rpx;
   white-space: nowrap;
   overflow: hidden;
@@ -637,8 +639,8 @@ const onActivityClick = (item: Activity) => {
 .recommend-tag {
   font-size: 20rpx;
   padding: 6rpx 16rpx;
-  border-radius: 8rpx;
-  font-weight: 500;
+  border-radius: 999rpx;
+  font-weight: 400;
 }
 
 .activity-list {
@@ -652,19 +654,20 @@ const onActivityClick = (item: Activity) => {
   flex-direction: row;
   align-items: center;
   background-color: #ffffff;
-  border-radius: 16rpx;
-  padding: 28rpx;
-  box-shadow: 0 2rpx 16rpx rgba(0, 0, 0, 0.04), 0 0 1rpx rgba(0, 0, 0, 0.1);
+  border: 1rpx solid #f0ebe3;
+  border-radius: 12rpx;
+  padding: 24rpx;
+  box-shadow: 0 1rpx 4rpx rgba(0, 0, 0, 0.03);
 }
 
 .activity-item:active {
-  background-color: #F8F9FA;
+  opacity: 0.6;
 }
 
 .activity-icon-box {
-  width: 56rpx;
-  height: 56rpx;
-  border-radius: 14rpx;
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 12rpx;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -673,7 +676,7 @@ const onActivityClick = (item: Activity) => {
 }
 
 .activity-emoji {
-  font-size: 28rpx;
+  font-size: 32rpx;
 }
 
 .activity-info {
@@ -686,7 +689,7 @@ const onActivityClick = (item: Activity) => {
 .activity-title {
   font-size: 28rpx;
   font-weight: 600;
-  color: #1C1C1E;
+  color: #1a1612;
   margin-bottom: 6rpx;
   white-space: nowrap;
   overflow: hidden;
@@ -695,13 +698,13 @@ const onActivityClick = (item: Activity) => {
 
 .activity-time {
   font-size: 22rpx;
-  color: #8E8E93;
+  color: #a89888;
   margin-bottom: 4rpx;
 }
 
 .activity-people {
   font-size: 22rpx;
-  color: #416C81;
+  color: #c2410c;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
 }
@@ -717,7 +720,7 @@ const onActivityClick = (item: Activity) => {
 
 .activity-arrow-icon {
   font-size: 36rpx;
-  color: #C6C6C8;
+  color: #e8e0d6;
   font-weight: 300;
 }
 
